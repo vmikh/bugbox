@@ -1,0 +1,31 @@
+{
+  "name": "bugbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "browser-sync": "^2.26.7",
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-js-import": "^1.0.6",
+    "gulp-minify": "^3.1.0",
+    "gulp-path": "^4.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-rigger": "^0.5.8",
+    "gulp-uglify": "^3.0.2"
+  },
+  "dependencies": {
+    "gulp-less": "^4.0.1"
+  }
+}
