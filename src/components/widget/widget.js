@@ -14,19 +14,20 @@ class Widget {
         widgetSection.className = "bugbox__widget";
 
         // Create shadow root
-        this.shadow = widgetSection.attachShadow({mode: 'open'});
-
-        this.createHtml(this.shadow);
-        this.createStyles();
-
+        this.shadowHost = widgetSection.attachShadow({mode: 'open'});
+        
+        // Add html to shadow root
+        this.createHtml(this.shadowHost);
         document.body.appendChild(widgetSection);
+
+        // Add styles
+        this.createStyles(this.shadowHost);
         this.googleSheetLink = googleSheetLink;
     }
 
 
     // Add styles func
-    createStyles() {
-        const head  = document.getElementsByTagName('head')[0];
+    createStyles(shadowHost) {
         const link  = document.createElement('link');
 
         link.rel  = 'stylesheet';
@@ -34,32 +35,67 @@ class Widget {
         link.href = 'app.css';
         link.media = 'all';
 
-        head.appendChild(link);
+        shadowHost.appendChild(link);
     }
 
-    get button() {
-        return this.shadow.getElementById('button');
+
+    // Getters
+    get widgetCard() {
+        return this.shadowHost.getElementById('widget_card');
     }
 
-    get link() {
-        return this.googleSheetLink;
+    get buttonWidget() {
+        return this.shadowHost.getElementById('button_widget');
+    }
+
+    get buttonSettings() {
+        return this.shadowHost.getElementById('button_settigns');
+    }
+
+    get buttonClose() {
+        return this.shadowHost.getElementById('button_close');
+    }
+
+    get buttonSend() {
+        return this.shadowHost.getElementById('button_send');
     }
 
     get formSerialize() {
+        return new FormData(this.shadowHost.getElementById('form'));
+    }
 
-        return new FormData(this.shadow.getElementById('form'));
-
+    get googleLink() {
+        return this.googleSheetLink;
     }
 
     
     // Add html to shadow root
-    createHtml(elem) {
-        elem.innerHTML = `
-            <form id="form">
-                <textarea name="problem" placeholder="Problem"></textarea>
-                <input name="screen" placeholder="Screenshot" type="text">
-                <button type="button" id="button">Send</button>
-            </form>
+    createHtml(shadowHost) {
+        shadowHost.innerHTML = `
+            <button class="button_widget" type="button" id="button_widget">open</button>
+
+            <section class="widget_card" id="widget_card">
+                <section class="widget_front">
+                    <form id="form">
+                        <textarea class="textarea" name="problem_or_idea" placeholder="Problem or idea"></textarea>
+                        <input class="input" name="screenshot_link" placeholder="Screenshot link" type="text">
+                        <div>
+                            <button class="button_settings" type="button" id="button_settigns">x</button>
+                            <button class="button_main" type="button" id="button_send">Send</button>
+                        </div>
+                    </form>
+                </section>
+                <section class="widget_back">
+                    <button class="button_close" type="button" id="button_close">x</button>
+                    <div>LOGO</div>
+                    <h2>Bug report system based</br>on google sheets</h2>
+                    <ul class="menu">
+                        <li class="menu_item"><a href="#">full manual</a></li>
+                        <li class="menu_item"><a href="#">bugbox.io</a></li>
+                        <li class="menu_item"><a href="#">help@bugbox.io</a></li>
+                    </ul>
+                </section>
+            </section>
         `;
     }
 };

@@ -1,0 +1,88 @@
+.widget_card {
+	height: 300px;
+	width: 300px;
+	position: relative;
+	transform-style: preserve-3d;
+	perspective: 1000px;
+
+    display: none;
+    opacity: 0;
+
+    &.open {
+        display: block;
+        opacity: 1;
+        animation-duration: .2s;
+        animation-name: widgetOpen;  
+    }
+
+    &.turned {
+		.widget_front {
+			transform: rotateY(-180deg);
+		}
+		.widget_back {
+			transform: rotateY(0deg);
+		}
+	}
+    
+	.widget_front,
+    .widget_back {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		backface-visibility: hidden;
+		transform-style: preserve-3d;
+        transition: transform .5s;
+
+        // animation-duration: 1s;
+        // animation-name: loadStyle;
+
+        // &.transform {
+        //     transition: transform 0.5s;
+        // }
+	}
+
+	.widget_front {
+        background-color: #bbb;
+	}
+
+	.widget_back {
+		background-color: #ccc;
+		transform: rotateY(180deg);
+	}
+
+    // @keyframes loadStyle {
+    //     0% {
+    //         transition: transform 0s;
+    //         opacity: 0;
+    //     }
+
+    //     90% {
+    //         transition: transform 0s;
+    //         opacity: 0;
+    //     }
+
+    //     100% {
+    //         transition: transform 0s;
+    //         opacity: 1;
+    //     }
+    // }
+
+    @keyframes widgetOpen {
+        0% {
+            display: none;
+            opacity: 0;
+        }
+
+        10% {
+            display: block;
+            opacity: 0;
+        }
+
+        100% {
+            display: block;
+            opacity: 1;
+        }
+    }
+}
