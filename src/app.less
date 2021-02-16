@@ -1,4 +1,23 @@
+@colorBase        : rgb(70, 120, 245);
+@colorBase010     : rgba(70, 120, 245, .1);
+@colorBlack       : rgb(7, 19, 58);
+@colorGray        : rgb(159, 166, 187);
+@colorMiddleGray  : rgb(195, 200, 218);
+@colorLightGray   : rgb(220, 223, 234);
+@colorLightGray025: rgba(220, 223, 234, .25);
+@colorWhite       : rgb(255, 255, 255);
+@colorDanger      : rgb(255, 73, 73);
+@colorDanger010   : rgba(255, 73, 73, .1);
+@colorSuccess     : rgb(87, 204, 134);
+@colorSuccess010  : rgba(87, 204, 134, .1);
+@shadowBig        : 0px 15px 40px rgba(20, 28, 54, .1);
+
 :host(.bugbox__widget) {
-    @import "vendor/reset";
+    @import "libs/reset";
     @import "components/widget/widget";
+    @import "components/buttonFloat/buttonFloat";
+
+    * {
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif;
+    }
 }

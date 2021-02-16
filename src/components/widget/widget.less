@@ -1,10 +1,14 @@
 .widget_card {
-	height: 300px;
-	width: 300px;
-	position: relative;
+	height: 360px;
+	width: 325px;
+
+	position: fixed;
+    z-index: 999999999;
+    right: 20px;
+    bottom: 140px;
+
 	transform-style: preserve-3d;
 	perspective: 1000px;
-
     display: none;
     opacity: 0;
 
@@ -31,55 +35,34 @@
 		left: 0;
 		height: 100%;
 		width: 100%;
+
+        background-color: @colorWhite;
+        box-shadow: @shadowBig;
+        border-radius: 6px;
+
 		backface-visibility: hidden;
 		transform-style: preserve-3d;
         transition: transform .5s;
-
-        // animation-duration: 1s;
-        // animation-name: loadStyle;
-
-        // &.transform {
-        //     transition: transform 0.5s;
-        // }
 	}
 
 	.widget_front {
-        background-color: #bbb;
+        padding: 20px;
 	}
 
 	.widget_back {
-		background-color: #ccc;
+        padding: 35px;
 		transform: rotateY(180deg);
 	}
-
-    // @keyframes loadStyle {
-    //     0% {
-    //         transition: transform 0s;
-    //         opacity: 0;
-    //     }
-
-    //     90% {
-    //         transition: transform 0s;
-    //         opacity: 0;
-    //     }
-
-    //     100% {
-    //         transition: transform 0s;
-    //         opacity: 1;
-    //     }
-    // }
 
     @keyframes widgetOpen {
         0% {
             display: none;
             opacity: 0;
         }
-
         10% {
             display: block;
             opacity: 0;
         }
-
         100% {
             display: block;
             opacity: 1;

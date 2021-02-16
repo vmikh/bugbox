@@ -3,10 +3,12 @@
 // License: http://opensource.org/licenses/MIT
 
 import Widget from "./components/widget/widget.js";
+import ButtonFloat from "./components/buttonFloat/buttonFloat.js";
 
 
 // Create widget
 const bugbox = new Widget(window.bagboxSettings.googleSheetsLink);
+const buttonFloat = new ButtonFloat(bugbox.buttonFloat, bugbox.widgetCard);
 
 
 // Send form button
@@ -21,16 +23,9 @@ bugbox.buttonSend.addEventListener( "click" , event => {
 
 
 // Open widget on button click
-bugbox.buttonWidget.addEventListener( "click" , event => {
+bugbox.buttonFloat.addEventListener( "click" , event => {
     event.preventDefault();
-
-    // Toggle class "open"
-    if (bugbox.widgetCard.classList.contains('open')) {
-        bugbox.widgetCard.classList.remove('open');
-    }
-    else {
-        bugbox.widgetCard.classList.add('open');
-    }
+    buttonFloat.click();
 });
 
 
