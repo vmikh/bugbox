@@ -7,7 +7,7 @@
 "use strict";
 
 class Widget {
-    constructor(googleSheetLink) {
+    constructor(googleSheetLink, stylesLink) {
 
         // Create widget section
         const widgetSection = document.createElement("section");
@@ -15,24 +15,25 @@ class Widget {
 
         // Create shadow root
         this.shadowHost = widgetSection.attachShadow({mode: 'open'});
+        this.stylesLink = stylesLink;
         
         // Add html to shadow root
         this.createHtml(this.shadowHost);
         document.body.appendChild(widgetSection);
 
         // Add styles
-        this.createStyles(this.shadowHost);
+        this.createStyles(this.shadowHost, this.stylesLink);
         this.googleSheetLink = googleSheetLink;
     }
 
 
     // Add styles func
-    createStyles(shadowHost) {
+    createStyles(shadowHost, stylesLink) {
         const link  = document.createElement('link');
 
         link.rel  = 'stylesheet';
         link.type = 'text/css';
-        link.href = 'app.css';
+        link.href = stylesLink;
         link.media = 'all';
 
         shadowHost.appendChild(link);

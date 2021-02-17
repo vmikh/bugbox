@@ -7,7 +7,10 @@ import ButtonFloat from "./components/buttonFloat/buttonFloat.js";
 
 
 // Create widget
-const widget = new Widget(window.bagboxSettings.googleSheetsLink);
+const widget = new Widget(
+    window.bagboxSettings.googleSheetsLink,
+    window.bagboxSettings.stylesLink,
+);
 const buttonFloat = new ButtonFloat(widget.buttonFloat, widget.widgetCard);
 
 
@@ -15,7 +18,7 @@ const buttonFloat = new ButtonFloat(widget.buttonFloat, widget.widgetCard);
 widget.buttonSend.addEventListener( "click" , event => {
     event.preventDefault();
 
-    fetch('https://script.google.com/macros/s/AKfycbzcdqvQEYizFgGMOM3HGs0gmzrktfuHf_2aMN8YVAxKXg6dcDj7sH_m/exec', {
+    fetch(widget.googleLink, {
         method: 'post',
         mode: 'no-cors',
         body: widget.formSerialize
