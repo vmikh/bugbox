@@ -1,0 +1,26 @@
+.button_send {
+    background-color: @colorBase;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: .1px;
+    border: 0 solid transparent;
+    width: 100%;
+    height: 46px;
+    padding: 14px 25px 14px;
+    color: @colorWhite;
+    transition: opacity .2s, background-color .2s;
+
+    &:focus,
+    &:hover {
+        outline: none;
+        opacity: .75;
+    }
+
+    &.loading {
+        color: transparent;
+        background-color: @colorLightGray;
+        pointer-events: none;
+    }
+}

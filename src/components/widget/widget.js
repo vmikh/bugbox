@@ -79,10 +79,21 @@ class Widget {
             <section class="widget_card" id="widget_card">
                 <section class="widget_front">
                     <form id="form">
-                        <textarea class="textarea" name="problem_or_idea" placeholder="Problem or idea"></textarea>
-                        <input class="input" name="screenshot_link" placeholder="Screenshot link" type="text">
-                        <div>
-                            <button class="button_settings" type="button" id="button_settigns">x</button>
+
+                        <label class="textarea" for="problem_or_idea">
+                            <textarea class="textarea__field" name="problem_or_idea" id="problem_or_idea" placeholder="&nbsp;"></textarea>
+                            <span class="textarea__label">Problem or idea</span>
+                        </label>
+
+                        <label for="screenshot_link" class="input">
+                            <input class="input__field" name="screenshot_link" type="text" id="screenshot_link" placeholder="&nbsp;">
+                            <span class="input__label">Screenshot link</span>
+                        </label>
+
+                        <div class="card_buttons">
+                            <button class="button_settings" type="button" id="button_settigns">
+                                <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.2814 9.73647C15.1364 10.4638 15.3279 11.243 15.7074 11.4681C16.0875 11.6921 16.0987 12.4169 15.7328 13.079L15.3374 13.7941C14.9726 14.4555 14.3687 14.8161 13.9957 14.5959C13.6215 14.3768 12.846 14.5849 12.2704 15.0596L10.9587 15.862C10.2793 16.1555 9.72423 16.7553 9.72423 17.197C9.72423 17.6388 9.12261 18 8.38724 18H7.61356C6.87818 18 6.27656 17.6443 6.27656 17.2104C6.27656 16.7754 5.71796 16.1872 5.0362 15.9022L3.66739 15.1011C3.09347 14.6245 2.33393 14.4055 1.97979 14.6154C1.62625 14.8235 1.03759 14.4543 0.67285 13.7929L0.278645 13.0778C-0.0860973 12.4163 -0.0937574 11.7037 0.261557 11.4938C0.617461 11.2826 0.783038 10.5016 0.630424 9.75722V9.03478C0.630424 8.28122 0.643977 8.21776 0.643977 8.21776C0.804251 7.47519 0.638084 6.69112 0.275699 6.47634C-0.0866865 6.26217 -0.0849188 5.54522 0.280413 4.88441L0.674617 4.1699C1.03995 3.50847 1.64216 3.14786 2.01456 3.36692C2.38578 3.58658 3.16005 3.3779 3.73515 2.90319L5.0362 2.16488C5.71855 1.88298 6.27774 1.28014 6.27774 0.826169C6.27774 0.371593 6.87936 0 7.61474 0H8.38842C9.1232 0 9.72541 0.377085 9.72541 0.838983C9.72541 1.30088 10.2822 1.91532 10.9616 2.20576L12.205 2.9459C12.7812 3.41878 13.5738 3.61647 13.965 3.38705C14.3575 3.15641 14.9768 3.50847 15.3409 4.17051L15.7357 4.88502C16.1004 5.54583 16.0822 6.27376 15.6956 6.50258C15.3091 6.732 15.1194 7.52827 15.2755 8.27207C15.2755 8.27207 15.2814 8.30136 15.2814 9.036V9.73647ZM3.18892 8.96278C3.18892 11.6738 5.31079 13.8716 7.92939 13.8716C10.5474 13.8716 12.6705 11.6744 12.6699 8.96278C12.6699 6.25241 10.5474 4.05397 7.92939 4.05397C5.31138 4.05397 3.18892 6.2518 3.18892 8.96278ZM9.95524 8.91405C9.95524 10.045 9.06988 10.9618 7.97773 10.9618C6.88559 10.9618 6.00023 10.045 6.00023 8.91405C6.00023 7.78312 6.88559 6.86633 7.97773 6.86633C9.06988 6.86633 9.95524 7.78312 9.95524 8.91405Z"/></svg>
+                            </button>
                             <button class="button_send" type="button" id="button_send">Send</button>
                         </div>
                     </form>

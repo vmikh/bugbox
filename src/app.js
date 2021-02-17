@@ -7,37 +7,37 @@ import ButtonFloat from "./components/buttonFloat/buttonFloat.js";
 
 
 // Create widget
-const bugbox = new Widget(window.bagboxSettings.googleSheetsLink);
-const buttonFloat = new ButtonFloat(bugbox.buttonFloat, bugbox.widgetCard);
+const widget = new Widget(window.bagboxSettings.googleSheetsLink);
+const buttonFloat = new ButtonFloat(widget.buttonFloat, widget.widgetCard);
 
 
 // Send form button
-bugbox.buttonSend.addEventListener( "click" , event => {
+widget.buttonSend.addEventListener( "click" , event => {
     event.preventDefault();
 
     fetch('/send', {
         method: 'POST',
-        body: bugbox.formSerialize
+        body: widget.formSerialize
     });
 });
 
 
 // Open widget on button click
-bugbox.buttonFloat.addEventListener( "click" , event => {
+widget.buttonFloat.addEventListener( "click" , event => {
     event.preventDefault();
     buttonFloat.click();
 });
 
 
 // Open settings
-bugbox.buttonSettings.addEventListener( "click" , event => {
+widget.buttonSettings.addEventListener( "click" , event => {
     event.preventDefault();
-    bugbox.widgetCard.classList.add('turned');
+    widget.widgetCard.classList.add('turned');
 });
 
 
 // Close settings
-bugbox.buttonClose.addEventListener( "click" , event => {
+widget.buttonClose.addEventListener( "click" , event => {
     event.preventDefault();
-    bugbox.widgetCard.classList.remove('turned');
+    widget.widgetCard.classList.remove('turned');
 });

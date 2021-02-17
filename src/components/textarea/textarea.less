@@ -1,11 +1,11 @@
-.input {
+.textarea {
     position     : relative;
     margin       : auto;
     width        : 100%;
     max-width    : 400px;
     margin-bottom: 10px;
 
-    .input__label {
+    .textarea__label {
         position      : absolute;
         top           : 15px;
         left          : 15px;
@@ -16,17 +16,18 @@
         pointer-events: none;
     }
 
-    .input__field {
+    .textarea__field {
         width             : 100%;
         border            : 1px solid @colorLightGray;
-        padding           : 14px 15px 0 15px;
-        height            : 48px;
+        padding           : 22px 15px 10px 15px;
+        height            : 195px;
         font-size         : 16px;
         font-weight       : 400;
         border-radius     : 4px;
         color             : @colorBlack;
         background-color  : @colorWhite;
         transition        : background-color .2s, border .2s, color .2s;
+        resize            : none;
         -webkit-appearance: none;
         -moz-appearance   : none;
         appearance        : none;
@@ -50,8 +51,8 @@
             border: 1px solid @colorDanger;
         }
 
-        &:focus+.input__label,
-        &:not(:placeholder-shown)+.input__label {
+        &:focus+.textarea__label,
+        &:not(:placeholder-shown)+.textarea__label {
             top        : 8px;
             font-size  : 10px;
             font-weight: medium;
