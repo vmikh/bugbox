@@ -32,8 +32,10 @@
         -moz-appearance   : none;
         appearance        : none;
 
-        &:hover {
-            border: 1px solid @colorMiddleGray;
+        @media (min-width: @minDesktopResolution) {
+            &:hover {
+                border: 1px solid @colorMiddleGray;
+            }
         }
 
         &:focus {

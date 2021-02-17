@@ -7,14 +7,24 @@
     top             : 0;
     right           : 0;
 
-    &:focus,
-    &:hover {
+    &:focus {
         outline: none;
-
-        svg {
-            path {
-                fill: @colorBlack;
+    }
+    
+    @media (min-width: @minDesktopResolution) {
+        &:focus,
+        &:hover {
+            svg {
+                path {
+                    fill: @colorBlack;
+                }
             }
+        }
+    }
+
+    @media (max-width: @maxMobileResolution) {
+        &:active {
+            transform: scale(.9);
         }
     }
 

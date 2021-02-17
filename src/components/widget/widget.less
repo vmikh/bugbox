@@ -10,6 +10,10 @@
     display        : none;
     opacity        : 0;
 
+    @media (max-width: @maxMobileResolution) {
+        width: 320px;
+    }
+
     &.open {
         display           : block;
         opacity           : 1;
@@ -67,20 +71,25 @@
         }
 
         .menu {
-            list-style: none;
+            list-style  : none;
             padding-left: 0;
 
             .menu__item {
                 margin-bottom: 10px;
 
                 a {
-                    font-size: 18px;
-                    color: @colorBase;
+                    font-size : 18px;
+                    color     : @colorBase;
                     transition: color .2s;
 
                     &:hover {
-                        color: @colorBlack;
                         text-decoration: none;
+                    }
+
+                    @media (min-width: @minDesktopResolution) {
+                        &:hover {
+                            color: @colorBlack;
+                        }
                     }
                 }
             }

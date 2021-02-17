@@ -11,12 +11,22 @@
     height          : 46px;
     padding         : 14px 25px 14px;
     color           : @colorWhite;
-    transition      : opacity .2s, background-color .2s;
+    transition      : opacity .2s, background-color .2s, transform .2s;
 
-    &:focus,
-    &:hover {
+    &:focus {
         outline: none;
-        opacity: .75;
+    }
+    @media (min-width: @minDesktopResolution) {
+        &:focus,
+        &:hover {
+            opacity: .75;
+        }
+    }
+
+    @media (max-width: @maxMobileResolution) {
+        &:active {
+            transform: scale(.95);
+        }
     }
 
     &.loading {

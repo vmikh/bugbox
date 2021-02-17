@@ -12,21 +12,31 @@
     bottom: 80px;
     box-shadow: @shadowBig;
     background-color: @colorBase;
-    transition: box-shadow .2s, background-color .2s, opacity .2s;
+    transition: box-shadow .2s, background-color .2s, opacity .2s, transform .2s;
 
-    &:hover {
-        opacity: .75;
+    @media (min-width: @minDesktopResolution) {
+        &:hover {
+            opacity: .75;
+        }
+    }
+
+    @media (max-width: @maxMobileResolution) {
+        &:active {
+            transform: scale(.9);
+        }
     }
 
     &.active {
         background-color: @colorWhite;
         box-shadow: @shadowMiddle;
 
-        &:hover {
-            opacity: 1;
+        @media (min-width: @minDesktopResolution) {
+            &:hover {
+                opacity: 1;
 
-            .button_float__cross {
-                opacity: .75;
+                .button_float__cross {
+                    opacity: .75;
+                }
             }
         }
 

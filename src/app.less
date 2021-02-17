@@ -1,3 +1,8 @@
+// MEDIA QUERIES
+@minDesktopResolution: 768px;
+@maxMobileResolution: 767px;
+
+// COLORS
 @colorBase        : rgb(70, 120, 245);
 @colorBase010     : rgba(70, 120, 245, .1);
 @colorBase020     : rgba(70, 120, 245, .2);
@@ -11,9 +16,12 @@
 @colorDanger010   : rgba(255, 73, 73, .1);
 @colorSuccess     : rgb(87, 204, 134);
 @colorSuccess010  : rgba(87, 204, 134, .1);
+
+// SHADOWS
 @shadowBig        : 0px 15px 40px rgba(20, 28, 54, .1);
 @shadowMiddle     : 0px 10px 30px rgba(20, 28, 54, .2);
 
+// IMPORTS
 :host(.bugbox__widget) {
     @import "libs/reset";
     @import "components/widget/widget";

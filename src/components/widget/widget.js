@@ -94,7 +94,6 @@ class Widget {
             <section class="widget_card" id="widget_card">
                 <section class="widget_front">
                     <form id="form">
-
                         <label class="textarea" for="problem_or_idea">
                             <textarea class="textarea__field" name="problem_or_idea" id="problem_or_idea" placeholder="&nbsp;"></textarea>
                             <span class="textarea__label">Problem or idea</span>

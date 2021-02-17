@@ -4,12 +4,24 @@
     border          : 0 solid transparent;
     width           : 46px;
     height          : 46px;
-    transition      : opacity .2s, background-color .2s;
+    transition      : opacity .2s, background-color .2s, transform .2s;
 
-    &:focus,
-    &:hover {
-        outline         : none;
-        background-color: @colorBase020;
+    &:focus {
+        outline: none;
+    }
+
+    @media (min-width: @minDesktopResolution) {
+
+        &:hover,
+        &:focus {
+            background-color: @colorBase020;
+        }
+    }
+
+    @media (max-width: @maxMobileResolution) {
+        &:active {
+            transform: scale(.9);
+        }
     }
 
     &:disabled {
