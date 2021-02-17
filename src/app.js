@@ -15,8 +15,9 @@ const buttonFloat = new ButtonFloat(widget.buttonFloat, widget.widgetCard);
 widget.buttonSend.addEventListener( "click" , event => {
     event.preventDefault();
 
-    fetch('/send', {
-        method: 'POST',
+    fetch('https://script.google.com/macros/s/AKfycbzcdqvQEYizFgGMOM3HGs0gmzrktfuHf_2aMN8YVAxKXg6dcDj7sH_m/exec', {
+        method: 'post',
+        mode: 'no-cors',
         body: widget.formSerialize
     });
 });
