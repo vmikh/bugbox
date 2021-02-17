@@ -1,0 +1,27 @@
+.button_close {
+    background-color: transparent;
+    border          : 0 solid transparent;
+    width           : 40px;
+    height          : 40px;
+    position        : absolute;
+    top             : 0;
+    right           : 0;
+
+    &:focus,
+    &:hover {
+        outline: none;
+
+        svg {
+            path {
+                fill: @colorBlack;
+            }
+        }
+    }
+
+    svg {
+        path {
+            fill      : @colorGray;
+            transition: fill .2s;
+        }
+    }
+}

@@ -1,65 +1,98 @@
 .widget_card {
-	height: 360px;
-	width: 325px;
-
-	position: fixed;
-    z-index: 999999999;
-    right: 20px;
-    bottom: 140px;
-
-	transform-style: preserve-3d;
-	perspective: 1000px;
-    display: none;
-    opacity: 0;
+    height         : 360px;
+    width          : 325px;
+    position       : fixed;
+    z-index        : 999999999;
+    right          : 20px;
+    bottom         : 140px;
+    transform-style: preserve-3d;
+    perspective    : 1000px;
+    display        : none;
+    opacity        : 0;
 
     &.open {
-        display: block;
-        opacity: 1;
+        display           : block;
+        opacity           : 1;
         animation-duration: .2s;
-        animation-name: widgetOpen;  
+        animation-name    : widgetOpen;
     }
 
     &.turned {
-		.widget_front {
-			transform: rotateY(-180deg);
-		}
-		.widget_back {
-			transform: rotateY(0deg);
-		}
-	}
-    
-	.widget_front,
+        .widget_front {
+            transform: rotateY(-180deg);
+        }
+
+        .widget_back {
+            transform: rotateY(0deg);
+        }
+    }
+
+    .widget_front,
     .widget_back {
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
-		width: 100%;
+        position           : absolute;
+        top                : 0;
+        left               : 0;
+        height             : 100%;
+        width              : 100%;
+        background-color   : @colorWhite;
+        box-shadow         : @shadowBig;
+        border-radius      : 6px;
+        backface-visibility: hidden;
+        transform-style    : preserve-3d;
+        transition         : transform .5s;
+    }
 
-        background-color: @colorWhite;
-        box-shadow: @shadowBig;
-        border-radius: 6px;
-
-		backface-visibility: hidden;
-		transform-style: preserve-3d;
-        transition: transform .5s;
-	}
-
-	.widget_front {
+    .widget_front {
         padding: 20px;
-	}
+    }
 
-	.widget_back {
-        padding: 35px;
-		transform: rotateY(180deg);
-	}
+    .widget_back {
+        padding  : 80px 35px 0;
+        transform: rotateY(180deg);
+
+        .widget_back__logo {
+            margin-bottom: 15px;
+
+            path {
+                fill: @colorBlack;
+            }
+        }
+
+        .widget_back__headline {
+            font-size    : 18px;
+            line-height  : 140%;
+            font-weight  : normal;
+            color        : @colorBlack;
+            margin-bottom: 40px;
+        }
+
+        .menu {
+            list-style: none;
+            padding-left: 0;
+
+            .menu__item {
+                margin-bottom: 10px;
+
+                a {
+                    font-size: 18px;
+                    color: @colorBase;
+                    transition: color .2s;
+
+                    &:hover {
+                        color: @colorBlack;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
 
     .card_buttons {
         padding-top: 10px;
-        display: flex;
+        display    : flex;
 
         .button_send {
-            width: calc(100% - 56px);
+            width      : calc(100% - 56px);
             margin-left: 10px;
         }
     }
@@ -69,10 +102,12 @@
             display: none;
             opacity: 0;
         }
+
         10% {
             display: block;
             opacity: 0;
         }
+
         100% {
             display: block;
             opacity: 1;

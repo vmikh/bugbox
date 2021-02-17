@@ -10,14 +10,53 @@
     z-index: 999999999;
     right: 20px;
     bottom: 80px;
-
+    box-shadow: @shadowBig;
     background-color: @colorBase;
+    transition: box-shadow .2s, background-color .2s, opacity .2s;
 
-    svg {
+    &:hover {
+        opacity: .75;
+    }
+
+    &.active {
+        background-color: @colorWhite;
+        box-shadow: @shadowMiddle;
+
+        &:hover {
+            opacity: 1;
+
+            .button_float__cross {
+                opacity: .75;
+            }
+        }
+
+        .button_float__cross {
+            transform: rotate(0);
+            opacity: 1;
+        }
+
+        .button_float__logo {
+            opacity: 0;
+        }
+    }
+
+    .button_float__logo {
         margin-top: -1px;
+        opacity: 1;
 
         path {
             fill: @colorWhite;
+        }
+    }
+
+    .button_float__cross {
+        position: absolute;
+        transform: rotate(90deg);
+        opacity: 0;
+        transition: transform .2s, opacity .2s;
+
+        path {
+            fill: @colorBase;
         }
     }
 }
