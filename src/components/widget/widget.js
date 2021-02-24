@@ -102,14 +102,14 @@ class Widget {
             <section class="widget_card" id="widget_card">
                 <section class="widget_front">
                     <form id="form">
-                        <label class="textarea" for="field_problem">
-                            <textarea class="textarea__field" id="field_problem" placeholder="&nbsp;"></textarea>
-                            <span class="textarea__label">Problem or idea</span>
+                        <label class="field_problem" for="field_problem">
+                            <textarea class="field_problem__input" id="field_problem" placeholder="&nbsp;"></textarea>
+                            <span class="field_problem__label">Problem or idea</span>
                         </label>
 
-                        <label class="input" for="field_screenshot">
-                            <input class="input__field" type="text" id="field_screenshot" placeholder="&nbsp;">
-                            <span class="input__label">Screenshot link</span>
+                        <label class="field_screenshot" for="field_screenshot">
+                            <input class="field_screenshot__input" type="text" id="field_screenshot" placeholder="&nbsp;">
+                            <span class="field_screenshot__label">Screenshot link</span>
                         </label>
 
                         <div class="card_buttons">

@@ -1,11 +1,11 @@
-.textarea {
+.field_problem {
     position     : relative;
     margin       : auto;
     width        : 100%;
     max-width    : 400px;
     margin-bottom: 10px;
 
-    .textarea__label {
+    .field_problem__label {
         position      : absolute;
         top           : 15px;
         left          : 15px;
@@ -16,7 +16,7 @@
         pointer-events: none;
     }
 
-    .textarea__field {
+    .field_problem__input {
         width             : 100%;
         border            : 1px solid @colorLightGray;
         padding           : 22px 15px 10px 15px;
@@ -53,8 +53,8 @@
             border: 1px solid @colorDanger;
         }
 
-        &:focus+.textarea__label,
-        &:not(:placeholder-shown)+.textarea__label {
+        &:focus+.field_problem__label,
+        &:not(:placeholder-shown)+.field_problem__label {
             top        : 8px;
             font-size  : 10px;
             font-weight: medium;

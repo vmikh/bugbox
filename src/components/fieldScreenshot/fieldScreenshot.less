@@ -1,11 +1,11 @@
-.input {
+.field_screenshot {
     position     : relative;
     margin       : auto;
     width        : 100%;
     max-width    : 400px;
     margin-bottom: 10px;
 
-    .input__label {
+    .field_screenshot__label {
         position      : absolute;
         top           : 15px;
         left          : 15px;
@@ -16,7 +16,7 @@
         pointer-events: none;
     }
 
-    .input__field {
+    .field_screenshot__input {
         width             : 100%;
         border            : 1px solid @colorLightGray;
         padding           : 14px 15px 0 15px;
@@ -52,8 +52,8 @@
             border: 1px solid @colorDanger;
         }
 
-        &:focus+.input__label,
-        &:not(:placeholder-shown)+.input__label {
+        &:focus+.field_screenshot__label,
+        &:not(:placeholder-shown)+.field_screenshot__label {
             top        : 8px;
             font-size  : 10px;
             font-weight: medium;
