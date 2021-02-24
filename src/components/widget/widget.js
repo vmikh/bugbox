@@ -74,6 +74,14 @@ class Widget {
         return this.shadowHost.getElementById('button_send');
     }
 
+    get fieldProblem() {
+        return this.shadowHost.getElementById('field_problem');
+    }
+
+    get fieldScreenshot() {
+        return this.shadowHost.getElementById('field_screenshot');
+    }
+
     get formSerialize() {
         return new FormData(this.shadowHost.getElementById('form'));
     }
@@ -94,13 +102,13 @@ class Widget {
             <section class="widget_card" id="widget_card">
                 <section class="widget_front">
                     <form id="form">
-                        <label class="textarea" for="problem_or_idea">
-                            <textarea class="textarea__field" name="problem_or_idea" id="problem_or_idea" placeholder="&nbsp;"></textarea>
+                        <label class="textarea" for="field_problem">
+                            <textarea class="textarea__field" id="field_problem" placeholder="&nbsp;"></textarea>
                             <span class="textarea__label">Problem or idea</span>
                         </label>
 
-                        <label for="screenshot_link" class="input">
-                            <input class="input__field" name="screenshot_link" type="text" id="screenshot_link" placeholder="&nbsp;">
+                        <label class="input" for="field_screenshot">
+                            <input class="input__field" type="text" id="field_screenshot" placeholder="&nbsp;">
                             <span class="input__label">Screenshot link</span>
                         </label>
 

@@ -4,25 +4,32 @@
 
 import Widget from "./components/widget/widget.js";
 import ButtonFloat from "./components/buttonFloat/buttonFloat.js";
-
+import FormSender from "./utils/formSender.js";
 
 // Create widget
-const widget = new Widget(
+const widget = new Widget (
     window.bagboxSettings.googleSheetsLink,
     window.bagboxSettings.stylesLink,
 );
-const buttonFloat = new ButtonFloat(widget.buttonFloat, widget.widgetCard);
+
+// Create float button actions class
+const buttonFloat = new ButtonFloat (
+    widget.buttonFloat,
+    widget.widgetCard
+);
+
+// Create form sender class
+const formSender = new FormSender (
+    widget.fieldProblem,
+    widget.fieldScreenshot,
+    widget.googleLink
+);
 
 
 // Send form button
 widget.buttonSend.addEventListener( "click" , event => {
     event.preventDefault();
-
-    fetch(widget.googleLink, {
-        method: 'post',
-        mode: 'no-cors',
-        body: widget.formSerialize
-    });
+    formSender.send();
 });
 
 
@@ -31,6 +38,12 @@ widget.buttonFloat.addEventListener( "click" , event => {
     event.preventDefault();
     buttonFloat.click();
 });
+
+
+
+
+
+
 
 
 // Open settings
