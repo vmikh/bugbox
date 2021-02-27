@@ -2,13 +2,13 @@
 // Contacts: <vladi.mikh.vm@gmail.com>
 // License: http://opensource.org/licenses/MIT
 
-// Screenshot field component
+// Problem field component
 
 "use strict";
 
-class FieldScreenshot {
-    constructor(fieldScreenshot) {
-        this.fieldScreenshot = fieldScreenshot;
+class FieldProblem {
+    constructor(fieldProblem) {
+        this.fieldProblem = fieldProblem;
     }
     get isValid() {
         
@@ -24,4 +24,4 @@ class FieldScreenshot {
     }
 };
 
-export default FieldScreenshot;
+export default FieldProblem;

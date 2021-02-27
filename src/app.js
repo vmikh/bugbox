@@ -3,6 +3,7 @@
 // License: http://opensource.org/licenses/MIT
 
 import Widget from "./components/widget/widget.js";
+import FieldScreenshot from "./components/fieldScreenshot/fieldScreenshot.js";
 import ButtonFloat from "./components/buttonFloat/buttonFloat.js";
 import FormSender from "./utils/formSender.js";
 
@@ -10,6 +11,11 @@ import FormSender from "./utils/formSender.js";
 const widget = new Widget (
     window.bagboxSettings.googleSheetsLink,
     window.bagboxSettings.stylesLink,
+);
+
+// Create screenshot field actions class
+const fieldScreenshot = new FieldScreenshot (
+    widget.fieldScreenshot
 );
 
 // Create float button actions class
