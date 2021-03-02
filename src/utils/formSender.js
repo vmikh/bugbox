@@ -11,6 +11,26 @@ class FormSender {
         this.fieldProblem = fieldProblem;
         this.fieldScreenshot = fieldScreenshot;
         this.googleLink = googleLink;
+
+        // Create static header titles
+        this.titles = {
+            status: 'Status',
+            priority: 'Priority',
+            date: 'Date&Time',
+            problem: 'Problem',
+            url: 'URL',
+            screenshot: 'Screenshot URL',
+            browser: 'Browser',
+            os: 'OS',
+            isMoblile: 'Is Mobile',
+            scrnW: 'Screen W',
+            scrnH: 'Screen H',
+            browserW: 'Browser W',
+            browserH: 'Browser H',
+            actualResult: 'Actual Result',
+            expectedResult: 'Expected Result',
+            assignee: 'Assignee'
+        }
     }
 
     // Send arrows to google sheets method
@@ -34,7 +54,6 @@ class FormSender {
             this.titles.actualResult,
             this.titles.expectedResult,
             this.titles.assignee,
-            this.titles.total
         ];
 
         // Create body row
@@ -54,8 +73,7 @@ class FormSender {
             window.innerHeight,           // Browser Height
             '',                           // Actual Result
             '',                           // Expected Result
-            '',                           // Assignee
-            this.total                    // Total
+            ''                            // Assignee
         ];
 
         // Send arrows to google sheets
@@ -102,7 +120,6 @@ class FormSender {
         if (this.os === 'Android' || this.os === 'iOS' || this.os === 'Symbian' || this.os === 'Windows Phone') {
             return '+';
         }
-        return '-';
     }
 
 
@@ -139,31 +156,9 @@ class FormSender {
 
 
     // Return concatinated all rows
-    get total() {
-        return `${this.titles.date}: ${this.date},\n${this.titles.problem}: ${this.fieldProblem.value},\n${this.titles.screenshot}: ${this.fieldScreenshot.value}`
-    }
-
-    get titles() {
-        return {
-            status: 'Status',
-            priority: 'Priority',
-            date: 'Date&Time',
-            problem: 'Problem',
-            url: 'URL',
-            screenshot: 'Screenshot URL',
-            browser: 'Browser',
-            os: 'OS',
-            isMoblile: 'Is Mobile',
-            scrnW: 'Screen W',
-            scrnH: 'Screen H',
-            browserW: 'Browser W',
-            browserH: 'Browser H',
-            actualResult: 'Actual Result',
-            expectedResult: 'Expected Result',
-            assignee: 'Assignee',
-            total: 'Total'
-        }
-    }
+    // get total() {
+    //     return `${this.titles.date}: ${this.date},\n${this.titles.problem}: ${this.fieldProblem.value},\n${this.titles.screenshot}: ${this.fieldScreenshot.value}`
+    // }
 };
 
 export default FormSender;

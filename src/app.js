@@ -42,14 +42,32 @@ widget.buttonSend.addEventListener( "click" , event => {
 // Open widget on button click
 widget.buttonFloat.addEventListener( "click" , event => {
     event.preventDefault();
-    buttonFloat.click();
+    if (widget.isOpen) buttonFloat.close();
+    else buttonFloat.open();
 });
 
 
+// Close widget on click out widget
+document.addEventListener('click', event => {
+    event.preventDefault();
+
+    const target = event.target;
+    const isWidgetSection = target == widget.widgetSection;
+
+    if (widget.isOpen && !isWidgetSection) buttonFloat.close();
+});
 
 
+// Close widget on click ESC
+document.onkeydown = function(event) {
+    event = event || window.event;
+    let isEscape = false;
 
+    if ("key" in event) isEscape = (event.key === "Escape" || event.key === "Esc");
+    else isEscape = (event.keyCode === 27);
 
+    if (isEscape && widget.isOpen) buttonFloat.close();
+};
 
 
 // Open settings

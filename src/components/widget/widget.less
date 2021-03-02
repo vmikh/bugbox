@@ -4,7 +4,7 @@
     position       : fixed;
     z-index        : 999999999;
     right          : 20px;
-    bottom         : 140px;
+    bottom         : 120px;
     transform-style: preserve-3d;
     perspective    : 1000px;
     display        : none;
@@ -17,6 +17,7 @@
     &.open {
         display           : block;
         opacity           : 1;
+        bottom            : 140px;
         animation-duration: .2s;
         animation-name    : widgetOpen;
     }
@@ -110,16 +111,19 @@
         0% {
             display: none;
             opacity: 0;
+            bottom : 120px;
         }
 
         10% {
             display: block;
             opacity: 0;
+            bottom : 120px;
         }
 
         100% {
             display: block;
             opacity: 1;
+            bottom : 140px;
         }
     }
 }

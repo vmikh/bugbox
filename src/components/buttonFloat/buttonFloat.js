@@ -11,16 +11,15 @@ class ButtonFloat {
         this.buttonFloat = buttonFloat;
         this.widgetCard = widgetCard;
     }
-    click() {
-        // Toggle class "open"
-        if (this.widgetCard.classList.contains('open')) {
-            this.widgetCard.classList.remove('open');
-            this.buttonFloat.classList.remove('active');
-        }
-        else {
-            this.widgetCard.classList.add('open');
-            this.buttonFloat.classList.add('active');
-        }
+
+    open() {
+        this.widgetCard.classList.add('open');
+        this.buttonFloat.classList.add('active');
+    }
+
+    close() {
+        this.widgetCard.classList.remove('open');
+        this.buttonFloat.classList.remove('active');
     }
 };
 

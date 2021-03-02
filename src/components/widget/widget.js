@@ -30,6 +30,9 @@ class Widget {
         this.createStyles(this.shadowHost, this.stylesLink);
         this.googleSheetLink = googleSheetLink;
 
+        // Save link to main section
+        this.widgetSection = widgetSection;
+
         // Remove initial styles
         setTimeout(() => {
             widgetSection.style.display = "initial";
@@ -88,6 +91,10 @@ class Widget {
 
     get googleLink() {
         return this.googleSheetLink;
+    }
+
+    get isOpen() {
+        if (this.widgetCard.classList.contains('open')) return true;
     }
 
     
