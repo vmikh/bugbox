@@ -1,0 +1,66 @@
+.button_info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+
+    position: fixed;
+    z-index: 999999999;
+    right: 20px;
+    bottom: 80px;
+    opacity: 0;
+    z-index: 1;
+    box-shadow: @shadowMiddle;
+    background-color: @colorWhite;
+    transition: opacity .2s, right .2s;
+
+    &.visible {
+        opacity: 1;
+        right: 80px;
+    }
+
+    &.active {
+        .button_info__info {
+            opacity: 0;   
+        }
+
+        .button_info__back {
+            transform: rotate(0deg);
+            opacity: 1;
+        }
+    }
+
+    @media (min-width: @minDesktopResolution) {
+        &:hover {
+
+        }
+    }
+
+    @media (max-width: @maxMobileResolution) {
+        &:active {
+            transform: scale(.9);
+        }
+    }
+
+    .button_info__info {
+        opacity: 1;
+        transition: opacity .2s;
+
+        path {
+            fill: @colorBase;
+        }
+    }
+
+    .button_info__back {
+        position: absolute;
+        transform: rotate(90deg);
+        opacity: 0;
+        transition: transform .2s, opacity .2s;
+
+        path {
+            fill: @colorBase;
+        }
+    }
+}

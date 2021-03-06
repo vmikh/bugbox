@@ -7,18 +7,15 @@
 "use strict";
 
 class ButtonFloat {
-    constructor(buttonFloat, widgetCard) {
+    constructor(buttonFloat) {
         this.buttonFloat = buttonFloat;
-        this.widgetCard = widgetCard;
     }
 
     open() {
-        this.widgetCard.classList.add('open');
         this.buttonFloat.classList.add('active');
     }
 
     close() {
-        this.widgetCard.classList.remove('open');
         this.buttonFloat.classList.remove('active');
     }
 };

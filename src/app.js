@@ -5,6 +5,7 @@
 import Widget from "./components/widget/widget.js";
 import FieldScreenshot from "./components/fieldScreenshot/fieldScreenshot.js";
 import ButtonFloat from "./components/buttonFloat/buttonFloat.js";
+import ButtonInfo from "./components/buttonInfo/buttonInfo.js";
 import FormSender from "./utils/formSender.js";
 
 // Create widget
@@ -20,8 +21,12 @@ const fieldScreenshot = new FieldScreenshot (
 
 // Create float button actions class
 const buttonFloat = new ButtonFloat (
-    widget.buttonFloat,
-    widget.widgetCard
+    widget.buttonFloat
+);
+
+// Create button info actions class
+const buttonInfo = new ButtonInfo (
+    widget.buttonInfo
 );
 
 // Create form sender class
@@ -42,8 +47,20 @@ widget.buttonSend.addEventListener( "click" , event => {
 // Open widget on button click
 widget.buttonFloat.addEventListener( "click" , event => {
     event.preventDefault();
-    if (widget.isOpen) buttonFloat.close();
-    else buttonFloat.open();
+    if (widget.isOpen) {
+        buttonFloat.close();
+        buttonInfo.invisible();
+        widget.close();
+
+        // if info is open
+        buttonInfo.close();
+        widget.turnOff();
+    }
+    else {
+        buttonFloat.open();
+        buttonInfo.visible();
+        widget.open();
+    }
 });
 
 
@@ -54,7 +71,15 @@ document.addEventListener('click', event => {
     const target = event.target;
     const isWidgetSection = target == widget.widgetSection;
 
-    if (widget.isOpen && !isWidgetSection) buttonFloat.close();
+    if (widget.isOpen && !isWidgetSection) {
+        buttonFloat.close();
+        buttonInfo.invisible();
+        widget.close();
+
+        // if info is open
+        buttonInfo.close();
+        widget.turnOff();
+    }
 });
 
 
@@ -66,19 +91,28 @@ document.onkeydown = function(event) {
     if ("key" in event) isEscape = (event.key === "Escape" || event.key === "Esc");
     else isEscape = (event.keyCode === 27);
 
-    if (isEscape && widget.isOpen) buttonFloat.close();
+    if (isEscape && widget.isOpen) {
+        buttonFloat.close();
+        buttonInfo.invisible();
+        widget.close();
+
+        // if info is open
+        buttonInfo.close();
+        widget.turnOff();
+    }
 };
 
 
-// Open settings
-widget.buttonSettings.addEventListener( "click" , event => {
+// Open & Close settings
+widget.buttonInfo.addEventListener( "click" , event => {
     event.preventDefault();
-    widget.widgetCard.classList.add('turned');
-});
 
-
-// Close settings
-widget.buttonClose.addEventListener( "click" , event => {
-    event.preventDefault();
-    widget.widgetCard.classList.remove('turned');
+    if (buttonInfo.isActive) {
+        buttonInfo.close();
+        widget.turnOff();
+    }
+    else {
+        buttonInfo.open();
+        widget.turnOn();
+    }
 });
