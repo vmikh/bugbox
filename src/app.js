@@ -3,7 +3,9 @@
 // License: http://opensource.org/licenses/MIT
 
 import Widget from "./components/widget/widget.js";
+import FieldProblem from "./components/fieldProblem/fieldProblem.js";
 import FieldScreenshot from "./components/fieldScreenshot/fieldScreenshot.js";
+import ButtonSend from "./components/buttonSend/buttonSend.js";
 import ButtonFloat from "./components/buttonFloat/buttonFloat.js";
 import ButtonInfo from "./components/buttonInfo/buttonInfo.js";
 import FormSender from "./utils/formSender.js";
@@ -14,9 +16,19 @@ const widget = new Widget (
     window.bagboxSettings.stylesLink,
 );
 
+// Create problem field actions class
+const fieldProblem = new FieldProblem (
+    widget.fieldProblem
+);
+
 // Create screenshot field actions class
 const fieldScreenshot = new FieldScreenshot (
     widget.fieldScreenshot
+);
+
+// Create float button actions class
+const buttonSend = new ButtonSend (
+    widget.buttonSend
 );
 
 // Create float button actions class
@@ -37,10 +49,33 @@ const formSender = new FormSender (
 );
 
 
+// Set error if googleSheetsLink is empty
+if ('' === window.bagboxSettings.googleSheetsLink || undefined === window.bagboxSettings.googleSheetsLink) {
+    buttonSend.setError('Sheets isn`t connect');
+}
+
+
 // Send form button
 widget.buttonSend.addEventListener( "click" , event => {
     event.preventDefault();
-    formSender.send();
+    buttonSend.setLoad();
+    fieldProblem.setDisabled();
+    fieldScreenshot.setDisabled();
+
+    if (true === formSender.send()) {
+        console.log('true');
+        buttonSend.removeLoad();
+        buttonSend.setSuccess('Sent Success');
+        fieldProblem.removeDisabled();
+        fieldScreenshot.removeDisabled();
+
+        setTimeout(() => {
+            buttonSend.removeSuccess();
+        }, 3000);
+    }
+    else {
+        buttonSend.setError('Something went wrong');
+    }
 });
 
 

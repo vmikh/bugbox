@@ -10,17 +10,11 @@ class FieldScreenshot {
     constructor(fieldScreenshot) {
         this.fieldScreenshot = fieldScreenshot;
     }
-    get isValid() {
-        
+    setDisabled() {
+        this.fieldScreenshot.disabled = true;
     }
-    get value() {
-        
-    }
-    get setInvalid() {
-        
-    }
-    get setValid() {
-        
+    removeDisabled() {
+        this.fieldScreenshot.disabled = false;
     }
 };
 

@@ -34,7 +34,11 @@
 
     @media (min-width: @minDesktopResolution) {
         &:hover {
-
+            svg {
+                path {
+                    fill: @colorBlack;
+                }
+            }
         }
     }
 
@@ -50,6 +54,7 @@
 
         path {
             fill: @colorBase;
+            transition: fill .2s;
         }
     }
 
@@ -61,6 +66,7 @@
 
         path {
             fill: @colorBase;
+            transition: fill .2s;
         }
     }
 }

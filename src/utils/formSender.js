@@ -76,6 +76,7 @@ class FormSender {
             ''                            // Assignee
         ];
 
+
         // Send arrows to google sheets
         fetch(this.googleLink, {
             method: 'post',
@@ -87,7 +88,19 @@ class FormSender {
                 headArray: headArray,
                 bodyArray: bodyArray
             })
-        });
+        })
+        .then(res => {
+            if (res.ok) {
+                console.log('true');
+                return true;
+            }
+            else {
+                console.log('false');
+                return Promise.reject(res);
+            }
+        })
+        .then(data => {console.log(data);})
+        .catch(() => {console.log('some error')});
     }
 
 

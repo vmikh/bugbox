@@ -10,17 +10,11 @@ class FieldProblem {
     constructor(fieldProblem) {
         this.fieldProblem = fieldProblem;
     }
-    get isValid() {
-        
+    setDisabled() {
+        this.fieldProblem.disabled = true;
     }
-    get value() {
-        
-    }
-    get setInvalid() {
-        
-    }
-    get setValid() {
-        
+    removeDisabled() {
+        this.fieldProblem.disabled = false;
     }
 };
 

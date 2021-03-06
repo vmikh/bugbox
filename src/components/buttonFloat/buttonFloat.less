@@ -17,7 +17,7 @@
 
     @media (min-width: @minDesktopResolution) {
         &:hover {
-            opacity: .75;
+            background-color: @colorBlack;
         }
     }
 
@@ -36,7 +36,9 @@
                 opacity: 1;
 
                 .button_float__cross {
-                    opacity: .75;
+                    path {
+                        fill: @colorBlack;
+                    }
                 }
             }
         }
@@ -64,10 +66,11 @@
         position: absolute;
         transform: rotate(90deg);
         opacity: 0;
-        transition: transform .2s, opacity .2s;
+        transition: transform .2s;
 
         path {
             fill: @colorBase;
+            transition: fill .2s;
         }
     }
 }
