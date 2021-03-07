@@ -87,18 +87,18 @@ widget.buttonSend.addEventListener( "click" , event => {
     })  
     .then(  
         response => {  
-            console.log(response);
-            console.log('unload');
+            // console.log(response);
 
             // Remove form disabled
             buttonSend.setSuccess('Sent Success');
             fieldProblem.removeDisabled();
             fieldScreenshot.removeDisabled();
+            fieldProblem.setEmpty();
+            fieldScreenshot.setEmpty();
         }  
     )  
     .catch(function(err) {  
-        console.log('Fetch Error :-S', err);
-        console.log('unload');
+        // console.log('Fetch Error :-S', err);
 
         // Remove form disabled
         buttonSend.setError('Something went wrong');
