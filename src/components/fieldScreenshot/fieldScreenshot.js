@@ -27,6 +27,10 @@ class FieldScreenshot {
         this.fieldScreenshot.classList.remove('invalid');
     }
 
+    setEmpty() {
+        this.fieldScreenshot.value = '';
+    }
+
     isValid() {
         if (this.fieldScreenshot.value === '') {
             this.setInvalid();

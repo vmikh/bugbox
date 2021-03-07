@@ -27,6 +27,10 @@ class FieldProblem {
         this.fieldProblem.classList.remove('invalid');
     }
 
+    setEmpty() {
+        this.fieldProblem.value = '';
+    }
+
     isValid() {
         if (this.fieldProblem.value === '') {
             this.setInvalid();
