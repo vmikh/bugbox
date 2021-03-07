@@ -8,7 +8,7 @@ import FieldScreenshot from "./components/fieldScreenshot/fieldScreenshot.js";
 import ButtonSend from "./components/buttonSend/buttonSend.js";
 import ButtonFloat from "./components/buttonFloat/buttonFloat.js";
 import ButtonInfo from "./components/buttonInfo/buttonInfo.js";
-import FormSender from "./utils/formSender.js";
+import MetaData from "./utils/metaData.js";
 
 // Create widget
 const widget = new Widget (
@@ -28,7 +28,8 @@ const fieldScreenshot = new FieldScreenshot (
 
 // Create float button actions class
 const buttonSend = new ButtonSend (
-    widget.buttonSend
+    widget.buttonSend,
+    widget.buttonSendText
 );
 
 // Create float button actions class
@@ -42,10 +43,9 @@ const buttonInfo = new ButtonInfo (
 );
 
 // Create form sender class
-const formSender = new FormSender (
+const metaData = new MetaData (
     widget.fieldProblem,
-    widget.fieldScreenshot,
-    widget.googleLink
+    widget.fieldScreenshot
 );
 
 
@@ -58,24 +58,53 @@ if ('' === window.bagboxSettings.googleSheetsLink || undefined === window.bagbox
 // Send form button
 widget.buttonSend.addEventListener( "click" , event => {
     event.preventDefault();
+
+    let errors = 0;
+
+    if (!fieldProblem.isValid()) errors++;
+    if (!fieldScreenshot.isValid()) errors++;
+    if (errors > 0) {
+        widget.buttonSend.blur();
+        return false;
+    }
+
+    // Set form disabled
     buttonSend.setLoad();
     fieldProblem.setDisabled();
     fieldScreenshot.setDisabled();
 
-    if (true === formSender.send()) {
-        console.log('true');
-        buttonSend.removeLoad();
-        buttonSend.setSuccess('Sent Success');
+    // Send arrows to google sheets
+    fetch(widget.googleLink, {
+        method: 'post',
+        mode: 'no-cors',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            headArray: metaData.headArray,
+            bodyArray: metaData.bodyArray
+        })
+    })  
+    .then(  
+        response => {  
+            console.log(response);
+            console.log('unload');
+
+            // Remove form disabled
+            buttonSend.setSuccess('Sent Success');
+            fieldProblem.removeDisabled();
+            fieldScreenshot.removeDisabled();
+        }  
+    )  
+    .catch(function(err) {  
+        console.log('Fetch Error :-S', err);
+        console.log('unload');
+
+        // Remove form disabled
+        buttonSend.setError('Something went wrong');
         fieldProblem.removeDisabled();
         fieldScreenshot.removeDisabled();
-
-        setTimeout(() => {
-            buttonSend.removeSuccess();
-        }, 3000);
-    }
-    else {
-        buttonSend.setError('Something went wrong');
-    }
+    });
 });
 
 
@@ -139,7 +168,7 @@ document.onkeydown = function(event) {
 
 
 // Open & Close settings
-widget.buttonInfo.addEventListener( "click" , event => {
+widget.buttonInfo.addEventListener("click", event => {
     event.preventDefault();
 
     if (buttonInfo.isActive) {
@@ -150,4 +179,18 @@ widget.buttonInfo.addEventListener( "click" , event => {
         buttonInfo.open();
         widget.turnOn();
     }
+});
+
+
+// Remove invalid class from problem field on keyup
+widget.fieldProblem.addEventListener('keyup', event => {
+    event.preventDefault();
+    fieldProblem.setValid();
+});
+
+
+// Remove invalid class from screen field on keyup
+widget.fieldScreenshot.addEventListener('keyup', event => {
+    event.preventDefault();
+    fieldScreenshot.setValid();
 });

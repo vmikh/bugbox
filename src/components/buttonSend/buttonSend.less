@@ -1,5 +1,7 @@
 .button_send {
     position        : relative;
+    display: flex;
+    justify-content: center;
     background-color: @colorBase;
     border-radius   : 4px;
     text-transform  : uppercase;
@@ -9,9 +11,9 @@
     border          : 0 solid transparent;
     width           : 100%;
     height          : 46px;
-    padding         : 14px 25px 14px;
+    padding         : 14px 34px 14px 25px;
     color           : @colorWhite;
-    transition      : opacity .2s, background-color .2s, transform .2s;
+    transition      : opacity .2s, background-color .2s, padding .2s, transform .2s;
 
     &:focus {
         outline: none;
@@ -82,16 +84,17 @@
         color           : @colorSuccess;
         background-color: @colorSuccess010;
         pointer-events  : none;
+        padding         : 14px 25px 14px 25px;
 
-        svg {
-            margin-left: -25px;
+        .button_send__icon {
+            margin-right: 8px;
             opacity    : 1;
         }
     }
 
-    svg {
-        position   : absolute;
-        margin-left: -15px;
+    .button_send__icon {
+        position   : relative;
+        margin-right: 0;
         opacity    : 0;
         transition : margin .2s, opacity .2s;
 

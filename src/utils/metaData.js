@@ -2,62 +2,41 @@
 // Contacts: <vladi.mikh.vm@gmail.com>
 // License: http://opensource.org/licenses/MIT
 
-// Form sender class
+// Meta Data Class
 
 "use strict";
 
-class FormSender {
-    constructor(fieldProblem, fieldScreenshot, googleLink) {
+class MetaData {
+    constructor(fieldProblem, fieldScreenshot) {
         this.fieldProblem = fieldProblem;
         this.fieldScreenshot = fieldScreenshot;
-        this.googleLink = googleLink;
-
-        // Create static header titles
-        this.titles = {
-            status: 'Status',
-            priority: 'Priority',
-            date: 'Date&Time',
-            problem: 'Problem',
-            url: 'URL',
-            screenshot: 'Screenshot URL',
-            browser: 'Browser',
-            os: 'OS',
-            isMoblile: 'Is Mobile',
-            scrnW: 'Screen W',
-            scrnH: 'Screen H',
-            browserW: 'Browser W',
-            browserH: 'Browser H',
-            actualResult: 'Actual Result',
-            expectedResult: 'Expected Result',
-            assignee: 'Assignee'
-        }
     }
 
-    // Send arrows to google sheets method
-    send() {
+    // Create header row
+    get headArray() {
+        return [
+            'Status',
+            'Priority',
+            'Date&Time',
+            'Problem',
+            'URL',
+            'Screenshot URL',
+            'Browser',
+            'OS',
+            'Is Mobile',
+            'Screen W',
+            'Screen H',
+            'Browser W',
+            'Browser H',
+            'Actual Result',
+            'Expected Result',
+            'Assignee'
+        ]
+    }
 
-        // Create header row
-        const headArray = [
-            this.titles.status,
-            this.titles.priority,
-            this.titles.date,
-            this.titles.problem,
-            this.titles.url,
-            this.titles.screenshot,
-            this.titles.browser,
-            this.titles.os,
-            this.titles.isMoblile,
-            this.titles.scrnW,
-            this.titles.scrnH,
-            this.titles.browserW,
-            this.titles.browserH,
-            this.titles.actualResult,
-            this.titles.expectedResult,
-            this.titles.assignee,
-        ];
-
-        // Create body row
-        const bodyArray = [
+    // Create body row
+    get bodyArray() {
+        return [
             '',                           // Status
             '',                           // Priority
             this.date,                    // Date&Time
@@ -74,33 +53,7 @@ class FormSender {
             '',                           // Actual Result
             '',                           // Expected Result
             ''                            // Assignee
-        ];
-
-
-        // Send arrows to google sheets
-        fetch(this.googleLink, {
-            method: 'post',
-            mode: 'no-cors',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                headArray: headArray,
-                bodyArray: bodyArray
-            })
-        })
-        .then(res => {
-            if (res.ok) {
-                console.log('true');
-                return true;
-            }
-            else {
-                console.log('false');
-                return Promise.reject(res);
-            }
-        })
-        .then(data => {console.log(data);})
-        .catch(() => {console.log('some error')});
+        ]
     }
 
 
@@ -174,4 +127,4 @@ class FormSender {
     // }
 };
 
-export default FormSender;
+export default MetaData;

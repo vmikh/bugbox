@@ -10,11 +10,29 @@ class FieldScreenshot {
     constructor(fieldScreenshot) {
         this.fieldScreenshot = fieldScreenshot;
     }
+
     setDisabled() {
         this.fieldScreenshot.disabled = true;
     }
+
     removeDisabled() {
         this.fieldScreenshot.disabled = false;
+    }
+
+    setInvalid() {
+        this.fieldScreenshot.classList.add('invalid');
+    }
+
+    setValid() {
+        this.fieldScreenshot.classList.remove('invalid');
+    }
+
+    isValid() {
+        if (this.fieldScreenshot.value === '') {
+            this.setInvalid();
+            return false;
+        }
+        return true;
     }
 };
 
