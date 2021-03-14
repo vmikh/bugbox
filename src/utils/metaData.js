@@ -15,10 +15,13 @@ class MetaData {
     // Create header row
     get headArray() {
         return [
-            'Status',
-            'Priority',
             'Date&Time',
             'Problem',
+            'Actual Result',
+            'Expected Result',
+            'Priority',
+            'Assignee',
+            'Status',
             'URL',
             'Screenshot URL',
             'Browser',
@@ -28,19 +31,19 @@ class MetaData {
             'Screen H',
             'Browser W',
             'Browser H',
-            'Actual Result',
-            'Expected Result',
-            'Assignee'
         ]
     }
 
     // Create body row
     get bodyArray() {
         return [
-            '',                           // Status
-            '',                           // Priority
             this.date,                    // Date&Time
             this.fieldProblem.value,      // Problem
+            '',                           // Actual Result
+            '',                           // Expected Result
+            '',                           // Priority
+            '',                           // Assignee
+            '',                           // Status
             window.location.href,         // URL
             this.fieldScreenshot.value,   // Screenshot URL
             this.browser,                 // Browser
@@ -50,9 +53,6 @@ class MetaData {
             window.screen.height,         // Screen Height
             window.innerWidth,            // Browser Width
             window.innerHeight,           // Browser Height
-            '',                           // Actual Result
-            '',                           // Expected Result
-            ''                            // Assignee
         ]
     }
 
