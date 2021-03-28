@@ -103,8 +103,8 @@ widget.buttonSend.addEventListener( "click" , event => {
 });
 
 
-
-fetch('https://script.google.com/macros/s/AKfycbwHAXj13yxwzQlf-VFK4Dw7_uNuQ93WZRyas1Cc_udayKCV1N9vhBzgF0DZCkLZmzfg/exec')
+// Getting Connected Sheets URL
+fetch(widget.googleLink)
 .then(response => {  
     return response.json();
 })
