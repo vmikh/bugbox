@@ -58,12 +58,8 @@ if ('' === window.bagboxSettings.googleSheetsLink || undefined === window.bagbox
 // Send form button
 widget.buttonSend.addEventListener( "click" , event => {
     event.preventDefault();
-
-    let errors = 0;
-
-    if (!fieldProblem.isValid()) errors++;
-    if (!fieldScreenshot.isValid()) errors++;
-    if (errors > 0) {
+    
+    if (!fieldProblem.isValid()) {
         widget.buttonSend.blur();
         return false;
     }
@@ -85,8 +81,7 @@ widget.buttonSend.addEventListener( "click" , event => {
             bodyArray: metaData.bodyArray
         })
     })  
-    .then(  
-        response => {  
+    .then(response => {  
             // console.log(response);
 
             // Remove form disabled
@@ -97,15 +92,25 @@ widget.buttonSend.addEventListener( "click" , event => {
             fieldScreenshot.setEmpty();
         }  
     )  
-    .catch(function(err) {  
-        // console.log('Fetch Error :-S', err);
-
+    .catch(err => {  
         // Remove form disabled
-        buttonSend.setError('Something went wrong');
-        fieldProblem.removeDisabled();
-        fieldScreenshot.removeDisabled();
+        setTimeout(() => {
+            buttonSend.setError('Something went wrong');
+            fieldProblem.removeDisabled();
+            fieldScreenshot.removeDisabled();
+        }, 1000)
     });
 });
+
+
+
+fetch('https://script.google.com/macros/s/AKfycbwHAXj13yxwzQlf-VFK4Dw7_uNuQ93WZRyas1Cc_udayKCV1N9vhBzgF0DZCkLZmzfg/exec')
+.then(response => {  
+    return response.json();
+})
+.then(data => {
+    widget.addSheetUrl(data.url)
+})
 
 
 // Open widget on button click
@@ -130,7 +135,6 @@ widget.buttonFloat.addEventListener( "click" , event => {
 
 // Close widget on click out widget
 document.addEventListener('click', event => {
-    event.preventDefault();
 
     const target = event.target;
     const isWidgetSection = target == widget.widgetSection;
@@ -148,7 +152,7 @@ document.addEventListener('click', event => {
 
 
 // Close widget on click ESC
-document.onkeydown = function(event) {
+document.onkeydown = event => {
     event = event || window.event;
     let isEscape = false;
 

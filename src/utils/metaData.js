@@ -5,6 +5,8 @@
 // Meta Data Class
 
 "use strict";
+import Platform from "./platform.js";
+const platform = new Platform();
 
 class MetaData {
     constructor(fieldProblem, fieldScreenshot) {
@@ -26,7 +28,7 @@ class MetaData {
             'Screenshot URL',
             'Browser',
             'OS',
-            'Is Mobile',
+            'Device Type',
             'Screen W',
             'Screen H',
             'Browser W',
@@ -48,7 +50,7 @@ class MetaData {
             this.fieldScreenshot.value,   // Screenshot URL
             this.browser,                 // Browser
             this.os,                      // OS
-            this.isMobile,                // Is Mobile
+            this.deviceType,                // Device Type
             window.screen.width,          // Screen Width
             window.screen.height,         // Screen Height
             window.innerWidth,            // Browser Width
@@ -81,11 +83,12 @@ class MetaData {
     }
 
 
-    // Return '+' if mobile
-    get isMobile() {
+    // Return device type
+    get deviceType() {
         if (this.os === 'Android' || this.os === 'iOS' || this.os === 'Symbian' || this.os === 'Windows Phone') {
-            return '+';
+            return 'Mobile/Tablet';
         }
+        else return 'Desktop';
     }
 
 
@@ -105,26 +108,8 @@ class MetaData {
 
     // Return browser name and version
     get browser() {
-        let ua = navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
-        if (/trident/i.test(M[1])) {
-            tem=/\brv[ :]+(\d+)/g.exec(ua) || []; 
-            return {name:'IE',version:(tem[1]||'')};
-        }   
-        if (M[1]==='Chrome') {
-            tem=ua.match(/\bOPR|Edge\/(\d+)/)
-            if(tem!=null)   {return {name:'Opera', version:tem[1]};}
-        }
-        M=M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
-        if ((tem=ua.match(/version\/(\d+)/i))!=null) {M.splice(1,1,tem[1]);}
-        
-        return M[0] + ' v' + M[1];
+        return platform.info.name + ' v' + parseFloat(platform.info.version);
     }
-
-
-    // Return concatinated all rows
-    // get total() {
-    //     return `${this.titles.date}: ${this.date},\n${this.titles.problem}: ${this.fieldProblem.value},\n${this.titles.screenshot}: ${this.fieldScreenshot.value}`
-    // }
 };
 
 export default MetaData;

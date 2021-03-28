@@ -9,6 +9,7 @@ const cleanCSS = require('gulp-clean-css');
 const rollup = require('gulp-rollup');
 const rename = require("gulp-rename");
 const babel = require('gulp-babel');
+const concat = require('gulp-concat');
 
 
 // Less build
@@ -40,7 +41,11 @@ function html() {
 function browser() {
     browserSync({
         server: {
-            baseDir: 'src'
+            baseDir: 'src',
+            middleware: function (req, res, next) {
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                next();
+            }
         },
         notify: false
     });
