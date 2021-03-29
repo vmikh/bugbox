@@ -9,11 +9,16 @@ import ButtonSend from "./components/buttonSend/buttonSend.js";
 import ButtonFloat from "./components/buttonFloat/buttonFloat.js";
 import ButtonInfo from "./components/buttonInfo/buttonInfo.js";
 import MetaData from "./utils/metaData.js";
+import Platform from "./utils/platform.js";
+
+// Create platform checker class
+const platform = new Platform();
 
 // Create widget
 const widget = new Widget (
     window.bagboxSettings.googleSheetsLink,
     window.bagboxSettings.stylesLink,
+    platform.info.name
 );
 
 // Create problem field actions class
@@ -45,7 +50,9 @@ const buttonInfo = new ButtonInfo (
 // Create form sender class
 const metaData = new MetaData (
     widget.fieldProblem,
-    widget.fieldScreenshot
+    widget.fieldScreenshot,
+    platform.info.name,
+    platform.info.version
 );
 
 
@@ -72,26 +79,30 @@ widget.buttonSend.addEventListener( "click" , event => {
     // Send arrows to google sheets
     fetch(widget.googleLink, {
         method: 'post',
-        mode: 'no-cors',
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "text/plain"
         },
         body: JSON.stringify({
             headArray: metaData.headArray,
             bodyArray: metaData.bodyArray
         })
-    })  
-    .then(response => {  
-            // console.log(response);
-
+    })
+    .then(response => {
             // Remove form disabled
-            buttonSend.setSuccess('Sent Success');
-            fieldProblem.removeDisabled();
-            fieldScreenshot.removeDisabled();
-            fieldProblem.setEmpty();
-            fieldScreenshot.setEmpty();
+            if (response.status != 404) {
+                buttonSend.setSuccess('Sent Success');
+                fieldProblem.removeDisabled();
+                fieldScreenshot.removeDisabled();
+                fieldProblem.setEmpty();
+                fieldScreenshot.setEmpty();
+            }
+
+            return response.json();
         }  
     )  
+    .then(data => {
+        console.log(data);
+    })
     .catch(err => {  
         // Remove form disabled
         setTimeout(() => {
@@ -109,7 +120,8 @@ fetch(widget.googleLink)
     return response.json();
 })
 .then(data => {
-    widget.addSheetUrl(data.url)
+    if (undefined !== data.url)
+        widget.addSheetUrl(data.url);
 })
 
 

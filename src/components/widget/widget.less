@@ -5,13 +5,44 @@
     z-index        : 999999999;
     right          : 20px;
     bottom         : 120px;
-    transform-style: preserve-3d;
-    perspective    : 1000px;
     display        : none;
     opacity        : 0;
 
     @media (max-width: @maxMobileResolution) {
         width: 320px;
+        @staticCard();
+    }
+
+    &.static {
+        @staticCard();
+    }
+
+    &.animated {
+        @media (min-width: @minDesktopResolution) {
+            transform-style: preserve-3d;
+            perspective    : 1000px;
+
+            .widget_front,
+            .widget_back {
+                backface-visibility: hidden;
+                transform-style    : preserve-3d;
+                transition         : transform .5s;
+            }
+
+            .widget_back {
+                transform: rotateY(180deg);
+            }
+
+            &.turned {
+                .widget_front {
+                    transform: rotateY(-180deg);
+                }
+        
+                .widget_back {
+                    transform: rotateY(0deg);
+                }
+            }
+        }
     }
 
     &.open {
@@ -23,13 +54,13 @@
     }
 
     &.turned {
-        .widget_front {
-            transform: rotateY(-180deg);
-        }
+        // .widget_front {
+        //     transform: rotateY(-180deg);
+        // }
 
-        .widget_back {
-            transform: rotateY(0deg);
-        }
+        // .widget_back {
+        //     transform: rotateY(0deg);
+        // }
     }
 
     .widget_front,
@@ -42,9 +73,6 @@
         background-color   : @colorWhite;
         box-shadow         : @shadowBig;
         border-radius      : 6px;
-        backface-visibility: hidden;
-        transform-style    : preserve-3d;
-        transition         : transform .5s;
     }
 
     .widget_front {
@@ -53,7 +81,6 @@
 
     .widget_back {
         padding  : 65px 35px 0;
-        transform: rotateY(180deg);
 
         .widget_back__logo {
             margin-bottom: 15px;
@@ -114,6 +141,36 @@
             display: block;
             opacity: 1;
             bottom : 140px;
+        }
+    }
+
+    // Mixin for static animation
+    @staticCard: {
+        .widget_front,
+        .widget_back {
+            transition: opacity .2s;
+        }
+
+        .widget_front {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .widget_back {
+            opacity: 0;
+            z-index: 0;
+        }
+
+        &.turned {
+            .widget_front {
+                opacity: 0;
+                z-index: 0;
+            }
+
+            .widget_back {
+                opacity: 1;
+                z-index: 1;
+            }
         }
     }
 }

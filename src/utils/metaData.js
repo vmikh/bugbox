@@ -5,13 +5,13 @@
 // Meta Data Class
 
 "use strict";
-import Platform from "./platform.js";
-const platform = new Platform();
 
 class MetaData {
-    constructor(fieldProblem, fieldScreenshot) {
+    constructor(fieldProblem, fieldScreenshot, platformName, platformVersion) {
         this.fieldProblem = fieldProblem;
         this.fieldScreenshot = fieldScreenshot;
+        this.platformName = platformName;
+        this.platformVersion = platformVersion;
     }
 
     // Create header row
@@ -108,7 +108,7 @@ class MetaData {
 
     // Return browser name and version
     get browser() {
-        return platform.info.name + ' v' + parseFloat(platform.info.version);
+        return this.platformName + ' v' + parseFloat(this.platformVersion);
     }
 };
 
