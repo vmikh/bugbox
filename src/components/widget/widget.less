@@ -3,18 +3,25 @@
 // License: http://opensource.org/licenses/MIT
 
 .widget_card {
-    height         : 360px;
-    width          : 325px;
-    position       : fixed;
-    z-index        : 999999999;
-    right          : 20px;
-    bottom         : 120px;
-    display        : none;
-    opacity        : 0;
+    height       : 360px;
+    width        : 325px;
+    position     : fixed;
+    z-index      : 999999999;
+    box-shadow   : @shadowBig;
+    right        : 20px;
+    bottom       : 120px;
+    display      : none;
+    opacity      : 0;
+    border-radius: 6px;
 
     @media (max-width: @maxMobileResolution) {
-        width: 320px;
         @staticCard();
+
+        @media (max-height: 520px) {
+            height  : initial;
+            top     : 20px;
+            overflow: auto;
+        }
     }
 
     &.static {
@@ -41,7 +48,7 @@
                 .widget_front {
                     transform: rotateY(-180deg);
                 }
-        
+
                 .widget_back {
                     transform: rotateY(0deg);
                 }
@@ -57,34 +64,27 @@
         animation-name    : widgetOpen;
     }
 
-    &.turned {
-        // .widget_front {
-        //     transform: rotateY(-180deg);
-        // }
-
-        // .widget_back {
-        //     transform: rotateY(0deg);
-        // }
-    }
-
     .widget_front,
     .widget_back {
-        position           : absolute;
-        top                : 0;
-        left               : 0;
-        height             : 100%;
-        width              : 100%;
-        background-color   : @colorWhite;
-        box-shadow         : @shadowBig;
-        border-radius      : 6px;
+        position        : absolute;
+        top             : 0;
+        left            : 0;
+        height          : 100%;
+        width           : 100%;
+        border-radius   : 6px;
+        background-color: @colorWhite;
     }
 
     .widget_front {
         padding: 20px;
+
+        @media (max-width: @maxMobileResolution) {
+            height: initial;
+        }
     }
 
     .widget_back {
-        padding  : 65px 35px 0;
+        padding: 65px 35px 0;
 
         .widget_back__logo {
             margin-bottom: 15px;
@@ -150,6 +150,7 @@
 
     // Mixin for static animation
     @staticCard: {
+
         .widget_front,
         .widget_back {
             transition: opacity .2s;
