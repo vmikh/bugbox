@@ -4,14 +4,14 @@ Bug report system at google sheets
 ### Quick Install
 Just paste this script into your site source
 
-`<!--bugbox--><script> window.bagboxSettings = {googleSheetsLink: 'https://script.google.com/macros/s/AKfycby8BLqrHjPQc0hGvz5stcIj2EKNxnfNcL4kMLd-3fFlJVHnG0fmzhFwi8qOWzvRUuAB/exec', stylesLink: 'https://vmikh.github.io/bugbox/dist/app-min.css'}; (function(u){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.type="module";s.src=u; var x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x); })('https://vmikh.github.io/bugbox/dist/app-min.js');</script><!--bugbox-->`
+`<!--bugbox--><script> window.bagboxSettings = {googleSheetsLink: 'YOUR_GOOGLE_SHEET', stylesLink: 'https://vmikh.github.io/bugbox/dist/app-min.css'}; (function(u){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.type="module";s.src=u; var x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x); })('https://vmikh.github.io/bugbox/dist/app-min.js');</script><!--bugbox-->`
 
 ### Full Manual Install
 
 ##### Copy this sheets
-https://docs.google.com/spreadsheets/d/1_kvDjJZzX6IsPl4UebSAprOuuZR-vnpHZa3lvoVknbU/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/1XRShdYtaYBdfg1YhK2AoEbYpesyFh-0WsDDtisj6M_0/copy
 
-![Copy_sheets](https://habrastorage.org/webt/bz/g7/_h/bzg7_htj7o72pdya0gibrit5hfo.png)
+![Copy_sheets](https://habrastorage.org/webt/ur/6v/8o/ur6v8orate7t52eaxjz3a0msmpk.png)
 
 ##### Publish sheet's script<br>
 1. Tools > Script Editor<br>
@@ -19,21 +19,29 @@ https://docs.google.com/spreadsheets/d/1_kvDjJZzX6IsPl4UebSAprOuuZR-vnpHZa3lvoVk
 3. Fill the description > Deploy<br>
 4. Give the application read and write permissions
 5. Copy web app url
+6. Insert your sheets link into script to 'googleSheetsLink' parameter
 
-![Script_editor](https://habrastorage.org/webt/jb/ma/fm/jbmafm8so779b2cyvlrdq-mi4xe.png)
+![Script_editor](https://habrastorage.org/webt/j-/ns/r-/j-nsr-tgtz4lkjmuolzems-wlhg.png)
 
-![New_deployment](https://habrastorage.org/webt/rc/0y/1l/rc0y1lla-9ksyio5chlahdllua0.png)
+![New_deployment](https://habrastorage.org/webt/t8/oz/zv/t8ozzvnzdknez-an2f0vyikrfbi.png)
 
-![Deploy](https://habrastorage.org/webt/l6/ec/qi/l6ecqiwifkixlepjdk98quffnru.png)
+![Deploy](https://habrastorage.org/webt/vs/du/gi/vsdugiz-nxkbz_rlrq9bblwmrfo.png)
 
-![Permissions](https://habrastorage.org/webt/j7/za/bf/j7zabfzgbijkguhskfl8ahgmjsg.png)
+![Permissions](https://habrastorage.org/webt/mo/2a/na/mo2ana94txcaynevvgjjfo7y3dq.png)
 
-![Copy_link](https://habrastorage.org/webt/mn/qh/cz/mnqhcznbrq4amj2aktbhpifamsg.png)
+![Copy_link](https://habrastorage.org/webt/3h/kg/g7/3hkgg7r6lho9h7kh-zoolhbmck8.png)
 
-##### Insert your sheets link into script to 'googleSheetsLink' parameter
-![Insert_link](https://habrastorage.org/webt/rb/ou/-g/rbou-g5nycqqb0vkounwisdktfo.png)
+![Insert_link](https://habrastorage.org/webt/1s/j2/fd/1sj2fdillg3k-q6m_rjxlhjgwkw.png)
 
 ### Sheets Settings
 You can edit 'Priority', 'Assignee' and 'Status' fields on the 'libraries' sheet
 
-![Sheets settings](https://habrastorage.org/webt/ao/sf/ze/aosfzej9ibj8s3euy84zxre4ihy.png)
+![Sheets settings](https://habrastorage.org/webt/fx/u1/oc/fxu1oci7smscf4jezjl1ro61y1q.png)
+
+## Credits
+[Platform.js v1.3.6](https://github.com/bestiejs/platform.js/)
+
+## Contacts
+[bugbox.io](https://bugbox.io/)
+
+[info@bugbox.io](info@bugbox.io)
