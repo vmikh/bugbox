@@ -77,7 +77,7 @@ class Widget {
     addSheetUrl(url) {
         const link = document.createElement('li');
         link.classList.add('menu__item');
-        link.innerHTML = `<a href="${url}" target="_blank">connected sheets</a>`;
+        link.innerHTML = `<a href="${url}" target="_blank">connected sheet</a>`;
 
         this.menu.prepend(link);
     }
