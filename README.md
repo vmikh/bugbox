@@ -10,7 +10,7 @@ Easy way to collect and manage your web project bugs
 ##### Copy this sheet
 https://docs.google.com/spreadsheets/d/1XRShdYtaYBdfg1YhK2AoEbYpesyFh-0WsDDtisj6M_0/copy
 
-![Copy_sheets](https://habrastorage.org/webt/ao/hz/af/aohzafey9stzqsulermavx3u-ig.png)
+![Copy_sheets](https://habrastorage.org/webt/mc/lz/xa/mclzxayq6ee7tv2tnql11ax-hos.png)
 
 ##### Publish sheet's script<br>
 1. Tools > Script Editor<br>
@@ -18,24 +18,24 @@ https://docs.google.com/spreadsheets/d/1XRShdYtaYBdfg1YhK2AoEbYpesyFh-0WsDDtisj6
 3. Fill the description > Deploy<br>
 4. Give the application read and write permissions
 5. Copy web app url
-6. Insert your web app url into script to 'googleSheetsLink' parameter
+6. Insert your app url into script to 'googleSheetsLink' parameter
 
-![Script_editor](https://habrastorage.org/webt/hk/l0/ep/hkl0epnooo2daq0h2bzrwp8kqd4.png)
+![Script_editor](https://habrastorage.org/webt/1w/sy/9w/1wsy9wkozgdxrtldx824qomvhow.png)
 
-![New_deployment](https://habrastorage.org/webt/-h/w1/eq/-hw1eqvqev_js6swidnigmjxbnw.png)
+![New_deployment](https://habrastorage.org/webt/pc/0o/ae/pc0oaekamh8hbjuw6zorrtzipu0.png)
 
-![Deploy](https://habrastorage.org/webt/fh/nw/-h/fhnw-htjitmxn45x1iko8bld21c.png)
+![Deploy](https://habrastorage.org/webt/ib/u7/uy/ibu7uyhzculab6u-ffj0zatsbs0.png)
 
-![Permissions](https://habrastorage.org/webt/s8/ek/st/s8ekstngfy1qb4sngh26ptixcny.png)
+![Permissions](https://habrastorage.org/webt/u4/is/cp/u4iscpwkwk4esxk2-wg32lt62kc.png)
 
-![Copy_link](https://habrastorage.org/webt/fw/tw/mp/fwtwmpkicrxa8vmk-47mwpiwxr0.png)
+![Copy_link](https://habrastorage.org/webt/-x/zs/iq/-xzsiqeimuvfo9rqpg-3ryvuueo.png)
 
 ![Insert_link](https://habrastorage.org/webt/1s/j2/fd/1sj2fdillg3k-q6m_rjxlhjgwkw.png)
 
 ### Sheet Settings
 You can edit 'Priority', 'Assignee' and 'Status' fields at the 'libraries' sheet
 
-![Sheets settings](https://habrastorage.org/webt/ks/pi/qc/kspiqcyyiahm9ikvupjev6hmulk.png)
+![Sheets settings](https://habrastorage.org/webt/xp/6e/qj/xp6eqjz56qblyuzsbsoxitd4gls.png)
 
 ## Credits
 [Platform.js v1.3.6](https://github.com/bestiejs/platform.js/)
