@@ -3,15 +3,14 @@ Easy way to collect and manage your web project bugs
 
 ### Manual Install
 
-##### Copy script
-Just paste this script into your site source
+##### Copy this and paste this script into your site source
 
 `<!--bugbox--><script> window.bagboxSettings = {googleSheetsLink: 'YOUR_GOOGLE_SHEET', stylesLink: 'https://vmikh.github.io/bugbox/dist/app-min.css'}; (function(u){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.type="module";s.src=u; var x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x); })('https://vmikh.github.io/bugbox/dist/app-min.js');</script><!--bugbox-->`
 
 ##### Copy this sheet
 https://docs.google.com/spreadsheets/d/1XRShdYtaYBdfg1YhK2AoEbYpesyFh-0WsDDtisj6M_0/copy
 
-![Copy_sheets](https://habrastorage.org/webt/pg/ap/e4/pgape41u1n0ffcwkvcji1eb_awo.png)
+![Copy_sheets](https://habrastorage.org/webt/ao/hz/af/aohzafey9stzqsulermavx3u-ig.png)
 
 ##### Publish sheet's script<br>
 1. Tools > Script Editor<br>
@@ -21,22 +20,22 @@ https://docs.google.com/spreadsheets/d/1XRShdYtaYBdfg1YhK2AoEbYpesyFh-0WsDDtisj6
 5. Copy web app url
 6. Insert your web app url into script to 'googleSheetsLink' parameter
 
-![Script_editor](https://habrastorage.org/webt/xq/t2/o4/xqt2o40o3a-rmrstlb1snta4iwk.png)
+![Script_editor](https://habrastorage.org/webt/hk/l0/ep/hkl0epnooo2daq0h2bzrwp8kqd4.png)
 
-![New_deployment](https://habrastorage.org/webt/ng/nl/sc/ngnlscmzmm8cqls6qvfjjapb9ty.png)
+![New_deployment](https://habrastorage.org/webt/-h/w1/eq/-hw1eqvqev_js6swidnigmjxbnw.png)
 
-![Deploy](https://habrastorage.org/webt/zw/ev/og/zwevog4fgtxdg4l2vm3kk5xmhjs.png)
+![Deploy](https://habrastorage.org/webt/fh/nw/-h/fhnw-htjitmxn45x1iko8bld21c.png)
 
-![Permissions](https://habrastorage.org/webt/td/ju/yz/tdjuyzeocdgisrxlinomsbghxo8.png)
+![Permissions](https://habrastorage.org/webt/s8/ek/st/s8ekstngfy1qb4sngh26ptixcny.png)
 
-![Copy_link](https://habrastorage.org/webt/fc/cr/bd/fccrbdf3ze13wy7qkfqj5lbey4o.png)
+![Copy_link](https://habrastorage.org/webt/fw/tw/mp/fwtwmpkicrxa8vmk-47mwpiwxr0.png)
 
 ![Insert_link](https://habrastorage.org/webt/1s/j2/fd/1sj2fdillg3k-q6m_rjxlhjgwkw.png)
 
 ### Sheet Settings
 You can edit 'Priority', 'Assignee' and 'Status' fields at the 'libraries' sheet
 
-![Sheets settings](https://habrastorage.org/webt/fx/u1/oc/fxu1oci7smscf4jezjl1ro61y1q.png)
+![Sheets settings](https://habrastorage.org/webt/ks/pi/qc/kspiqcyyiahm9ikvupjev6hmulk.png)
 
 ## Credits
 [Platform.js v1.3.6](https://github.com/bestiejs/platform.js/)
