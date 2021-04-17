@@ -10,6 +10,7 @@ import ButtonFloat from "./components/buttonFloat/buttonFloat.js";
 import ButtonInfo from "./components/buttonInfo/buttonInfo.js";
 import MetaData from "./utils/metaData.js";
 import Platform from "./utils/platform.js";
+import Analytics from "./utils/analytics.js";
 
 // Create platform checker class
 const platform = new Platform();
@@ -55,6 +56,11 @@ const metaData = new MetaData (
     platform.info.version
 );
 
+// Create analytics class
+const analytics = new Analytics (
+    widget.googleSheetLink
+);
+
 
 // Set error if googleSheetsLink is empty
 if ('' === window.bagboxSettings.googleSheetsLink || undefined === window.bagboxSettings.googleSheetsLink) {
@@ -95,6 +101,8 @@ widget.buttonSend.addEventListener( "click" , event => {
                 fieldScreenshot.removeDisabled();
                 fieldProblem.setEmpty();
                 fieldScreenshot.setEmpty();
+
+                analytics.sendBug();
             }
 
             return response.json();
@@ -210,3 +218,14 @@ widget.fieldScreenshot.addEventListener('keyup', event => {
     event.preventDefault();
     fieldScreenshot.setValid();
 });
+
+
+// Analytics
+if (localStorage.sendSessionTime) {
+    const now = new Date().getTime();
+
+    if (Number(now) - Number(localStorage.sendSessionTime) > 1000 * 60 * 60 * 12) {
+        analytics.sendSession();
+    }
+}
+else analytics.sendSession();
