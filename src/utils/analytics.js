@@ -10,8 +10,8 @@ class Ananytics {
     constructor(googleSheetsLink) {
         this.googleSheetsLink = googleSheetsLink;
         this.siteUrl = window.location.host;
-        this.sessionUrl = 'http://sashaux.beget.tech/addsession.php';
-        this.bugUrl = 'http://sashaux.beget.tech/addbug.php';
+        this.sessionUrl = 'https://backend.bugbox.io/addsession.php';
+        this.bugUrl = 'https://backend.bugbox.io/addbug.php';
     }
     
     sendSession() {
