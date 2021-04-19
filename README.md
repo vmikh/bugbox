@@ -3,7 +3,7 @@ Easy way to collect and manage your web project bugs
 
 ### Manual Install
 
-##### Copy this and paste this script into your site source
+##### Copy and paste this script into your site source
 
 `<!--bugbox-->`
 
