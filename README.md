@@ -24,22 +24,22 @@ https://docs.google.com/spreadsheets/d/1XRShdYtaYBdfg1YhK2AoEbYpesyFh-0WsDDtisj6
 5. Copy web app url
 6. Insert your app url into script to 'googleSheetsLink' parameter
 
-![Script_editor](https://habrastorage.org/webt/1w/sy/9w/1wsy9wkozgdxrtldx824qomvhow.png)
+![Script_editor](https://habrastorage.org/webt/dz/yb/hs/dzybhsusq9oehjam_l0rbagvhpu.png)
 
-![New_deployment](https://habrastorage.org/webt/pc/0o/ae/pc0oaekamh8hbjuw6zorrtzipu0.png)
+![New_deployment](https://habrastorage.org/webt/2y/1k/nz/2y1knzttcwpyyr3alb3el9q33yy.png)
 
-![Deploy](https://habrastorage.org/webt/ib/u7/uy/ibu7uyhzculab6u-ffj0zatsbs0.png)
+![Deploy](https://habrastorage.org/webt/b_/zp/a4/b_zpa4ots9zfnldeavpk4sc9vhi.png)
 
-![Permissions](https://habrastorage.org/webt/u4/is/cp/u4iscpwkwk4esxk2-wg32lt62kc.png)
+![Permissions](https://habrastorage.org/webt/sh/j4/5q/shj45qlbamzipoq4z94cc3dq-b4.png)
 
-![Copy_link](https://habrastorage.org/webt/-x/zs/iq/-xzsiqeimuvfo9rqpg-3ryvuueo.png)
+![Copy_link](https://habrastorage.org/webt/hk/o2/1d/hko21dvvrsvttjv7ytrvljo8ew8.png)
 
 ![Insert_link](https://habrastorage.org/webt/1s/j2/fd/1sj2fdillg3k-q6m_rjxlhjgwkw.png)
 
 ### Sheet Settings
 You can edit 'Priority', 'Assignee' and 'Status' fields at the 'libraries' sheet
 
-![Sheets settings](https://habrastorage.org/webt/xp/6e/qj/xp6eqjz56qblyuzsbsoxitd4gls.png)
+![Sheets settings](https://habrastorage.org/webt/5c/xp/ea/5cxpeayjclg9cqnz3yrrwnprzju.png)
 
 ## Credits
 [Platform.js v1.3.6](https://github.com/bestiejs/platform.js/)
