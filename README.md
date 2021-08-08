@@ -3,7 +3,7 @@ Easy way to collect and manage your web project bugs
 
 ### Manual Install
 
-1. <a href="https://docs.google.com/spreadsheets/d/1XRShdYtaYBdfg1YhK2AoEbYpesyFh-0WsDDtisj6M_0/copy" target="_blank">Copy this sheet</a><br>
+1. Copy <a href="https://docs.google.com/spreadsheets/d/1XRShdYtaYBdfg1YhK2AoEbYpesyFh-0WsDDtisj6M_0/copy" target="_blank">this sheet</a><br>
 ![Copy_sheets](https://habrastorage.org/webt/fx/wi/by/fxwiby4chrzf1zvrhbkddto0-do.png)
 
 2. Tools > Script Editor<br>
