@@ -3,43 +3,40 @@ Easy way to collect and manage your web project bugs
 
 ### Manual Install
 
-##### Copy and paste this script into your site source
+1. Copy <a href="https://docs.google.com/spreadsheets/d/1XRShdYtaYBdfg1YhK2AoEbYpesyFh-0WsDDtisj6M_0/copy" target="_blank">this sheet</a><br>
+![Copy_sheets](https://habrastorage.org/webt/fx/wi/by/fxwiby4chrzf1zvrhbkddto0-do.png)
 
-`<!--bugbox-->`
+2. Tools > Script Editor<br>
+![Script_editor](https://habrastorage.org/webt/oy/m4/ux/oym4uxrwl15lyjuvq10kttixuae.png)
 
-`<script>window.bagboxSettings = {googleSheetsLink: 'YOUR_GOOGLE_SHEET', stylesLink: 'https://vmikh.github.io/bugbox/dist/app-min.css'}; (function(u){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.type="module";s.src=u; var x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x); })('https://vmikh.github.io/bugbox/dist/app-min.js');</script>`
+3. Deploy > New deployment<br>
+![New_deployment](https://habrastorage.org/webt/fq/rx/7e/fqrx7erhgzs2bpe-uieu09xpeg0.png)
 
-`<!--bugbox-->`
+4. Fill the description > Deploy<br>
+![Deploy](https://habrastorage.org/webt/us/fn/6t/usfn6tmznm6nd6kijpjqti2cx2m.png)
 
-##### Copy this sheet
-https://docs.google.com/spreadsheets/d/1XRShdYtaYBdfg1YhK2AoEbYpesyFh-0WsDDtisj6M_0/copy
+5. Give the application read and write permissions<br>
+![Permissions](https://habrastorage.org/webt/5e/ux/gn/5euxgnaiylkembip6tv7zhzgwyk.png)
+![Permissions](https://habrastorage.org/webt/j8/_v/73/j8_v73wgp-ilm3umn8odwnmdxji.png)
+![Permissions](https://habrastorage.org/webt/c6/ef/jn/c6efjnepsxagoj-jhlvhlhkyudw.png)
+![Permissions](https://habrastorage.org/webt/cq/or/rx/cqorrxwzitkl1tp-k_erugsrcm0.png)
 
-![Copy_sheets](https://habrastorage.org/webt/mc/lz/xa/mclzxayq6ee7tv2tnql11ax-hos.png)
+6. Copy web app url<br>
+![Copy_link](https://habrastorage.org/webt/ql/fz/mk/qlfzmkjsb0adomo6hix4-q2aehi.png)
 
-##### Publish sheet's script<br>
-1. Tools > Script Editor<br>
-2. Deploy > New deployment<br>
-3. Fill the description > Deploy<br>
-4. Give the application read and write permissions
-5. Copy web app url
-6. Insert your app url into script to 'googleSheetsLink' parameter
 
-![Script_editor](https://habrastorage.org/webt/1w/sy/9w/1wsy9wkozgdxrtldx824qomvhow.png)
+7. Copy and paste this script into your site source and insert your app url into script to 'googleSheetsLink' parameter<br><br>
+`<!--bugbox-->`<br><br>
+`<script>window.bagboxSettings = {googleSheetsLink: 'YOUR_GOOGLE_SHEET', stylesLink: 'https://vmikh.github.io/bugbox/dist/app-min.css'}; (function(u){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.type="module";s.src=u; var x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x); })('https://vmikh.github.io/bugbox/dist/app-min.js');</script>`<br><br>
+`<!--bugbox-->`<br><br>
+![Insert_link](https://habrastorage.org/webt/hl/nj/ka/hlnjkaalewtccgyh6heqccp-2au.png)
 
-![New_deployment](https://habrastorage.org/webt/pc/0o/ae/pc0oaekamh8hbjuw6zorrtzipu0.png)
 
-![Deploy](https://habrastorage.org/webt/ib/u7/uy/ibu7uyhzculab6u-ffj0zatsbs0.png)
-
-![Permissions](https://habrastorage.org/webt/u4/is/cp/u4iscpwkwk4esxk2-wg32lt62kc.png)
-
-![Copy_link](https://habrastorage.org/webt/-x/zs/iq/-xzsiqeimuvfo9rqpg-3ryvuueo.png)
-
-![Insert_link](https://habrastorage.org/webt/1s/j2/fd/1sj2fdillg3k-q6m_rjxlhjgwkw.png)
 
 ### Sheet Settings
 You can edit 'Priority', 'Assignee' and 'Status' fields at the 'libraries' sheet
 
-![Sheets settings](https://habrastorage.org/webt/xp/6e/qj/xp6eqjz56qblyuzsbsoxitd4gls.png)
+![Sheets settings](https://habrastorage.org/webt/5c/xp/ea/5cxpeayjclg9cqnz3yrrwnprzju.png)
 
 ## Credits
 [Platform.js v1.3.6](https://github.com/bestiejs/platform.js/)
