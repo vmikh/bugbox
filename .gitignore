@@ -2,3 +2,6 @@ node_modules
 dist/app.css
 dist/app.js
 src/app.css
+.DS_Store
+.VS_Code
+.idea
