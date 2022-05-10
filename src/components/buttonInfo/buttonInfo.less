@@ -74,4 +74,14 @@
             transition: fill .2s;
         }
     }
+
+    // If widget is hidden
+    &.isHidden {
+        right: -20px;
+
+        &.visible {
+            opacity: 1;
+            right: 20px;
+        }
+    }
 }

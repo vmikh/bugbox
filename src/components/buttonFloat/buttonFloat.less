@@ -12,7 +12,6 @@
     padding: 0;
 
     position: fixed;
-    z-index: 999999999;
     right: 20px;
     bottom: 80px;
     z-index: 2;
@@ -77,5 +76,23 @@
             fill: @colorBase;
             transition: fill .2s;
         }
+    }
+}
+
+// If button is hidden
+.button_float_hidden {
+    display: block;
+    background-color: transparent;
+    border: 0 solid transparent;
+    width: 44px;
+    height: 44px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    cursor: default;
+
+    &:hover {
+        cursor: default;
     }
 }

@@ -19,6 +19,7 @@ const platform = new Platform();
 const widget = new Widget (
     window.bagboxSettings.googleSheetsLink,
     window.bagboxSettings.stylesLink,
+    window.bagboxSettings.isHidden,
     platform.info.name
 );
 
@@ -109,7 +110,7 @@ widget.buttonSend.addEventListener( "click" , event => {
         }  
     )  
     .then(data => {
-        console.log(data);
+        // console.log(data);
     })
     .catch(err => {  
         // Remove form disabled
@@ -130,12 +131,11 @@ fetch(widget.googleLink)
 .then(data => {
     if (undefined !== data.url)
         widget.addSheetUrl(data.url);
-})
+});
 
 
-// Open widget on button click
-widget.buttonFloat.addEventListener( "click" , event => {
-    event.preventDefault();
+// Open widget func
+const openWidget = () => {
     if (widget.isOpen) {
         buttonFloat.close();
         buttonInfo.invisible();
@@ -150,7 +150,38 @@ widget.buttonFloat.addEventListener( "click" , event => {
         buttonInfo.visible();
         widget.open();
     }
-});
+}
+
+
+// Open widget on button click
+if (!widget.isHidden) {
+    widget.buttonFloat.addEventListener( "click" , event => {
+        event.preventDefault();
+        openWidget();
+    });
+}
+// If widget is hidden
+else {
+    let counter = 0;
+    let timeout = false;
+
+    // Open widget on 3 fast click
+    widget.buttonFloat.addEventListener( "click" , event => {
+        event.preventDefault();
+        counter++;
+
+        if (!timeout) {
+            timeout = true;
+            setTimeout(function() {
+                counter = 0;
+                timeout = false;
+            }, 500);
+        }
+        if (counter === 3) {
+            openWidget();
+        }
+    });
+}
 
 
 // Close widget on click out widget
