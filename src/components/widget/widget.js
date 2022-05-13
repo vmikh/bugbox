@@ -30,7 +30,7 @@ class Widget {
         
         // Add html to shadow root
         this.createHtml(this.shadowHost);
-        document.body.appendChild(widgetSection);
+        document.html.appendChild(widgetSection);
 
         // Add styles
         this.createStyles(this.shadowHost, this.stylesLink);
