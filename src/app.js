@@ -4,13 +4,13 @@
 
 import Widget from "./components/widget/widget.js";
 import FieldProblem from "./components/fieldProblem/fieldProblem.js";
-import FieldScreenshot from "./components/fieldScreenshot/fieldScreenshot.js";
 import ButtonSend from "./components/buttonSend/buttonSend.js";
 import ButtonFloat from "./components/buttonFloat/buttonFloat.js";
 import ButtonInfo from "./components/buttonInfo/buttonInfo.js";
 import MetaData from "./utils/metaData.js";
 import Platform from "./utils/platform.js";
 import Analytics from "./utils/analytics.js";
+import "./utils/htmlToCanvas.js";
 
 // Create platform checker class
 const platform = new Platform();
@@ -26,11 +26,6 @@ const widget = new Widget (
 // Create problem field actions class
 const fieldProblem = new FieldProblem (
     widget.fieldProblem
-);
-
-// Create screenshot field actions class
-const fieldScreenshot = new FieldScreenshot (
-    widget.fieldScreenshot
 );
 
 // Create float button actions class
@@ -52,7 +47,6 @@ const buttonInfo = new ButtonInfo (
 // Create form sender class
 const metaData = new MetaData (
     widget.fieldProblem,
-    widget.fieldScreenshot,
     platform.info.name,
     platform.info.version
 );
@@ -69,7 +63,7 @@ if ('' === window.bagboxSettings.googleSheetsLink || undefined === window.bagbox
 }
 
 
-// Send form button
+// Create screenshot and send form button
 widget.buttonSend.addEventListener( "click" , event => {
     event.preventDefault();
     
@@ -81,44 +75,62 @@ widget.buttonSend.addEventListener( "click" , event => {
     // Set form disabled
     buttonSend.setLoad();
     fieldProblem.setDisabled();
-    fieldScreenshot.setDisabled();
 
-    // Send arrows to google sheets
-    fetch(widget.googleLink, {
-        method: 'post',
-        headers: {
-            "Content-Type": "text/plain"
-        },
-        body: JSON.stringify({
-            headArray: metaData.headArray,
-            bodyArray: metaData.bodyArray
+
+    // Take Screenshot
+    html2canvas(document.body, {
+        width: window.innerWidth,
+        height: window.innerHeight,
+        y: window.pageYOffset,
+    }).then(function(canvas) {
+
+        // Convert canvas screen to blob
+        canvas.style.display = "none";
+        document.body.appendChild(canvas);
+        const leCanvas    = document.getElementsByTagName("canvas")[0];
+        const blob        = leCanvas.toDataURL("image/png");
+
+        // Put screenshot to global param
+        window.screenshot = blob.replace('data:image/png;base64,', '');
+        canvas.remove();
+
+        // Send arrays to google sheets
+        fetch(widget.googleLink, {
+            method: 'post',
+            headers: {
+                "Content-Type": "text/plain"
+            },
+            body: JSON.stringify({
+                headArray: metaData.headArray,
+                bodyArray: metaData.bodyArray
+            })
         })
-    })
-    .then(response => {
+        .then(response => {
+                // Remove form disabled
+                if (response.status != 404) {
+                    buttonSend.setSuccess('Sent Success');
+                    fieldProblem.removeDisabled();
+                    fieldProblem.setEmpty();
+
+                    analytics.sendBug();
+                }
+
+                return response.json();
+            }  
+        )  
+        .then(data => {
+            // console.log(data);
+        })
+        .catch(err => {  
             // Remove form disabled
-            if (response.status != 404) {
-                buttonSend.setSuccess('Sent Success');
+            setTimeout(() => {
+                buttonSend.setError('Something went wrong');
                 fieldProblem.removeDisabled();
-                fieldScreenshot.removeDisabled();
-                fieldProblem.setEmpty();
-                fieldScreenshot.setEmpty();
+            }, 1000)
+        });
 
-                analytics.sendBug();
-            }
-
-            return response.json();
-        }  
-    )  
-    .then(data => {
-        // console.log(data);
-    })
-    .catch(err => {  
-        // Remove form disabled
-        setTimeout(() => {
-            buttonSend.setError('Something went wrong');
-            fieldProblem.removeDisabled();
-            fieldScreenshot.removeDisabled();
-        }, 1000)
+        // Delete global param with screenshot
+        delete window.screenshot;
     });
 });
 
@@ -241,13 +253,6 @@ widget.buttonInfo.addEventListener("click", event => {
 widget.fieldProblem.addEventListener('keyup', event => {
     event.preventDefault();
     fieldProblem.setValid();
-});
-
-
-// Remove invalid class from screen field on keyup
-widget.fieldScreenshot.addEventListener('keyup', event => {
-    event.preventDefault();
-    fieldScreenshot.setValid();
 });
 
 

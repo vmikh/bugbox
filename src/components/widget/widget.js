@@ -114,10 +114,6 @@ class Widget {
         return this.shadowHost.getElementById('field_problem');
     }
 
-    get fieldScreenshot() {
-        return this.shadowHost.getElementById('field_screenshot');
-    }
-
     get menu() {
         return this.shadowHost.getElementById('menu');
     }
@@ -168,15 +164,10 @@ class Widget {
                             <textarea class="field_problem__input" id="field_problem" placeholder="&nbsp;"></textarea>
                             <span class="field_problem__label">Problem or idea</span>
                         </label>
-
-                        <label class="field_screenshot" for="field_screenshot">
-                            <input class="field_screenshot__input" type="text" id="field_screenshot" placeholder="&nbsp;">
-                            <span class="field_screenshot__label">Screenshot link</span>
-                        </label>
                         
                         <button class="button_send" type="button" id="button_send">
                             <svg class="button_send__icon"width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9 16.5C4.85786 16.5 1.5 13.1421 1.5 9C1.5 4.85786 4.85786 1.5 9 1.5C13.1421 1.5 16.5 4.85786 16.5 9C16.5 13.1421 13.1421 16.5 9 16.5ZM0 9C0 4.02944 4.02944 0 9 0C13.9706 0 18 4.02944 18 9C18 13.9706 13.9706 18 9 18C4.02944 18 0 13.9706 0 9ZM14.0303 6.53033L12.9697 5.46967L7.5 10.9393L5.03033 8.46967L3.96967 9.53033L6.96967 12.5303L7.5 13.0607L8.03033 12.5303L14.0303 6.53033Z"/></svg>
-                            <span id="button_send__text">Send<span>
+                            <span id="button_send__text">Screenshot and send<span>
                         </button>
                     </form>
                 </section>

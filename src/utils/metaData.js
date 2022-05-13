@@ -7,9 +7,8 @@
 "use strict";
 
 class MetaData {
-    constructor(fieldProblem, fieldScreenshot, platformName, platformVersion) {
+    constructor(fieldProblem, platformName, platformVersion) {
         this.fieldProblem = fieldProblem;
-        this.fieldScreenshot = fieldScreenshot;
         this.platformName = platformName;
         this.platformVersion = platformVersion;
     }
@@ -47,10 +46,10 @@ class MetaData {
             '',                           // Assignee
             '',                           // Status
             window.location.href,         // URL
-            this.fieldScreenshot.value,   // Screenshot URL
+            window.screenshot,            // Screenshot
             this.browser,                 // Browser
             this.os,                      // OS
-            this.deviceType,                // Device Type
+            this.deviceType,              // Device Type
             window.screen.width,          // Screen Width
             window.screen.height,         // Screen Height
             window.innerWidth,            // Browser Width
