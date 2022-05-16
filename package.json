@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "dev": "gulp dev",
+    "build": "gulp build"
   },
   "author": "",
   "license": "MIT",

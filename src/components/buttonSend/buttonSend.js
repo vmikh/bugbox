@@ -44,7 +44,7 @@ class ButtonSend {
     setStatic() {
         this.buttonSend.classList.remove('invalid');
         this.buttonSend.classList.remove('success');
-        this.buttonSendText.innerText = 'Screenshot and send';
+        this.buttonSendText.innerText = 'Send';
     }
 };
 

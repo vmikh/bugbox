@@ -1,0 +1,149 @@
+.fieldScreenshot {
+    display      : block;
+    width        : 100%;
+    height       : 46px;
+    position     : relative;
+    margin-bottom: 10px;
+
+    .button_screenshot {
+        display         : flex;
+        justify-content : center;
+        background-color: @colorBase010;
+        border-radius   : 4px;
+        text-transform  : uppercase;
+        font-weight     : bold;
+        font-size       : 14px;
+        letter-spacing  : .1px;
+        border          : 0 solid transparent;
+        width           : 100%;
+        height          : 100%;
+        position        : absolute;
+        padding         : 15px 25px 14px 25px;
+        color           : @colorBase;
+        transition      : opacity .2s;
+        animation-duration: .4s;
+        animation-name    : showElement;
+
+        &:hover {
+            background-color: @colorBase020;
+        }
+
+        &.hide {
+            display: none;
+        }
+
+        &.loading {
+            color           : transparent;
+            pointer-events  : none;
+    
+            &::after,
+            &::before {
+                content                  : '';
+                display                  : block;
+                width                    : 20px;
+                height                   : 20px;
+                border-radius            : 10px;
+                position                 : absolute;
+                top                      : 50%;
+                left                     : 50%;
+                margin-left              : -10px;
+                margin-top               : -10px;
+                animation-name           : rotation;
+                animation-duration       : .5s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
+    
+            &::after {
+                border     : 3px solid transparent;
+                border-left: 3px solid @colorBase;
+            }
+    
+            &::before {
+                border: 3px solid @colorBase020;
+            }
+    
+            @keyframes rotation {
+                0% {
+                    transform: rotate(0deg);
+                }
+    
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+        }
+    }
+
+    .screenshot_info {
+        display: none;
+        position        : absolute;
+        align-items     : center;
+        justify-content : flex-start;
+        width           : 100%;
+        height          : 100%;
+        border          : 1px solid @colorLightGray;
+        background-color: @colorLightGray025;
+        color           : @colorGray;
+        font-size       : 16px;
+        font-weight     : 400;
+        border-radius   : 4px;
+        padding-left    : 15px;
+        transition      : background-color .2s, border .2s, color .2s;
+        opacity: 0;
+
+        &.show {
+            display: flex;
+            opacity: 1;
+            animation-duration: .4s;
+            animation-name    : showElement;
+        }
+    }
+
+    .fieldScreenshot__name {
+        margin-bottom: 1px;
+    }
+
+    .screenshot__button_delete {
+        display         : flex;
+        align-items     : center;
+        justify-content : center;
+        height          : 40px;
+        width           : 40px;
+        position        : absolute;
+        right           : 0;
+        top             : 50%;
+        margin-top      : -20px;
+        background-color: transparent;
+
+        svg {
+            width     : 12px;
+            height    : 12px;
+            fill      : @colorDanger;
+            transition: fill .2s;
+        }
+
+        &:disabled {
+            svg {
+                fill: @colorGray;
+            }
+        }
+    }
+
+    @keyframes showElement {
+        0% {
+            display: none;
+            opacity: 0;
+        }
+
+        1% {
+            display: flex;
+            opacity: 0;
+        }
+
+        100% {
+            display: flex;
+            opacity: 1;
+        }
+    }
+}

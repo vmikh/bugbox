@@ -113,5 +113,5 @@ gulp.task('clean', clean);
 
 
 // Serve and dulid command
-gulp.task('serve', gulp.parallel('less', 'js', 'browser', 'watch'));
+gulp.task('dev', gulp.parallel('less', 'js', 'browser', 'watch'));
 gulp.task('build', gulp.series('clean', 'buildCss', 'buildJs'));
