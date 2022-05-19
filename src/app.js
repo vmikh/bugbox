@@ -99,6 +99,8 @@ widget.buttonSend.addEventListener( "click" , event => {
     buttonSend.setLoad();
     fieldProblem.setDisabled();
     fieldScreenshot.setDisabled();
+
+    let isError = false;
     
     // Send arrays to google sheets
     fetch(widget.googleLink, {
@@ -114,15 +116,8 @@ widget.buttonSend.addEventListener( "click" , event => {
     .then(response => {
             // Remove form disabled
             if (response.status != 404) {
-                buttonSend.setSuccess('Sent Success');
-                fieldProblem.removeDisabled();
-                fieldProblem.setEmpty();
-                fieldScreenshot.resetField();
-                fieldScreenshot.removeDisabled();
-
                 analytics.sendBug();
             }
-
             return response.json();
         }  
     )  
@@ -131,12 +126,23 @@ widget.buttonSend.addEventListener( "click" , event => {
     })
     .catch(err => {  
         // Remove form disabled
+        isError = true;
         setTimeout(() => {
             buttonSend.setError('Something went wrong');
             fieldProblem.removeDisabled();
             fieldScreenshot.removeDisabled();
-        }, 1000)
+        }, 1000);
     });
+
+    setTimeout(() => {
+        if (!isError) {
+            buttonSend.setSuccess('Sent Success');
+            fieldProblem.removeDisabled();
+            fieldProblem.setEmpty();
+            fieldScreenshot.resetField();
+            fieldScreenshot.removeDisabled();  
+        }
+    }, 1500);
 });
 
 

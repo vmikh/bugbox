@@ -19,13 +19,13 @@ class MetaData {
         return [
             'Date&Time',
             'Problem',
+            'Screenshot',
             'Actual Result',
             'Expected Result',
             'Priority',
             'Assignee',
             'Status',
             'URL',
-            'Screenshot URL',
             'Browser',
             'OS',
             'Device Type',
@@ -41,13 +41,13 @@ class MetaData {
         return [
             this.date,                    // Date&Time
             this.fieldProblem.value,      // Problem
+            this.fieldScreenshot.value,   // Screenshot
             '',                           // Actual Result
             '',                           // Expected Result
             '',                           // Priority
             '',                           // Assignee
             '',                           // Status
             window.location.href,         // URL
-            this.fieldScreenshot.value,   // Screenshot
             this.browser,                 // Browser
             this.os,                      // OS
             this.deviceType,              // Device Type

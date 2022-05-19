@@ -19,30 +19,26 @@ class FieldScreenshot {
     takeScreenshot() {
         this.setLoad();
 
-        console.log('v2');
-
         html2canvas(document.body, {
             // Set screenshot params
             width: window.innerWidth,
             height: window.innerHeight,
             y: window.pageYOffset,
-            imageTimeout: 0,
-            useCORS: true
         }).then((canvas) => {
     
             // Convert canvas to blob
-            // canvas.style.display = "none";
+            canvas.style.display = "none";
             document.body.appendChild(canvas);
-            // const leCanvas = document.getElementsByTagName("canvas")[0];
-            // const blob = leCanvas.toDataURL("image/jpeg");
+            const leCanvas = document.getElementsByTagName("canvas")[0];
+            const blob = leCanvas.toDataURL("image/jpeg");
     
             // Put screenshot to hidden field
-            // this.fieldScreenshot.value = blob.replace('data:image/png;base64,', '');;
-            // console.log(this.fieldScreenshot.value);
-            // canvas.remove();
+            this.fieldScreenshot.value = blob.replace('data:image/jpeg;base64,', '');;
+            console.log(this.fieldScreenshot.value);
+            canvas.remove();
 
-            // this.screenshotInfo.classList.add('show');
-            // this.buttonScreenshot.classList.add('hide');
+            this.screenshotInfo.classList.add('show');
+            this.buttonScreenshot.classList.add('hide');
 
             this.removeLoad();
         });
