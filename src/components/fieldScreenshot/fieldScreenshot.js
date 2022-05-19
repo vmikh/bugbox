@@ -19,11 +19,15 @@ class FieldScreenshot {
     takeScreenshot() {
         this.setLoad();
 
+        console.log('v1');
+
         html2canvas(document.body, {
             // Set screenshot params
             width: window.innerWidth,
             height: window.innerHeight,
             y: window.pageYOffset,
+            imageTimeout: 0,
+            useCORS: true
         }).then((canvas) => {
     
             // Convert canvas to blob
