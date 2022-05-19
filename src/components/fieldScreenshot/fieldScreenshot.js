@@ -19,7 +19,7 @@ class FieldScreenshot {
     takeScreenshot() {
         this.setLoad();
 
-        console.log('v1');
+        console.log('v2');
 
         html2canvas(document.body, {
             // Set screenshot params
