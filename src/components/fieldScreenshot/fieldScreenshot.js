@@ -19,6 +19,8 @@ class FieldScreenshot {
     takeScreenshot() {
         this.setLoad();
 
+        console.log('check!');
+
         html2canvas(document.body, {
             // Set screenshot params
             width: window.innerWidth,
