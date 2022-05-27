@@ -3,25 +3,25 @@
 // License: http://opensource.org/licenses/MIT
 
 .button_float {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 22px;
-    padding: 0;
-
-    position: fixed;
-    right: 20px;
-    bottom: 80px;
-    z-index: 2;
-    box-shadow: @shadowBig;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    position        : fixed;
+    padding         : 0;
+    z-index         : 2;
+    width           : @floatButton;
+    height          : @floatButton;
+    border-radius   : @radiusL;
+    right           : @floatButtonRight;
+    bottom          : @floatButtonBottom;
+    box-shadow      : @shadowButton;
     background-color: @colorBase;
-    transition: box-shadow .2s, background-color .2s, opacity .2s, transform .2s;
+    transition      : box-shadow .2s, background-color .2s, opacity .2s, transform .2s;
 
     @media (min-width: @minDesktopResolution) {
         &:hover {
             background-color: @colorBlack;
+            box-shadow      : @shadowButtonHover;
         }
     }
 
@@ -33,7 +33,7 @@
 
     &.active {
         background-color: @colorWhite;
-        box-shadow: @shadowMiddle;
+        box-shadow      : @shadowM;
 
         @media (min-width: @minDesktopResolution) {
             &:hover {
@@ -49,7 +49,7 @@
 
         .button_float__cross {
             transform: rotate(0);
-            opacity: 1;
+            opacity  : 1;
         }
 
         .button_float__logo {
@@ -59,7 +59,7 @@
 
     .button_float__logo {
         margin-top: -1px;
-        opacity: 1;
+        opacity   : 1;
 
         path {
             fill: @colorWhite;
@@ -67,13 +67,13 @@
     }
 
     .button_float__cross {
-        position: absolute;
-        transform: rotate(90deg);
-        opacity: 0;
+        position  : absolute;
+        transform : rotate(90deg);
+        opacity   : 0;
         transition: transform .2s;
 
         path {
-            fill: @colorBase;
+            fill      : @colorBase;
             transition: fill .2s;
         }
     }
@@ -81,16 +81,16 @@
 
 // If button is hidden
 .button_float_hidden {
-    display: block;
+    display         : block;
     background-color: transparent;
-    border: 0 solid transparent;
-    width: 44px;
-    height: 44px;
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
-    cursor: default;
+    position        : fixed;
+    border          : 0 solid transparent;
+    right           : 0;
+    bottom          : 0;
+    z-index         : 2;
+    width           : @floatButton;
+    height          : @floatButton;
+    cursor          : default;
 
     &:hover {
         cursor: default;

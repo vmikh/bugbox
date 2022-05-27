@@ -3,15 +3,15 @@
 // License: http://opensource.org/licenses/MIT
 
 .widget_card {
-    height       : 350px;
-    width        : 325px;
+    height       : @widgetHeight;
+    width        : @widgetWidht;
+    bottom       : @widgetBottom;
+    border-radius: @radiusM;
+    right        : @widgetRight;
     position     : fixed;
-    z-index      : 999999999;
-    right        : 20px;
-    bottom       : 120px;
     display      : none;
+    z-index      : 999999999;
     opacity      : 0;
-    border-radius: 6px;
 
     @media (max-width: @maxMobileResolution) {
         @staticCard();
@@ -58,7 +58,7 @@
     &.open {
         display           : block;
         opacity           : 1;
-        bottom            : 140px;
+        bottom            : @widgetBottomActive;
         animation-duration: .2s;
         animation-name    : widgetOpen;
     }
@@ -70,13 +70,13 @@
         left            : 0;
         height          : 100%;
         width           : 100%;
-        border-radius   : 6px;
+        border-radius   : @radiusM;
         background-color: @colorWhite;
-        box-shadow      : @shadowBig;
+        box-shadow      : @shadowL;
     }
 
     .widget_front {
-        padding: 20px;
+        padding: @widgetFrontPadding;
 
         @media (max-width: @maxMobileResolution) {
             height: initial;
@@ -84,10 +84,10 @@
     }
 
     .widget_back {
-        padding: 50px 35px 0;
+        padding: @widgetBackPadding;
 
         .widget_back__logo {
-            margin-bottom: 20px;
+            margin-bottom: @logoMargin;
 
             path {
                 fill: @colorBlack;
@@ -95,11 +95,8 @@
         }
 
         .widget_back__headline {
-            font-size    : 18px;
-            line-height  : 140%;
-            font-weight  : normal;
             color        : @colorBlack;
-            margin-bottom: 40px;
+            @title();
         }
 
         .menu {
@@ -107,12 +104,12 @@
             padding-left: 0;
 
             .menu__item {
-                margin-bottom: 10px;
-
+                margin-bottom: @menuMargin;
+                
                 a {
-                    font-size : 18px;
                     color     : @colorBase;
                     transition: color .2s;
+                    @body();
 
                     &:hover {
                         text-decoration: none;
@@ -132,19 +129,19 @@
         0% {
             display: none;
             opacity: 0;
-            bottom : 120px;
+            bottom : @widgetBottom;
         }
 
         10% {
             display: block;
             opacity: 0;
-            bottom : 120px;
+            bottom : @widgetBottom;
         }
 
         100% {
             display: block;
             opacity: 1;
-            bottom : 140px;
+            bottom : @widgetBottomActive;
         }
     }
 

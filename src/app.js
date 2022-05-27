@@ -31,9 +31,11 @@ const fieldProblem = new FieldProblem (
 // Create screenshot class
 const fieldScreenshot = new FieldScreenshot (
     widget.buttonScreenshot,
+    widget.attachScreenshot,
     widget.screenshotInfo,
     widget.fieldScreenshot,
-    widget.buttonScreenshotDelete,
+    widget.fieldScreenshotName,
+    widget.buttonScreenshotDelete
 );
 
 // Create float button actions class
@@ -76,6 +78,24 @@ if ('' === window.bagboxSettings.googleSheetsLink || undefined === window.bagbox
 widget.buttonScreenshot.addEventListener( "click" , event => {
     event.preventDefault();
     fieldScreenshot.takeScreenshot();
+    fieldScreenshot.setScreenshotName('screenshot.jpg');
+    fieldScreenshot.setFilled();
+});
+
+
+// ///////
+widget.attachScreenshot.addEventListener( "change" , event => {
+    const file = fieldScreenshot.attachScreenshot.files[0];
+    const fileFormat = file.type;
+
+    if (fileFormat !== 'image/png' && fileFormat !== 'image/jpeg') {
+        alert('Attach png or jpg file!');
+    }
+    else {
+        fieldScreenshot.setScreenshotName(file.name);
+        fieldScreenshot.setScreenshot();
+        fieldScreenshot.setFilled();
+    }
 });
 
 

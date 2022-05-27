@@ -9,17 +9,17 @@ import "../../utils/htmlToCanvas.js";
 
 // Screenshot Class
 class FieldScreenshot {
-    constructor(buttonScreenshot, screenshotInfo, fieldScreenshot, buttonScreenshotDelete) {
+    constructor(buttonScreenshot, attachScreenshot, screenshotInfo, fieldScreenshot, fieldScreenshotName, buttonScreenshotDelete) {
         this.buttonScreenshot = buttonScreenshot;
+        this.attachScreenshot = attachScreenshot;
         this.screenshotInfo = screenshotInfo;
         this.fieldScreenshot = fieldScreenshot;
+        this.fieldScreenshotName = fieldScreenshotName;
         this.buttonScreenshotDelete = buttonScreenshotDelete;
     }
 
     takeScreenshot() {
         this.setLoad();
-
-        console.log('check!');
 
         html2canvas(document.body, {
             // Set screenshot params
@@ -35,15 +35,43 @@ class FieldScreenshot {
             const blob = leCanvas.toDataURL("image/jpeg");
     
             // Put screenshot to hidden field
-            this.fieldScreenshot.value = blob.replace('data:image/jpeg;base64,', '');;
-            console.log(this.fieldScreenshot.value);
+            this.fieldScreenshot.value = blob.replace('data:image/jpeg;base64,', '');
             canvas.remove();
-
-            this.screenshotInfo.classList.add('show');
-            this.buttonScreenshot.classList.add('hide');
 
             this.removeLoad();
         });
+    }
+
+    setScreenshot() {
+        const file = this.attachScreenshot.files[0];
+        const fileFormat = file.type;
+
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            const blob = reader.result;
+
+            if (fileFormat === 'image/png') {
+                this.fieldScreenshot.value = blob.replace('data:image/png;base64,', '');
+            }
+            else this.fieldScreenshot.value = blob.replace('data:image/jpeg;base64,', '');
+
+            this.attachScreenshot.value = '';
+        }
+        reader.onerror = error => {
+            this.attachScreenshot.value = '';
+            // console.log('Error: ', error);
+        }
+    }
+
+    setFilled() {
+        this.screenshotInfo.classList.add('show');
+        this.buttonScreenshot.classList.add('hide');
+        this.attachScreenshot.parentNode.classList.add('hide');
+    }
+
+    setScreenshotName(name) {
+        this.fieldScreenshotName.innerText = name;
     }
 
     setDisabled() {
@@ -66,6 +94,8 @@ class FieldScreenshot {
         this.fieldScreenshot.value = '';
         this.screenshotInfo.classList.remove('show');
         this.buttonScreenshot.classList.remove('hide');
+        this.attachScreenshot.parentNode.classList.remove('hide');
+        this.fieldScreenshotName.innerText = '';
     }
 };
 

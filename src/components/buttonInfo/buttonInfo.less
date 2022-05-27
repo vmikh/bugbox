@@ -3,37 +3,35 @@
 // License: http://opensource.org/licenses/MIT
 
 .button_info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 22px;
-
-    position: fixed;
-    z-index: 999999999;
-    right: 20px;
-    bottom: 80px;
-    opacity: 0;
-    z-index: 1;
-    padding: 0;
-    box-shadow: @shadowMiddle;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    position        : fixed;
+    width           : @floatButton;
+    height          : @floatButton;
+    border-radius   : @radiusL;
+    right           : @floatButtonRight;
+    bottom          : @floatButtonBottom;
+    box-shadow      : @shadowM;
     background-color: @colorWhite;
-    transition: opacity .2s, right .2s;
+    opacity         : 0;
+    z-index         : 1;
+    padding         : 0;
+    transition      : opacity .2s, right .2s;
 
     &.visible {
         opacity: 1;
-        right: 80px;
+        right  : @floatButtonInfoActive;
     }
 
     &.active {
         .button_info__info {
-            opacity: 0;   
+            opacity: 0;
         }
 
         .button_info__back {
             transform: rotate(0deg);
-            opacity: 1;
+            opacity  : 1;
         }
     }
 
@@ -54,23 +52,23 @@
     }
 
     .button_info__info {
-        opacity: 1;
+        opacity   : 1;
         transition: opacity .2s;
 
         path {
-            fill: @colorBase;
+            fill      : @colorBase;
             transition: fill .2s;
         }
     }
 
     .button_info__back {
-        position: absolute;
-        transform: rotate(90deg);
-        opacity: 0;
+        position  : absolute;
+        transform : rotate(90deg);
+        opacity   : 0;
         transition: transform .2s, opacity .2s;
 
         path {
-            fill: @colorBase;
+            fill      : @colorBase;
             transition: fill .2s;
         }
     }
@@ -81,7 +79,7 @@
 
         &.visible {
             opacity: 1;
-            right: 20px;
+            right  : @floatButtonRight;
         }
     }
 }

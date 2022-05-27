@@ -2,14 +2,42 @@
 // Contacts: <vladi.mikh.vm@gmail.com>
 // License: http://opensource.org/licenses/MIT
 
+
 // MEDIA QUERIES
 @minDesktopResolution: 768px;
-@maxMobileResolution: 767px;
+@maxMobileResolution : 767px;
+
+
+// SIZES
+@logoMargin: 20px;
+@menuMargin: 10px;
+
+@bottom: 80px;
+@right : 20px;
+@margin: 20px;
+
+@floatButton          : 48px;
+@floatButtonBottom    : @bottom;
+@floatButtonRight     : @right;
+@floatButtonInfoActive: @right + @floatButton + @margin;
+
+@formBase              : 48px;
+@formBaseMargin        : 12px;
+@formFieldProblemHeight: @formBase * 4;
+
+@widgetFrontPadding : 20px;
+@widgetBackPadding  : 50px 35px 0;
+@widgetWidht        : 300px;
+@widgetHeight       : (@formBase * 2) + (@formBaseMargin * 2) + (@widgetFrontPadding * 2) + @formFieldProblemHeight;
+@widgetBottom       : @bottom + @floatButton;
+@widgetBottomActive : @widgetBottom + @margin;
+@widgetRight        : @right;
+
 
 // COLORS
-@colorBase        : rgb(70, 120, 245);
-@colorBase010     : rgba(70, 120, 245, .1);
-@colorBase020     : rgba(70, 120, 245, .2);
+@colorBase        : rgb(41, 98, 255);
+@colorBase010     : rgba(41, 98, 255, .1);
+@colorBase020     : rgba(41, 98, 255, .2);
 @colorBlack       : rgb(7, 19, 58);
 @colorGray        : rgb(159, 166, 187);
 @colorMiddleGray  : rgb(195, 200, 218);
@@ -21,18 +49,52 @@
 @colorSuccess     : rgb(87, 204, 134);
 @colorSuccess010  : rgba(87, 204, 134, .1);
 
+
+// RADIUSES
+@radiusL : 12px;
+@radiusM : 12px;
+@radiusS : 8px;
+
+
 // SHADOWS
-@shadowBig        : 0px 15px 40px rgba(20, 28, 54, .1);
-@shadowMiddle     : 0px 10px 30px rgba(20, 28, 54, .2);
+@shadowL : 0px 15px 40px rgba(20, 28, 54, .1);
+@shadowM : 0px 10px 30px rgba(20, 28, 54, .2);
+@shadowButton : 0px 1px 1px rgba(0, 0, 0, 0.15), 0px 2px 5px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px @colorBase;
+@shadowButtonHover: 0px 1px 1px rgba(0, 0, 0, 0.15), 0px 2px 5px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px @colorBlack;
+
+
+// Typography
+@title: {
+    font-size    : 18px;
+    line-height  : 140%;
+    font-weight  : normal;
+    margin-bottom: 40px;
+}
+@body: {
+    font-size : 18px;
+}
+@inputLabel: {
+    font-size     : 16px;
+    font-weight   : normal;
+}
+@inputLabelFocus: {
+    font-size  : 10px;
+    font-weight: medium;
+}
+@buttonLabel: {
+    font-size: 14px;
+    letter-spacing  : .1px;
+    text-transform  : uppercase;
+    font-weight     : bold;
+}
+
 
 // IMPORTS
 :host(.bugbox__widget) {
     @import "libs/reset";
     @import "components/widget/widget";
-    
     @import "components/fieldProblem/fieldProblem";
     @import "components/fieldScreenshot/fieldScreenshot";
-
     @import "components/buttonFloat/buttonFloat";
     @import "components/buttonSend/buttonSend";
     @import "components/buttonInfo/buttonInfo";

@@ -6,27 +6,24 @@
     position     : relative;
     margin       : auto;
     width        : 100%;
-    margin-bottom: 10px;
+    margin-bottom: @formBaseMargin;
 
     .field_problem__label {
         position      : absolute;
         top           : 15px;
         left          : 15px;
-        font-size     : 16px;
-        font-weight   : normal;
         color         : @colorGray;
         transition    : font-size .2s, font-weight .2s, top .2s;
         pointer-events: none;
+        @inputLabel();
     }
 
     .field_problem__input {
         width             : 100%;
         border            : 1px solid @colorLightGray;
         padding           : 22px 15px 10px 15px;
-        height            : 195px;
-        font-size         : 16px;
-        font-weight       : 400;
-        border-radius     : 4px;
+        height            : @formFieldProblemHeight;
+        border-radius     : @radiusS;
         color             : @colorBlack;
         background-color  : @colorWhite;
         transition        : background-color .2s, border .2s, color .2s;
@@ -34,6 +31,7 @@
         -webkit-appearance: none;
         -moz-appearance   : none;
         appearance        : none;
+        @inputLabel();
 
         @media (min-width: @minDesktopResolution) {
             &:hover {
@@ -59,8 +57,7 @@
         &:focus+.field_problem__label,
         &:not(:placeholder-shown)+.field_problem__label {
             top        : 8px;
-            font-size  : 10px;
-            font-weight: medium;
+            @inputLabelFocus();
         }
     }
 }

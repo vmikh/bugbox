@@ -122,6 +122,14 @@ class Widget {
         return this.shadowHost.getElementById('button_screenshot');
     }
 
+    get attachScreenshot() {
+        return this.shadowHost.getElementById('attach_screenshot');
+    }
+
+    get fieldScreenshotName() {
+        return this.shadowHost.getElementById('fieldScreenshot__name');
+    }
+
     get fieldScreenshot() {
         return this.shadowHost.getElementById('field_screenshot');
     }
@@ -185,11 +193,15 @@ class Widget {
                             <button class="button_screenshot" type="button" id="button_screenshot">Take Screenshot</button>
                             <div class="screenshot_info" id="screenshot_info">
                                 <input id="field_screenshot" type="hidden">
-                                <p class="fieldScreenshot__name">screenshot.jpg</p>
+                                <p class="fieldScreenshot__name" id="fieldScreenshot__name"></p>
                                 <button class="screenshot__button_delete" type="button" id="screenshot__button_delete">
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.34459 0.34459C-0.114838 0.804018 -0.114889 1.54896 0.34459 2.00844L5.33615 7L0.34459 11.9916C-0.114838 12.451 -0.114889 13.1959 0.34459 13.6554C0.804069 14.1149 1.54901 14.1148 2.00844 13.6554L7 8.66385L11.9916 13.6554C12.451 14.1149 13.196 14.1148 13.6554 13.6554C14.1148 13.196 14.1149 12.451 13.6554 11.9916L8.66385 7L13.6554 2.00844C14.1148 1.54901 14.1149 0.804069 13.6554 0.34459C13.1959 -0.114889 12.451 -0.114838 11.9916 0.34459L7 5.33615L2.00844 0.34459C1.54896 -0.114889 0.804018 -0.114838 0.34459 0.34459Z"/></svg>
                                 </button>
                             </div>
+                            <label class="attach_screenshot" for="attach_screenshot">
+                                <input id="attach_screenshot" type="file">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><path d="M96,176l95.8-92.2a28,28,0,0,0-39.6-39.6L54.1,142.1a47.9,47.9,0,0,0,67.8,67.8L204,128" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></path></svg>
+                            </label>
                         </div>
                         
                         <button class="button_send" type="button" id="button_send">
