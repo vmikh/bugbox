@@ -28,9 +28,9 @@
 @widgetFrontPadding : 20px;
 @widgetBackPadding  : 50px 35px 0;
 @widgetWidht        : 300px;
-@widgetHeight       : (@formBase * 2) + (@formBaseMargin * 2) + (@widgetFrontPadding * 2) + @formFieldProblemHeight;
-@widgetBottom       : @bottom + @floatButton;
-@widgetBottomActive : @widgetBottom + @margin;
+@widgetHeight       : (@formBase * 2)+(@formBaseMargin * 2)+(@widgetFrontPadding * 2)+@formFieldProblemHeight;
+@widgetBottom       : @bottom +@floatButton;
+@widgetBottomActive : @widgetBottom +@margin;
 @widgetRight        : @right;
 
 
@@ -70,22 +70,26 @@
     font-weight  : normal;
     margin-bottom: 40px;
 }
+
 @body: {
-    font-size : 18px;
+    font-size: 18px;
 }
+
 @inputLabel: {
-    font-size     : 16px;
-    font-weight   : normal;
+    font-size  : 16px;
+    font-weight: normal;
 }
+
 @inputLabelFocus: {
     font-size  : 10px;
     font-weight: medium;
 }
+
 @buttonLabel: {
-    font-size: 14px;
-    letter-spacing  : .1px;
-    text-transform  : uppercase;
-    font-weight     : bold;
+    font-size     : 14px;
+    letter-spacing: .1px;
+    text-transform: uppercase;
+    font-weight   : bold;
 }
 
 
