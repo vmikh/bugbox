@@ -29,10 +29,10 @@ class MetaData {
             'Browser',
             'OS',
             'Device Type',
-            'Screen W',
-            'Screen H',
-            'Browser W',
-            'Browser H',
+            'Screen ⥗',
+            'Screen ⥔',
+            'Browser ⥗',
+            'Browser ⥔',
         ]
     }
 
