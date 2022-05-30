@@ -83,13 +83,14 @@ widget.buttonScreenshot.addEventListener( "click" , event => {
 });
 
 
-// ///////
+// Attach screenshot event
 widget.attachScreenshot.addEventListener( "change" , event => {
     const file = fieldScreenshot.attachScreenshot.files[0];
     const fileFormat = file.type;
 
     if (fileFormat !== 'image/png' && fileFormat !== 'image/jpeg') {
-        alert('Attach png or jpg file!');
+        fieldScreenshot.setInvalid();
+        fieldScreenshot.attachScreenshot.value = '';
     }
     else {
         fieldScreenshot.setScreenshotName(file.name);

@@ -60,8 +60,15 @@ class FieldScreenshot {
         }
         reader.onerror = error => {
             this.attachScreenshot.value = '';
-            // console.log('Error: ', error);
         }
+    }
+
+    setInvalid() {
+        this.buttonScreenshot.classList.add('invalid');
+
+        setTimeout(() => {
+            this.buttonScreenshot.classList.remove('invalid');
+        }, 1500);
     }
 
     setFilled() {
