@@ -5,7 +5,7 @@
 .button_send {
     background-color: @colorBase;
     border-radius   : @radiusS;
-    height          : @formBase;
+    height          : @formBase - 2px;
     color           : @colorWhite;
     box-shadow      : @shadowButton;
     position        : relative;
@@ -13,7 +13,8 @@
     justify-content : center;
     align-items     : center;
     border          : 0 solid transparent;
-    width           : 100%;
+    width           : calc(100% - 2px);
+    margin-left     : 1px;
     padding         : 0 34px 0 25px;
     transition      : opacity .2s, background-color .2s, box-shadow .2s, padding .2s, transform .2s, color .5s;
     @buttonLabel();
