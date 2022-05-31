@@ -14,8 +14,6 @@ function doPost(event) {
   // Create arrays
   const dataCells = json.bodyArray;
   const headCells = json.headArray;
-  // const dataCells = ["To do","Problem or idea","Screenshot"];
-  // const headCells = ["My Problem","My Screenshot!!"];
 
 
   // Upload screenshot
@@ -37,9 +35,15 @@ function doPost(event) {
     if (bugboxFolder === undefined) 
       bugboxFolder = DriveApp.createFolder('bugbox-screenshots');
 
+    // Date convert func
+    const getDate = () => {
+      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      return Utilities.formatDate(new Date(), timeZone, "hh:mm dd.MM.yyyy")
+    }
+
     // Create file
     const decoded     = Utilities.base64Decode(dataCells[2]);
-    const fileName    = `screenshot_${Date.now()}.jpg`;
+    const fileName    = `screenshot ${getDate()}.jpg`;
     const blob        = Utilities.newBlob(decoded, MimeType.JPEG, fileName);
     const file        = bugboxFolder.createFile(blob);
     const cellFormula = '=hyperlink("' + file.getUrl() + '";"' + file.getName() + '")';

@@ -95,8 +95,26 @@
         }
 
         .widget_back__headline {
-            color        : @colorBlack;
+            color: @colorBlack;
             @title();
+        }
+
+        .widget_back__date_button {
+            border-radius   : @radiusS;
+            background-color: @colorSecondary;
+            color           : @colorBlack;
+            @buttonLabel();
+            padding        : 8px 12px;
+            font-size      : 12px;
+            top            : 8px;
+            position       : relative;
+            text-decoration: none;
+            transition     : color .2s, background-color .2s;
+
+            &:hover {
+                background-color: @colorBlack;
+                color           : @colorWhite;
+            }
         }
 
         .menu {
@@ -105,7 +123,7 @@
 
             .menu__item {
                 margin-bottom: @menuMargin;
-                
+
                 a {
                     color     : @colorBase;
                     transition: color .2s;
