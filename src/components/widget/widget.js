@@ -118,10 +118,6 @@ class Widget {
         return this.shadowHost.getElementById('screenshot_info');
     }
 
-    get buttonScreenshot() {
-        return this.shadowHost.getElementById('button_screenshot');
-    }
-
     get attachScreenshot() {
         return this.shadowHost.getElementById('attach_screenshot');
     }
@@ -190,7 +186,6 @@ class Widget {
                         </label>
 
                         <div class="fieldScreenshot">
-                            <button class="button_screenshot" type="button" id="button_screenshot">Take Screenshot</button>
                             <div class="screenshot_info" id="screenshot_info">
                                 <input id="field_screenshot" type="hidden">
                                 <p class="fieldScreenshot__name" id="fieldScreenshot__name"></p>
@@ -200,7 +195,7 @@ class Widget {
                             </div>
                             <label class="attach_screenshot" for="attach_screenshot">
                                 <input id="attach_screenshot" type="file">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><path d="M96,176l95.8-92.2a28,28,0,0,0-39.6-39.6L54.1,142.1a47.9,47.9,0,0,0,67.8,67.8L204,128" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></path></svg>
+                                Attach Screenshot
                             </label>
                         </div>
                         

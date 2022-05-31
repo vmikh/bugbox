@@ -5,21 +5,23 @@
     height       : @formBase;
     margin-bottom: @formBaseMargin + 1px;
 
-    .button_screenshot {
+
+    .attach_screenshot {
         display           : flex;
         justify-content   : center;
         align-items       : center;
         position          : absolute;
         border            : 0 solid transparent;
         height            : 100%;
+        width             : 100%;
         padding           : 0 25px 0 25px;
         color             : @colorBase;
         background-color  : @colorBase010;
         border-radius     : @radiusS;
         transition        : background-color .2s;
-        width             : calc(100% - @formBaseMargin - @formBase);
         animation-duration: .4s;
         animation-name    : showElement;
+        cursor: pointer;
         @buttonLabel();
 
         &:hover {
@@ -30,17 +32,16 @@
             display: none;
         }
 
-        &.invalid ~ .attach_screenshot {
+        input {
+            display: none;
+        }
+
+        &.invalid {
             right: 0px;
             background-color: @colorDanger010;
-            animation-duration: .3s;
+            color: @colorDanger;
+            animation-duration: .4s;
             animation-name    : shake;
-            
-            svg {
-                path {
-                    stroke: @colorDanger;
-                }
-            }
 
             @keyframes shake {
                 0% {
@@ -70,84 +71,6 @@
                 100% {
                     right: 0px;
                 }
-            }
-        }
-
-        &.loading {
-            color         : transparent;
-            pointer-events: none;
-
-            &::after,
-            &::before {
-                content                  : '';
-                position                 : absolute;
-                display                  : block;
-                width                    : 20px;
-                height                   : 20px;
-                border-radius            : 10px;
-                top                      : 50%;
-                left                     : 50%;
-                margin-left              : -10px;
-                margin-top               : -10px;
-                animation-name           : rotation;
-                animation-duration       : .5s;
-                animation-iteration-count: infinite;
-                animation-timing-function: linear;
-            }
-
-            &::after {
-                border     : 3px solid transparent;
-                border-left: 3px solid @colorBase;
-            }
-
-            &::before {
-                border: 3px solid @colorBase020;
-            }
-
-            @keyframes rotation {
-                0% {
-                    transform: rotate(0deg);
-                }
-
-                100% {
-                    transform: rotate(360deg);
-                }
-            }
-        }
-    }
-
-    .attach_screenshot {
-        position        : absolute;
-        display         : flex;
-        justify-content : center;
-        align-items     : center;
-        background-color: @colorBase010;
-        border-radius   : @radiusS;
-        width           : @formBase;
-        height          : 100%;
-        right           : 0;
-        transition      : background-color .2s;
-        cursor          : pointer;
-
-        &:hover {
-            background-color: @colorBase020;
-        }
-
-        &.hide {
-            display: none;
-        }
-
-        input {
-            display: none;
-        }
-
-        svg {
-            width : 21px;
-            height: 21px;
-
-            path {
-                stroke: @colorBase;
-                transition: stroke .2s;
             }
         }
     }

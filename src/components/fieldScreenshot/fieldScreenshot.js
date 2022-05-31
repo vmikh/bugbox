@@ -4,42 +4,14 @@
 
 "use strict";
 
-// Import htmlToCanvas Library
-import "../../utils/htmlToCanvas.js";
-
 // Screenshot Class
 class FieldScreenshot {
-    constructor(buttonScreenshot, attachScreenshot, screenshotInfo, fieldScreenshot, fieldScreenshotName, buttonScreenshotDelete) {
-        this.buttonScreenshot = buttonScreenshot;
+    constructor(attachScreenshot, screenshotInfo, fieldScreenshot, fieldScreenshotName, buttonScreenshotDelete) {
         this.attachScreenshot = attachScreenshot;
         this.screenshotInfo = screenshotInfo;
         this.fieldScreenshot = fieldScreenshot;
         this.fieldScreenshotName = fieldScreenshotName;
         this.buttonScreenshotDelete = buttonScreenshotDelete;
-    }
-
-    takeScreenshot() {
-        this.setLoad();
-
-        html2canvas(document.body, {
-            // Set screenshot params
-            width: window.innerWidth,
-            height: window.innerHeight,
-            y: window.pageYOffset,
-        }).then((canvas) => {
-    
-            // Convert canvas to blob
-            canvas.style.display = "none";
-            document.body.appendChild(canvas);
-            const leCanvas = document.getElementsByTagName("canvas")[0];
-            const blob = leCanvas.toDataURL("image/jpeg");
-    
-            // Put screenshot to hidden field
-            this.fieldScreenshot.value = blob.replace('data:image/jpeg;base64,', '');
-            canvas.remove();
-
-            this.removeLoad();
-        });
     }
 
     setScreenshot() {
@@ -64,16 +36,15 @@ class FieldScreenshot {
     }
 
     setInvalid() {
-        this.buttonScreenshot.classList.add('invalid');
+        this.attachScreenshot.parentNode.classList.add('invalid');
 
         setTimeout(() => {
-            this.buttonScreenshot.classList.remove('invalid');
-        }, 1500);
+            this.attachScreenshot.parentNode.classList.remove('invalid');
+        }, 2000);
     }
 
     setFilled() {
         this.screenshotInfo.classList.add('show');
-        this.buttonScreenshot.classList.add('hide');
         this.attachScreenshot.parentNode.classList.add('hide');
     }
 
@@ -100,7 +71,6 @@ class FieldScreenshot {
     resetField() {
         this.fieldScreenshot.value = '';
         this.screenshotInfo.classList.remove('show');
-        this.buttonScreenshot.classList.remove('hide');
         this.attachScreenshot.parentNode.classList.remove('hide');
         this.fieldScreenshotName.innerText = '';
     }

@@ -30,7 +30,6 @@ const fieldProblem = new FieldProblem (
 
 // Create screenshot class
 const fieldScreenshot = new FieldScreenshot (
-    widget.buttonScreenshot,
     widget.attachScreenshot,
     widget.screenshotInfo,
     widget.fieldScreenshot,
@@ -72,15 +71,6 @@ const analytics = new Analytics (
 if ('' === window.bagboxSettings.googleSheetsLink || undefined === window.bagboxSettings.googleSheetsLink) {
     buttonSend.setError('Sheets isn`t connect');
 }
-
-
-// Create screenshot and send form button
-widget.buttonScreenshot.addEventListener( "click" , event => {
-    event.preventDefault();
-    fieldScreenshot.takeScreenshot();
-    fieldScreenshot.setScreenshotName('screenshot.jpg');
-    fieldScreenshot.setFilled();
-});
 
 
 // Attach screenshot event
