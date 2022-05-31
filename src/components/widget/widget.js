@@ -218,7 +218,7 @@ class Widget {
                         <li class="menu__item"><a href="https://github.com/vmikh/bugbox" target="_blank">full manual</a></li>
                         <li class="menu__item"><a href="mailto:info@bugbox.io">info@bugbox.io</a></li>
                     </ul>
-                    <a href="https://yoomoney.ru/to/41001838339242" class="widget_back__date_button" target="_blank">$ Donate</a>
+                    <a href="https://yoomoney.ru/to/41001838339242" class="widget_back__date_button" target="_blank">Donate</a>
                 </section>
             </section>
         `;
