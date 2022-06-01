@@ -60,14 +60,6 @@ class FieldScreenshot {
         this.buttonScreenshotDelete.disabled = false;
     }
 
-    setLoad() {
-        this.buttonScreenshot.classList.add('loading');
-    }
-
-    removeLoad() {
-        this.buttonScreenshot.classList.remove('loading');
-    }
-
     resetField() {
         this.fieldScreenshot.value = '';
         this.screenshotInfo.classList.remove('show');

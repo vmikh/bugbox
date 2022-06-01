@@ -89,7 +89,7 @@ function buildCss() {
 
 // Delete 'dist' directory
 function clean() {
-    return del(['dist']);
+    return del(['dist/app.js', 'dist/app-min.js', 'dist/app-min.css']);
 };
 
 
