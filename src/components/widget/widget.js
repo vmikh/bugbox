@@ -13,13 +13,13 @@ class Widget {
         const widgetSection = document.createElement("section");
         widgetSection.className = "bugbox__widget";
 
-        // Hidden indicator
-        this.isHidden = isHidden;
-
         // Initial styles
         widgetSection.style.display = "none";
         widgetSection.style.opacity = "0";
         widgetSection.style.transition = "opacity .2s";
+
+        // Hidden indicator
+        this.isHidden = isHidden;
 
         // Create shadow root
         this.shadowHost = widgetSection.attachShadow({mode: 'open'});
@@ -45,7 +45,7 @@ class Widget {
             setTimeout(() => {
                 widgetSection.style.opacity = "1";
             }, 10);
-        }, 300);
+        }, 1000);
     }
 
 
