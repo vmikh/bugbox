@@ -3,7 +3,7 @@ Easy way to collect and manage your web project bugs
 
 ### Manual Install
 
-1. Copy <a href="https://docs.google.com/spreadsheets/d/1XRShdYtaYBdfg1YhK2AoEbYpesyFh-0WsDDtisj6M_0/copy" target="_blank">this sheet</a><br>
+1. Copy <a href="https://docs.google.com/spreadsheets/d/1LypOCr8bA5WoSZPJF7C9ccuZR01zYfJO07qHg24L1Bw/copy" target="_blank">this sheet</a><br>
 ![Copy_sheets](https://habrastorage.org/webt/fx/wi/by/fxwiby4chrzf1zvrhbkddto0-do.png)
 
 2. Tools > Script Editor<br>
@@ -45,3 +45,6 @@ You can edit 'Priority', 'Assignee' and 'Status' fields at the 'libraries' sheet
 [bugbox.io](https://bugbox.io/)
 
 [info@bugbox.io](info@bugbox.io)
+
+
+[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/vt5fpE0bzSY)
