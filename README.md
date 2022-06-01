@@ -14,6 +14,8 @@ Easy way to collect and manage your web project bugs
 `<script>window.bagboxSettings = {googleSheetsLink: 'YOUR_GOOGLE_SHEET', stylesLink: 'https://vmikh.github.io/bugbox/dist/app-min.css'}; (function(u){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.type="module";s.src=u; var x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x); })('https://vmikh.github.io/bugbox/dist/app-min.js');</script>`<br>
 `<!--bugbox-->`<br><br>
 
+[![Watch Manual Install](https://habrastorage.org/webt/jr/mc/pw/jrmcpwevamxcy6cljii54szep90.png)](https://vmikh.github.io/bugbox/tutorial)<br><br>
+
 ### Sheet Settings
 You can edit 'Priority', 'Assignee' and 'Status' fields at the 'libraries' sheet
 
