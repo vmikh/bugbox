@@ -15,8 +15,8 @@
     border          : 0 solid transparent;
     width           : calc(100% - 2px);
     margin-left     : 1px;
-    padding         : 0 34px 0 25px;
-    transition      : opacity .2s, background-color .2s, box-shadow .2s, padding .2s, transform .2s, color .5s;
+    padding         : 0 18px 0 0;
+    transition      : background-color .2s, box-shadow .2s, padding .2s .2s, transform .2s, color .2s;
     @buttonLabel();
 
     &:focus {
@@ -36,6 +36,13 @@
         &:active {
             transform: scale(.95);
         }
+    }
+
+    &:disabled {
+        color           : @colorDanger;
+        background-color: @colorDanger010;
+        box-shadow      : none;
+        pointer-events  : none; 
     }
 
     &.loading {
@@ -94,7 +101,8 @@
         background-color: @colorSuccess010;
         pointer-events  : none;
         box-shadow      : none;
-        padding         : 0 25px 0 25px;
+        padding         : 0 18px 0 18px;
+        transition      : background-color .2s, box-shadow .2s, padding .2s 0s, transform .2s, color .2s;
 
         .button_send__icon {
             margin-right: 8px;

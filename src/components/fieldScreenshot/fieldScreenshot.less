@@ -18,14 +18,24 @@
         color             : @colorBase;
         background-color  : @colorBase010;
         border-radius     : @radiusS;
-        transition        : background-color .2s;
+        transition        : background-color .2s, transform .2s;
         animation-duration: .4s;
         animation-name    : showElement;
         cursor            : pointer;
         @buttonLabel();
 
-        &:hover {
-            background-color: @colorBase020;
+        @media (min-width: @minDesktopResolution) {
+
+            &:focus,
+            &:hover {
+                background-color: @colorBase020;
+            }
+        }
+    
+        @media (max-width: @maxMobileResolution) {
+            &:active {
+                transform: scale(.95);
+            }
         }
 
         &.hide {

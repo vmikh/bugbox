@@ -21,6 +21,11 @@ class ButtonSend {
         this.buttonSend.blur();
     }
 
+    setDisabled(disabledText) {
+        this.buttonSend.setAttribute('disabled', true);
+        this.buttonSendText.innerText = disabledText;
+    }
+
     setError(errorText) {
         this.removeLoad();
         this.buttonSend.classList.add('invalid');
@@ -28,7 +33,7 @@ class ButtonSend {
 
         setTimeout(()=>{
             this.setStatic();
-        }, 3000)
+        }, 3000);
     }
 
     setSuccess(succesText) {
@@ -38,7 +43,7 @@ class ButtonSend {
 
         setTimeout(()=>{
             this.setStatic();
-        }, 3000)
+        }, 3000);
     }
 
     setStatic() {

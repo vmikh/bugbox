@@ -68,8 +68,8 @@ const analytics = new Analytics (
 
 
 // Set error if googleSheetsLink is empty
-if ('' === window.bagboxSettings.googleSheetsLink || undefined === window.bagboxSettings.googleSheetsLink) {
-    buttonSend.setError('Sheets isn`t connect');
+if ('' === window.bagboxSettings.googleSheetsLink || 'YOUR_GOOGLE_SHEET' === window.bagboxSettings.googleSheetsLink || undefined === window.bagboxSettings.googleSheetsLink) {
+    buttonSend.setDisabled('Sheets isn`t connect');
 }
 
 
