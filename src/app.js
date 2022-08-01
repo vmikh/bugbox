@@ -90,6 +90,16 @@ widget.attachScreenshot.addEventListener( "change" , event => {
 });
 
 
+
+
+
+widget.takeScreenshot.addEventListener( "click" , event => {
+    fieldScreenshot.takeScreenshot();
+});
+
+
+
+
 // Reset screenshot to default state
 widget.buttonScreenshotDelete.addEventListener( "click" , event => {
     event.preventDefault();
