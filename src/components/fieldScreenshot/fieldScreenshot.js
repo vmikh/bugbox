@@ -21,43 +21,43 @@ class FieldScreenshot {
 
         function getDisplayMedia(options) {
             if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
-                return navigator.mediaDevices.getDisplayMedia(options)
+                return navigator.mediaDevices.getDisplayMedia(options);
             }
             if (navigator.getDisplayMedia) {
-                return navigator.getDisplayMedia(options)
+                return navigator.getDisplayMedia(options);
             }
             if (navigator.webkitGetDisplayMedia) {
-                return navigator.webkitGetDisplayMedia(options)
+                return navigator.webkitGetDisplayMedia(options);
             }
             if (navigator.mozGetDisplayMedia) {
-                return navigator.mozGetDisplayMedia(options)
+                return navigator.mozGetDisplayMedia(options);
             }
-            throw new Error('getDisplayMedia is not defined')
+            throw new Error('getDisplayMedia is not defined');
         }
         
         function getUserMedia(options) {
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                return navigator.mediaDevices.getUserMedia(options)
+                return navigator.mediaDevices.getUserMedia(options);
             }
             if (navigator.getUserMedia) {
-                return navigator.getUserMedia(options)
+                return navigator.getUserMedia(options);
             }
             if (navigator.webkitGetUserMedia) {
-                return navigator.webkitGetUserMedia(options)
+                return navigator.webkitGetUserMedia(options);
             }
             if (navigator.mozGetUserMedia) {
-                return navigator.mozGetUserMedia(options)
+                return navigator.mozGetUserMedia(options);
             }
-            throw new Error('getUserMedia is not defined')
+            throw new Error('getUserMedia is not defined');
         }
         
         async function takeScreenshotStream() {
             // see: https://developer.mozilla.org/en-US/docs/Web/API/Window/screen
-            const width = screen.width * (window.devicePixelRatio || 1)
-            const height = screen.height * (window.devicePixelRatio || 1)
+            const width = screen.width * (window.devicePixelRatio || 1);
+            const height = screen.height * (window.devicePixelRatio || 1);
         
-            const errors = []
-            let stream
+            const errors = [];
+            let stream;
             try {
                 stream = await getDisplayMedia({
                     audio: false,
@@ -69,7 +69,7 @@ class FieldScreenshot {
                     },
                 })
             } catch (ex) {
-                errors.push(ex)
+                errors.push(ex);
             }
         
             // for electron js
@@ -89,108 +89,108 @@ class FieldScreenshot {
                         },
                     })
                 } catch (ex) {
-                    errors.push(ex)
+                    errors.push(ex);
                 }
             }
         
             if (errors.length) {
-                console.debug(...errors)
+                console.debug(...errors);
                 if (!stream) {
-                    throw errors[errors.length - 1]
+                    throw errors[errors.length - 1];
                 }
             }
         
-            return stream
+            return stream;
         }
         
         async function takeScreenshotCanvas() {
-            const stream = await takeScreenshotStream()
+            const stream = await takeScreenshotStream();
         
             // from: https://stackoverflow.com/a/57665309/5221762
-            const video = document.createElement('video')
+            const video = document.createElement('video');
             const result = await new Promise((resolve, reject) => {
                 video.onloadedmetadata = () => {
-                    video.play()
-                    video.pause()
+                    video.play();
+                    video.pause();
         
                     // from: https://github.com/kasprownik/electron-screencapture/blob/master/index.js
-                    const canvas = document.createElement('canvas')
-                    canvas.width = video.videoWidth
-                    canvas.height = video.videoHeight
-                    const context = canvas.getContext('2d')
+                    const canvas = document.createElement('canvas');
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    const context = canvas.getContext('2d');
                     // see: https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement
-                    context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight)
-                    resolve(canvas)
+                    context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+                    resolve(canvas);
                 }
-                video.srcObject = stream
+                video.srcObject = stream;
             })
         
             stream.getTracks().forEach(function (track) {
-                track.stop()
+                track.stop();
             })
         
             if (result == null) {
-                throw new Error('Cannot take canvas screenshot')
+                throw new Error('Cannot take canvas screenshot');
             }
         
-            return result
+            return result;
         }
         
         // from: https://stackoverflow.com/a/46182044/5221762
         function getJpegBlob(canvas) {
             return new Promise((resolve, reject) => {
                 // docs: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
-                canvas.toBlob(blob => resolve(blob), 'image/jpeg', 0.95)
+                canvas.toBlob(blob => resolve(blob), 'image/jpeg', 0.95);
             })
         }
         
         async function getJpegBytes(canvas) {
-            const blob = await getJpegBlob(canvas)
+            const blob = await getJpegBlob(canvas);
             return new Promise((resolve, reject) => {
-                const fileReader = new FileReader()
+                const fileReader = new FileReader();
         
                 fileReader.addEventListener('loadend', function () {
                     if (this.error) {
-                        reject(this.error)
-                        return
+                        reject(this.error);
+                        return;
                     }
-                    resolve(this.result)
+                    resolve(this.result);
                 })
         
-                fileReader.readAsArrayBuffer(blob)
+                fileReader.readAsArrayBuffer(blob);
             })
         }
         
         async function takeScreenshotJpegBlob() {
-            const canvas = await takeScreenshotCanvas()
-            return getJpegBlob(canvas)
+            const canvas = await takeScreenshotCanvas();
+            return getJpegBlob(canvas);
         }
         
         async function takeScreenshotJpegBytes() {
-            const canvas = await takeScreenshotCanvas()
-            return getJpegBytes(canvas)
+            const canvas = await takeScreenshotCanvas();
+            return getJpegBytes(canvas);
         }
         
         function blobToCanvas(blob, maxWidth, maxHeight) {
             return new Promise((resolve, reject) => {
-                const img = new Image()
+                const img = new Image();
                 img.onload = function () {
                     const canvas = document.createElement('canvas')
                     const scale = Math.min(
                         1,
                         maxWidth ? maxWidth / img.width : 1,
-                        maxHeight ? maxHeight / img.height : 1,
+                        maxHeight ? maxHeight / img.height : 1
                     )
-                    canvas.width = img.width * scale
-                    canvas.height = img.height * scale
-                    const ctx = canvas.getContext('2d')
-                    ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height)
-                    resolve(canvas)
+                    canvas.width = img.width * scale;
+                    canvas.height = img.height * scale;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
+                    resolve(canvas);
                 }
                 img.onerror = () => {
-                    reject(new Error('Error load blob to Image'))
+                    reject(new Error('Error load blob to Image'));
                 }
-                img.src = URL.createObjectURL(blob)
+                img.src = URL.createObjectURL(blob);
             })
         }
 

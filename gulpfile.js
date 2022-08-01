@@ -62,9 +62,9 @@ function buildJs() {
                 name: 'app'
             }
         }))
-        .pipe(babel({
-            presets: ['@babel/env']
-        }))
+        // .pipe(babel({
+        //     presets: ['@babel/env']
+        // }))
         .pipe(minify())
         .pipe(gulp.dest('dist'));
 };
@@ -114,4 +114,5 @@ gulp.task('clean', clean);
 
 // Serve and dulid command
 gulp.task('dev', gulp.parallel('less', 'js', 'browser', 'watch'));
+// gulp.task('test', gulp.series('clean', 'buildTestCss', 'buildTestJs'));
 gulp.task('build', gulp.series('clean', 'buildCss', 'buildJs'));
