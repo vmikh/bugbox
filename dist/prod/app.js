@@ -23,6 +23,7 @@
             // Create shadow root
             this.shadowHost = widgetSection.attachShadow({mode: 'open'});
             this.stylesLink = (window.location.host === 'localhost:1001') ? 'app.css' : (window.location.host === 'bugboxio.netlify.app') ? 'https://vmikh.github.io/bugbox/dist/test/app-min.css' : 'https://vmikh.github.io/bugbox/dist/prod/app-min.css';
+            console.log(this.stylesLink);
 
             // Add platform info
             this.platformName = platformName;
