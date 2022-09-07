@@ -161,8 +161,15 @@ fetch(widget.googleLink)
     return response.json();
 })
 .then(data => {
-    if (undefined !== data.url)
+    if (undefined !== data.url) {
+
+        // Check google script version
+        const version = '1.00';
+        if (data.version !== version) {
+            console.log('Update the Google spreadsheet for correct work');
+        }
         widget.addSheetUrl(data.url);
+    }
 });
 
 
