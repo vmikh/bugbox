@@ -6,7 +6,7 @@
     // Copyright © 2021 Vladislav Mikhailov
 
     class Widget {
-        constructor(googleSheetLink, stylesLink, isHidden, platformName) {
+        constructor(googleSheetLink, stylesLink, isHidden, platformName, deviceType) {
 
             // Create widget section
             const widgetSection = document.createElement("section");
@@ -26,6 +26,7 @@
 
             // Add platform info
             this.platformName = platformName;
+            this.deviceType = deviceType;
             
             // Add html to shadow root
             this.createHtml(this.shadowHost);
@@ -157,7 +158,8 @@
         // Add html to shadow root
         createHtml(shadowHost) {
             const animationStyle = (this.platformName === 'Chrome' || this.platformName === 'Firefox') ? 'animated' : 'static';
-            const hiddenStyle    = this.isHidden ? 'isHidden' : '';
+            const widgetHeightStyle = this.deviceType === 'Android' ? 'smallHeight' : 'normalHeight';
+            const hiddenStyle = this.isHidden ? 'isHidden' : '';
             let   floatButton;
 
             // Create float button
@@ -171,7 +173,6 @@
             }
             else floatButton = `<button class="button_float_hidden" type="button" id="button_float"></button>`;
 
-
             shadowHost.innerHTML = `
             ${floatButton}
 
@@ -180,7 +181,7 @@
                 <svg class="button_info__back" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 6.22222L7.11111 0V3.63911C16 5.77422 16 16 16 16C16 16 12.9062 8.812 7.11111 8.812V12.4444L0 6.22222Z"/></svg>
             </button>
 
-            <section class="widget_card ${animationStyle}" id="widget_card">
+            <section class="widget_card ${animationStyle} ${widgetHeightStyle}" id="widget_card">
                 <section class="widget_front">
                     <form id="form">
                         <label class="field_problem" for="field_problem">
@@ -198,13 +199,12 @@
                             </div>
                             <label class="attach_screenshot" for="attach_screenshot">
                                 <input id="attach_screenshot" type="file">
-                                Attach Screenshot
+                                Attach
                             </label>
-                        </div>
-
-                        <button class="take_screenshot" type="button" id="take_screenshot">
-                                Take Screenshot
+                            <button class="take_screenshot" type="button" id="take_screenshot">
+                                Take
                             </button>
+                        </div>
                         
                         <button class="button_send" type="button" id="button_send">
                             <svg class="button_send__icon"width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9 16.5C4.85786 16.5 1.5 13.1421 1.5 9C1.5 4.85786 4.85786 1.5 9 1.5C13.1421 1.5 16.5 4.85786 16.5 9C16.5 13.1421 13.1421 16.5 9 16.5ZM0 9C0 4.02944 4.02944 0 9 0C13.9706 0 18 4.02944 18 9C18 13.9706 13.9706 18 9 18C4.02944 18 0 13.9706 0 9ZM14.0303 6.53033L12.9697 5.46967L7.5 10.9393L5.03033 8.46967L3.96967 9.53033L6.96967 12.5303L7.5 13.0607L8.03033 12.5303L14.0303 6.53033Z"/></svg>
@@ -267,7 +267,8 @@
 
     // Screenshot Class
     class FieldScreenshot {
-        constructor(attachScreenshot, screenshotInfo, fieldScreenshot, fieldScreenshotName, buttonScreenshotDelete) {
+        constructor(takeScreenshot, attachScreenshot, screenshotInfo, fieldScreenshot, fieldScreenshotName, buttonScreenshotDelete) {
+            this.takeScreenshot = takeScreenshot;
             this.attachScreenshot = attachScreenshot;
             this.screenshotInfo = screenshotInfo;
             this.fieldScreenshot = fieldScreenshot;
@@ -275,12 +276,82 @@
             this.buttonScreenshotDelete = buttonScreenshotDelete;
         }
 
-        takeScreenshot() {
+        setScreenshot() {
+            const file = this.attachScreenshot.files[0];
+            const fileFormat = file.type;
+
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                const blob = reader.result;
+
+                if (fileFormat === 'image/png') {
+                    this.fieldScreenshot.value = blob.replace('data:image/png;base64,', '');
+                }
+                else this.fieldScreenshot.value = blob.replace('data:image/jpeg;base64,', '');
+
+                this.attachScreenshot.value = '';
+            };
+            reader.onerror = error => {
+                this.attachScreenshot.value = '';
+            };
+        }
+
+        setInvalid() {
+            this.attachScreenshot.parentNode.classList.add('invalid');
+
+            setTimeout(() => {
+                this.attachScreenshot.parentNode.classList.remove('invalid');
+            }, 2000);
+        }
+
+        setFilled() {
+            this.screenshotInfo.classList.add('show');
+            this.attachScreenshot.parentNode.classList.add('hide');
+            this.takeScreenshot.classList.add('hide');
+        }
+
+        setScreenshotName(name) {
+            this.fieldScreenshotName.innerText = name;
+        }
+
+        setDisabled() {
+            this.buttonScreenshotDelete.disabled = true;
+        }
+
+        removeDisabled() {
+            this.buttonScreenshotDelete.disabled = false;
+        }
+
+        resetField() {
+            this.fieldScreenshot.value = '';
+            this.screenshotInfo.classList.remove('show');
+            this.attachScreenshot.parentNode.classList.remove('hide');
+            this.takeScreenshot.classList.remove('hide');
+            this.fieldScreenshotName.innerText = '';
+        }
+
+        attachScreen() {
+            const file = this.attachScreenshot.files[0];
+            const fileFormat = file.type;
+
+            if (fileFormat !== 'image/png' && fileFormat !== 'image/jpeg') {
+                this.setInvalid();
+                this.attachScreenshot.value = '';
+            }
+            else {
+                this.setScreenshotName(file.name);
+                this.setScreenshot();
+                this.setFilled();
+            }
+        }
+
+        takeScreen(openWidgetEvent) {
             // docs: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getDisplayMedia
             // see: https://www.webrtc-experiment.com/Pluginfree-Screen-Sharing/#20893521368186473
             // see: https://github.com/muaz-khan/WebRTC-Experiment/blob/master/Pluginfree-Screen-Sharing/conference.js
 
-            function getDisplayMedia(options) {
+            const getDisplayMedia = options => {
                 if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
                     return navigator.mediaDevices.getDisplayMedia(options);
                 }
@@ -294,9 +365,9 @@
                     return navigator.mozGetDisplayMedia(options);
                 }
                 throw new Error('getDisplayMedia is not defined');
-            }
+            };
             
-            function getUserMedia(options) {
+            const getUserMedia = options => {
                 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                     return navigator.mediaDevices.getUserMedia(options);
                 }
@@ -310,7 +381,7 @@
                     return navigator.mozGetUserMedia(options);
                 }
                 throw new Error('getUserMedia is not defined');
-            }
+            };
             
             async function takeScreenshotStream() {
                 // see: https://developer.mozilla.org/en-US/docs/Web/API/Window/screen
@@ -322,6 +393,8 @@
                 try {
                     stream = await getDisplayMedia({
                         audio: false,
+                        preferCurrentTab: true,
+                        
                         // see: https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints/video
                         video: {
                             width,
@@ -331,6 +404,7 @@
                     });
                 } catch (ex) {
                     errors.push(ex);
+                    openWidgetEvent();
                 }
             
                 // for electron js
@@ -351,6 +425,7 @@
                         });
                     } catch (ex) {
                         errors.push(ex);
+                        openWidgetEvent();
                     }
                 }
             
@@ -411,74 +486,27 @@
             }
 
             async function setScreenshot() {
-                var blob = await takeScreenshotJpegBlob();
+                const blob = await takeScreenshotJpegBlob();
 
-                // var previewCanvas = await blobToCanvas(blob, window.width*2, window.height*2)
-                // previewCanvas.style.position = 'fixed';
-                // document.appendChild(previewCanvas);
-
-                var reader = new FileReader();
+                const reader = new FileReader();
                 reader.readAsDataURL(blob); 
                 reader.onloadend = function() {
-                    var base64data = reader.result;
-                    fieldScreenshot.value = base64data.replace('data:image/jpeg;base64,', '');            };
+                    const base64data = reader.result;
+                    fieldScreenshot.value = base64data.replace('data:image/jpeg;base64,', '');
+                    openWidgetEvent();
+                    setScreenshotName();
+                    setFilled();
+                };
             }
 
             const fieldScreenshot = this.fieldScreenshot;
+            const setScreenshotName = () => {
+                this.setScreenshotName('screenshot.jpg');
+            };
+            const setFilled = () => {
+                this.setFilled();
+            };
             setScreenshot();
-        }
-
-        setScreenshot() {
-            const file = this.attachScreenshot.files[0];
-            const fileFormat = file.type;
-
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                const blob = reader.result;
-
-                if (fileFormat === 'image/png') {
-                    this.fieldScreenshot.value = blob.replace('data:image/png;base64,', '');
-                }
-                else this.fieldScreenshot.value = blob.replace('data:image/jpeg;base64,', '');
-
-                this.attachScreenshot.value = '';
-            };
-            reader.onerror = error => {
-                this.attachScreenshot.value = '';
-            };
-        }
-
-        setInvalid() {
-            this.attachScreenshot.parentNode.classList.add('invalid');
-
-            setTimeout(() => {
-                this.attachScreenshot.parentNode.classList.remove('invalid');
-            }, 2000);
-        }
-
-        setFilled() {
-            this.screenshotInfo.classList.add('show');
-            this.attachScreenshot.parentNode.classList.add('hide');
-        }
-
-        setScreenshotName(name) {
-            this.fieldScreenshotName.innerText = name;
-        }
-
-        setDisabled() {
-            this.buttonScreenshotDelete.disabled = true;
-        }
-
-        removeDisabled() {
-            this.buttonScreenshotDelete.disabled = false;
-        }
-
-        resetField() {
-            this.fieldScreenshot.value = '';
-            this.screenshotInfo.classList.remove('show');
-            this.attachScreenshot.parentNode.classList.remove('hide');
-            this.fieldScreenshotName.innerText = '';
         }
     }
 
@@ -588,37 +616,36 @@
         // Create header row
         get headArray() {
             return [
-                'Date&Time',
                 'Problem',
                 'Screenshot',
+                'URL',
                 'Actual Result',
                 'Expected Result',
                 'Priority',
                 'Assignee',
                 'Status',
-                'URL',
                 'Browser',
                 'OS',
                 'Device Type',
-                'Screen ⥗',
-                'Screen ⥔',
-                'Browser ⥗',
-                'Browser ⥔',
+                '"Screenwidth ← →',
+                'Screen ↑height ↓',
+                'Browserwidth ← →',
+                'Browser ↑height  ↓',
+                'Date & Time',
             ]
         }
 
         // Create body row
         get bodyArray() {
             return [
-                this.date,                    // Date&Time
                 this.fieldProblem.value,      // Problem
                 this.fieldScreenshot.value,   // Screenshot
+                window.location.href,         // URL
                 '',                           // Actual Result
                 '',                           // Expected Result
                 '',                           // Priority
                 '',                           // Assignee
                 '',                           // Status
-                window.location.href,         // URL
                 this.browser,                 // Browser
                 this.os,                      // OS
                 this.deviceType,              // Device Type
@@ -626,6 +653,7 @@
                 window.screen.height,         // Screen Height
                 window.innerWidth,            // Browser Width
                 window.innerHeight,           // Browser Height
+                this.date,                    // Date&Time
             ]
         }
 
@@ -1985,7 +2013,8 @@
         window.bagboxSettings.googleSheetsLink,
         window.bagboxSettings.stylesLink,
         window.bagboxSettings.isHidden,
-        platform$1.info.name
+        platform$1.info.name,
+        platform$1.info.os.family
     );
 
     // Create problem field actions class
@@ -1995,6 +2024,7 @@
 
     // Create screenshot class
     const fieldScreenshot = new FieldScreenshot (
+        widget.takeScreenshot,
         widget.attachScreenshot,
         widget.screenshotInfo,
         widget.fieldScreenshot,
@@ -2039,41 +2069,27 @@
 
 
     // Attach screenshot event
-    widget.attachScreenshot.addEventListener( "change" , event => {
-        const file = fieldScreenshot.attachScreenshot.files[0];
-        const fileFormat = file.type;
-
-        if (fileFormat !== 'image/png' && fileFormat !== 'image/jpeg') {
-            fieldScreenshot.setInvalid();
-            fieldScreenshot.attachScreenshot.value = '';
-        }
-        else {
-            fieldScreenshot.setScreenshotName(file.name);
-            fieldScreenshot.setScreenshot();
-            fieldScreenshot.setFilled();
-        }
+    widget.attachScreenshot.addEventListener('change', event => {
+        fieldScreenshot.attachScreen();
     });
 
 
-
-
-
-    widget.takeScreenshot.addEventListener( "click" , event => {
-        fieldScreenshot.takeScreenshot();
+    // Take screenshot event
+    widget.takeScreenshot.addEventListener('click', event => {
+        openWidget(); // toggle widget event
+        fieldScreenshot.takeScreen(openWidget);
     });
-
-
 
 
     // Reset screenshot to default state
-    widget.buttonScreenshotDelete.addEventListener( "click" , event => {
+    widget.buttonScreenshotDelete.addEventListener('click', event => {
         event.preventDefault();
         fieldScreenshot.resetField();
     });
 
 
     // Create screenshot and send form button
-    widget.buttonSend.addEventListener( "click" , event => {
+    widget.buttonSend.addEventListener('click', event => {
         event.preventDefault();
         
         if (!fieldProblem.isValid()) {
