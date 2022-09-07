@@ -52,8 +52,25 @@ function browser() {
 };
 
 
-// Js build
-function buildJs() {
+// Css test
+function testCss() {
+    return gulp.src('src/app.less')
+        .pipe(gulpLess({
+            paths: [path.join(__dirname, 'less', 'includes')]
+        }))
+        .pipe(autoprefixer({
+            cascade: false
+        }))
+        .pipe(cleanCSS({ compatibility: 'ie8' }))
+        .pipe(rename({
+            suffix: '-min'
+        }))
+        .pipe(gulp.dest('dist/test'));
+};
+
+
+// Js test
+function testJs() {
     return gulp.src('./src/**/*.js')
         .pipe(rollup({
             input: './src/app.js',
@@ -66,12 +83,12 @@ function buildJs() {
         //     presets: ['@babel/env']
         // }))
         .pipe(minify())
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist/test'));
 };
 
 
-// Css build
-function buildCss() {
+// Css prod
+function prodCss() {
     return gulp.src('src/app.less')
         .pipe(gulpLess({
             paths: [path.join(__dirname, 'less', 'includes')]
@@ -83,13 +100,35 @@ function buildCss() {
         .pipe(rename({
             suffix: '-min'
         }))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist/prod'));
+};
+
+
+// Js prod
+function prodJs() {
+    return gulp.src('./src/**/*.js')
+        .pipe(rollup({
+            input: './src/app.js',
+            output: {
+                format: 'umd',
+                name: 'app'
+            }
+        }))
+        // .pipe(babel({
+        //     presets: ['@babel/env']
+        // }))
+        .pipe(minify())
+        .pipe(gulp.dest('dist/prod'));
 };
 
 
 // Delete 'dist' directory
-function clean() {
-    return del(['dist/app.js', 'dist/app-min.js', 'dist/app-min.css']);
+function testClean() {
+    return del(['dist//app.js', 'dist//app-min.js', 'dist//app-min.css']);
+};
+
+function prodClean() {
+    return del(['dist/prod/app.js', 'dist/prod/app-min.js', 'dist/prod/app-min.css']);
 };
 
 
@@ -107,12 +146,17 @@ gulp.task('less', less);
 gulp.task('js', js);
 gulp.task('html', html);
 gulp.task('watch', watch);
-gulp.task('buildCss', buildCss);
-gulp.task('buildJs', buildJs);
-gulp.task('clean', clean);
+
+gulp.task('testCss', testCss);
+gulp.task('testJs', testJs);
+gulp.task('testClean', testClean);
+
+gulp.task('prodCss', prodCss);
+gulp.task('prodJs', prodJs);
+gulp.task('prodClean', prodClean);
 
 
 // Serve and dulid command
 gulp.task('dev', gulp.parallel('less', 'js', 'browser', 'watch'));
-// gulp.task('test', gulp.series('clean', 'buildTestCss', 'buildTestJs'));
-gulp.task('build', gulp.series('clean', 'buildCss', 'buildJs'));
+gulp.task('test', gulp.series('testClean', 'testCss', 'testJs'));
+gulp.task('prod', gulp.series('prodClean', 'prodCss', 'prodJs'));

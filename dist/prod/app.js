@@ -627,10 +627,10 @@
                 'Browser',
                 'OS',
                 'Device Type',
-                '"Screenwidth ← →',
-                'Screen ↑height ↓',
-                'Browserwidth ← →',
-                'Browser ↑height  ↓',
+                'Screen\nwidth ← →',
+                'Screen ↑\nheight ↓',
+                'Browser\nwidth ← →',
+                'Browser ↑\nheight  ↓',
                 'Date & Time',
             ]
         }
@@ -655,6 +655,11 @@
                 window.innerHeight,           // Browser Height
                 this.date,                    // Date&Time
             ]
+        }
+
+
+        get domain() {
+            return window.location.hostname;
         }
 
 
@@ -2112,7 +2117,8 @@
             },
             body: JSON.stringify({
                 headArray: metaData.headArray,
-                bodyArray: metaData.bodyArray
+                bodyArray: metaData.bodyArray,
+                domain: metaData.domain,
             })
         })
         .then(response => {
@@ -2124,7 +2130,7 @@
             }  
         )  
         .then(data => {
-            // console.log(data);
+            console.log(data);
         })
         .catch(err => {  
             // Remove form disabled
