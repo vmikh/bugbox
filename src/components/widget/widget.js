@@ -7,7 +7,7 @@
 "use strict";
 
 class Widget {
-    constructor(googleSheetLink, stylesLink, isHidden, platformName) {
+    constructor(googleSheetLink, stylesLink, isHidden, platformName, deviceType) {
 
         // Create widget section
         const widgetSection = document.createElement("section");
@@ -27,6 +27,7 @@ class Widget {
 
         // Add platform info
         this.platformName = platformName;
+        this.deviceType = deviceType;
         
         // Add html to shadow root
         this.createHtml(this.shadowHost);
@@ -158,7 +159,8 @@ class Widget {
     // Add html to shadow root
     createHtml(shadowHost) {
         const animationStyle = (this.platformName === 'Chrome' || this.platformName === 'Firefox') ? 'animated' : 'static';
-        const hiddenStyle    = this.isHidden ? 'isHidden' : '';
+        const widgetHeightStyle = this.deviceType === 'Android' ? 'smallHeight' : 'normalHeight';
+        const hiddenStyle = this.isHidden ? 'isHidden' : '';
         let   floatButton;
 
         // Create float button
@@ -172,7 +174,6 @@ class Widget {
         }
         else floatButton = `<button class="button_float_hidden" type="button" id="button_float"></button>`;
 
-
         shadowHost.innerHTML = `
             ${floatButton}
 
@@ -181,7 +182,7 @@ class Widget {
                 <svg class="button_info__back" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 6.22222L7.11111 0V3.63911C16 5.77422 16 16 16 16C16 16 12.9062 8.812 7.11111 8.812V12.4444L0 6.22222Z"/></svg>
             </button>
 
-            <section class="widget_card ${animationStyle}" id="widget_card">
+            <section class="widget_card ${animationStyle} ${widgetHeightStyle}" id="widget_card">
                 <section class="widget_front">
                     <form id="form">
                         <label class="field_problem" for="field_problem">

@@ -9,8 +9,9 @@
 
 
 // SIZES
-@logoMargin: 15px;
-@menuMargin: 10px;
+@logoMargin     : 15px;
+@menuMargin     : 10px;
+@menuMarginSmall: 5px;
 
 @bottom: 80px;
 @right : 20px;
@@ -21,14 +22,16 @@
 @floatButtonRight     : @right;
 @floatButtonInfoActive: @right + @floatButton + @margin;
 
-@formBase              : 45px;
-@formBaseMargin        : 12px;
-@formFieldProblemHeight: @formBase * 4;
+@formBase                    : 45px;
+@formBaseMargin              : 12px;
+@formFieldProblemHeight      : @formBase * 4;
+@formFieldProblemHeightSmall : @formBase * 3;
 
 @widgetFrontPadding : 18px;
 @widgetBackPadding  : 40px 35px 0;
 @widgetWidht        : 290px;
 @widgetHeight       : (@formBase * 2)+(@formBaseMargin * 2)+(@widgetFrontPadding * 2)+@formFieldProblemHeight;
+@widgetHeightSmall  : (@formBase * 2)+(@formBaseMargin * 2)+(@widgetFrontPadding * 2)+@formFieldProblemHeightSmall;
 @widgetBottom       : @bottom + @floatButton;
 @widgetBottomActive : @widgetBottom + @margin;
 @widgetRight        : @right;
@@ -67,13 +70,24 @@
 // Typography
 @title: {
     font-size    : 18px;
-    line-height  : 140%;
-    font-weight  : normal;
+    line-height  : 26px;
     margin-bottom: 30px;
+    font-weight  : normal;
+}
+
+@titleSmall: {
+    font-size    : 16px;
+    line-height  : 22px;
+    margin-bottom: 20px;
+    font-weight  : normal;
 }
 
 @body: {
     font-size: 18px;
+}
+
+@bodySmall: {
+    font-size: 14px;
 }
 
 @inputLabel: {

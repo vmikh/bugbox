@@ -16,10 +16,24 @@
     @media (max-width: @maxMobileResolution) {
         @staticCard();
 
-        @media (max-height: 520px) {
-            height  : initial;
-            top     : 20px;
-            overflow: auto;
+        // Only for adroid class
+        &.smallHeight {
+            height: @widgetHeightSmall;
+
+            .widget_back {
+                .widget_back__headline {
+                    @titleSmall();
+                }
+                .menu {
+                    .menu__item {
+                        margin-bottom: @menuMarginSmall;
+
+                        a {
+                            @bodySmall();
+                        }
+                    }
+                }
+            }
         }
     }
 
