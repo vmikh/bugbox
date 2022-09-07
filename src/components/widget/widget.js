@@ -206,7 +206,7 @@ class Widget {
                                 </button>
                             </div>
                             <button class="take_screenshot" type="button" id="take_screenshot">
-                                Take
+                                Screen
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M10 5H7C5.89543 5 5 5.89543 5 7V10" stroke="black" stroke-width="2"/>
                                     <path d="M14 5H17C18.1046 5 19 5.89543 19 7V10" stroke="black" stroke-width="2"/>
