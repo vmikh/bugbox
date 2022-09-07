@@ -40,6 +40,7 @@ function html() {
 // Browser init
 function browser() {
     browserSync({
+        port: 1001,
         server: {
             baseDir: 'src',
             middleware: function (req, res, next) {
