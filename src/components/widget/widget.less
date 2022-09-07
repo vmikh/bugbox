@@ -89,11 +89,12 @@
             z-index   : 10;
             left      : 0;
             top       : 0;
-            padding   : @widgetBackPadding;
+            padding   : 20px;
             background: @colorWhite50;
 
             position       : absolute;
             display        : flex;
+            flex-direction : column;
             align-items    : center;
             justify-content: center;
             text-align     : center;
@@ -101,9 +102,26 @@
             backdrop-filter: blur(30px);
         }
 
-        .updateInfo__text {
+        .updateInfo__title {
             color: @colorBlack;
             @title();
+            margin-bottom: 10px;
+        }
+
+        .updateInfo__text {
+            color: @colorBlack;
+            @bodySmall();
+            margin-bottom: 0;
+
+            a {
+                color          : @colorBase;
+                text-decoration: none;
+                transition     : color .2s;
+
+                &:hover {
+                    color: @colorBlack;
+                }
+            }
         }
     }
 

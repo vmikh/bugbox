@@ -63,6 +63,7 @@
 
         needUpdate() {
             this.widgetCard.classList.add('needUpdate');
+            this.buttonFloat.classList.add('needUpdate');
         }
 
         open() {
@@ -188,7 +189,8 @@
             <section class="widget_card ${animationStyle} ${widgetHeightStyle}" id="widget_card">
                 <section class="widget_front">
                     <div class="updateInfo">
-                        <p class="updateInfo__text">Update the Google Spreadsheet for correct work</p>
+                        <h2 class="updateInfo__title">Bugbox has been updated</h2>
+                        <p class="updateInfo__text">Your version isn't available, but&nbsp;data in&nbsp;spreadsheet is&nbsp;ok. Please reinstall script from <a href="https://github.com/vmikh/bugbox" target="_blank">github</a>.</p>
                     </div>
                     <form id="form">
                         <label class="field_problem" for="field_problem">
