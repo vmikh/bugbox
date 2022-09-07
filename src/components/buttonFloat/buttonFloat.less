@@ -18,6 +18,11 @@
     background-color: @colorBase;
     transition      : box-shadow .2s, background-color .2s, opacity .2s, transform .2s;
 
+    &.needUpdate {
+        background-color: @colorDanger;
+        box-shadow      : @shadowDanger;
+    }
+
     @media (min-width: @minDesktopResolution) {
         &:hover {
             background-color: @colorBlack;
@@ -29,11 +34,6 @@
         &:active {
             transform: scale(.9);
         }
-    }
-
-    &.needUpdate {
-        background-color: @colorDanger;
-        box-shadow      : @shadowDanger;
     }
 
     &.active {
