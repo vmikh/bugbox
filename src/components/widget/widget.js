@@ -7,7 +7,7 @@
 "use strict";
 
 class Widget {
-    constructor(googleSheetLink, stylesLink, isHidden, platformName, deviceType) {
+    constructor(googleSheetLink, isHidden, platformName, deviceType) {
 
         // Create widget section
         const widgetSection = document.createElement("section");
@@ -23,7 +23,7 @@ class Widget {
 
         // Create shadow root
         this.shadowHost = widgetSection.attachShadow({mode: 'open'});
-        this.stylesLink = stylesLink;
+        this.stylesLink = (window.location.hostname === 'localhost') ? 'app.css' : (window.location.hostname === 'bugbox.io') ? 'https://vmikh.github.io/bugbox/dist/test/app-min.css' : 'https://vmikh.github.io/bugbox/dist/prod/app-min.css';
 
         // Add platform info
         this.platformName = platformName;

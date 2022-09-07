@@ -18,7 +18,6 @@ const platform = new Platform();
 // Create widget
 const widget = new Widget (
     window.bagboxSettings.googleSheetsLink,
-    window.bagboxSettings.stylesLink,
     window.bagboxSettings.isHidden,
     platform.info.name,
     platform.info.os.family

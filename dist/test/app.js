@@ -6,7 +6,7 @@
     // Copyright © 2021 Vladislav Mikhailov
 
     class Widget {
-        constructor(googleSheetLink, stylesLink, isHidden, platformName, deviceType) {
+        constructor(googleSheetLink, isHidden, platformName, deviceType) {
 
             // Create widget section
             const widgetSection = document.createElement("section");
@@ -22,7 +22,7 @@
 
             // Create shadow root
             this.shadowHost = widgetSection.attachShadow({mode: 'open'});
-            this.stylesLink = stylesLink;
+            this.stylesLink = (window.location.hostname === 'localhost') ? 'app.css' : (window.location.hostname === 'bugbox.io') ? 'https://vmikh.github.io/bugbox/dist/test/app-min.css' : 'https://vmikh.github.io/bugbox/dist/prod/app-min.css';
 
             // Add platform info
             this.platformName = platformName;
@@ -2016,7 +2016,6 @@
     // Create widget
     const widget = new Widget (
         window.bagboxSettings.googleSheetsLink,
-        window.bagboxSettings.stylesLink,
         window.bagboxSettings.isHidden,
         platform$1.info.name,
         platform$1.info.os.family
