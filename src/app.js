@@ -30,6 +30,7 @@ const fieldProblem = new FieldProblem (
 
 // Create screenshot class
 const fieldScreenshot = new FieldScreenshot (
+    widget.takeScreenshot,
     widget.attachScreenshot,
     widget.screenshotInfo,
     widget.fieldScreenshot,
@@ -74,41 +75,26 @@ if ('' === window.bagboxSettings.googleSheetsLink || 'YOUR_GOOGLE_SHEET' === win
 
 
 // Attach screenshot event
-widget.attachScreenshot.addEventListener( "change" , event => {
-    const file = fieldScreenshot.attachScreenshot.files[0];
-    const fileFormat = file.type;
-
-    if (fileFormat !== 'image/png' && fileFormat !== 'image/jpeg') {
-        fieldScreenshot.setInvalid();
-        fieldScreenshot.attachScreenshot.value = '';
-    }
-    else {
-        fieldScreenshot.setScreenshotName(file.name);
-        fieldScreenshot.setScreenshot();
-        fieldScreenshot.setFilled();
-    }
+widget.attachScreenshot.addEventListener('change', event => {
+    fieldScreenshot.attachScreen();
 });
 
 
-
-
-
-widget.takeScreenshot.addEventListener( "click" , event => {
-    fieldScreenshot.takeScreenshot();
+// Take screenshot event
+widget.takeScreenshot.addEventListener('click', event => {
+    fieldScreenshot.takeScreen();
 });
-
-
 
 
 // Reset screenshot to default state
-widget.buttonScreenshotDelete.addEventListener( "click" , event => {
+widget.buttonScreenshotDelete.addEventListener('click', event => {
     event.preventDefault();
     fieldScreenshot.resetField();
 });
 
 
 // Create screenshot and send form button
-widget.buttonSend.addEventListener( "click" , event => {
+widget.buttonSend.addEventListener('click', event => {
     event.preventDefault();
     
     if (!fieldProblem.isValid()) {

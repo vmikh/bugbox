@@ -5,7 +5,15 @@
     height       : @formBase;
     margin-bottom: @formBaseMargin + 1px;
 
+    .take_screenshot {
+        left: calc(50% + @formBaseMargin / 2);
+    }
 
+    .attach_screenshot {
+        left: 0;
+    }
+
+    .take_screenshot,
     .attach_screenshot {
         display           : flex;
         justify-content   : center;
@@ -13,7 +21,7 @@
         position          : absolute;
         border            : 0 solid transparent;
         height            : 100%;
-        width             : 100%;
+        width             : calc(50% - @formBaseMargin / 2);
         padding           : 0 25px 0 25px;
         color             : @colorBase;
         background-color  : @colorBase010;
@@ -25,7 +33,6 @@
         @buttonLabel();
 
         @media (min-width: @minDesktopResolution) {
-
             &:focus,
             &:hover {
                 background-color: @colorBase020;
@@ -55,31 +62,31 @@
 
             @keyframes shake {
                 0% {
-                    right: -6px;
+                    left: -6px;
                 }
 
                 20% {
-                    right: 6px;
+                    left: 6px;
                 }
 
                 40% {
-                    right: -4px;
+                    left: -4px;
                 }
 
                 60% {
-                    right: 4px;
+                    left: 4px;
                 }
 
                 80% {
-                    right: -2px;
+                    left: -2px;
                 }
 
                 90% {
-                    right: 2px;
+                    left: 2px;
                 }
 
                 100% {
-                    right: 0px;
+                    left: 0px;
                 }
             }
         }

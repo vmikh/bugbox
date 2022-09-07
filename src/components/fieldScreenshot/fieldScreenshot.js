@@ -6,7 +6,8 @@
 
 // Screenshot Class
 class FieldScreenshot {
-    constructor(attachScreenshot, screenshotInfo, fieldScreenshot, fieldScreenshotName, buttonScreenshotDelete) {
+    constructor(takeScreenshot, attachScreenshot, screenshotInfo, fieldScreenshot, fieldScreenshotName, buttonScreenshotDelete) {
+        this.takeScreenshot = takeScreenshot;
         this.attachScreenshot = attachScreenshot;
         this.screenshotInfo = screenshotInfo;
         this.fieldScreenshot = fieldScreenshot;
@@ -14,12 +15,82 @@ class FieldScreenshot {
         this.buttonScreenshotDelete = buttonScreenshotDelete;
     }
 
-    takeScreenshot() {
+    setScreenshot() {
+        const file = this.attachScreenshot.files[0];
+        const fileFormat = file.type;
+
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            const blob = reader.result;
+
+            if (fileFormat === 'image/png') {
+                this.fieldScreenshot.value = blob.replace('data:image/png;base64,', '');
+            }
+            else this.fieldScreenshot.value = blob.replace('data:image/jpeg;base64,', '');
+
+            this.attachScreenshot.value = '';
+        }
+        reader.onerror = error => {
+            this.attachScreenshot.value = '';
+        }
+    }
+
+    setInvalid() {
+        this.attachScreenshot.parentNode.classList.add('invalid');
+
+        setTimeout(() => {
+            this.attachScreenshot.parentNode.classList.remove('invalid');
+        }, 2000);
+    }
+
+    setFilled() {
+        this.screenshotInfo.classList.add('show');
+        this.attachScreenshot.parentNode.classList.add('hide');
+        this.takeScreenshot.classList.add('hide');
+    }
+
+    setScreenshotName(name) {
+        this.fieldScreenshotName.innerText = name;
+    }
+
+    setDisabled() {
+        this.buttonScreenshotDelete.disabled = true;
+    }
+
+    removeDisabled() {
+        this.buttonScreenshotDelete.disabled = false;
+    }
+
+    resetField() {
+        this.fieldScreenshot.value = '';
+        this.screenshotInfo.classList.remove('show');
+        this.attachScreenshot.parentNode.classList.remove('hide');
+        this.takeScreenshot.classList.remove('hide');
+        this.fieldScreenshotName.innerText = '';
+    }
+
+    attachScreen() {
+        const file = this.attachScreenshot.files[0];
+        const fileFormat = file.type;
+
+        if (fileFormat !== 'image/png' && fileFormat !== 'image/jpeg') {
+            this.setInvalid();
+            this.attachScreenshot.value = '';
+        }
+        else {
+            this.setScreenshotName(file.name);
+            this.setScreenshot();
+            this.setFilled();
+        }
+    }
+
+    takeScreen() {
         // docs: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getDisplayMedia
         // see: https://www.webrtc-experiment.com/Pluginfree-Screen-Sharing/#20893521368186473
         // see: https://github.com/muaz-khan/WebRTC-Experiment/blob/master/Pluginfree-Screen-Sharing/conference.js
 
-        function getDisplayMedia(options) {
+        const getDisplayMedia = options => {
             if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
                 return navigator.mediaDevices.getDisplayMedia(options);
             }
@@ -35,7 +106,7 @@ class FieldScreenshot {
             throw new Error('getDisplayMedia is not defined');
         }
         
-        function getUserMedia(options) {
+        const getUserMedia = options => {
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 return navigator.mediaDevices.getUserMedia(options);
             }
@@ -144,126 +215,32 @@ class FieldScreenshot {
             })
         }
         
-        async function getJpegBytes(canvas) {
-            const blob = await getJpegBlob(canvas);
-            return new Promise((resolve, reject) => {
-                const fileReader = new FileReader();
-        
-                fileReader.addEventListener('loadend', function () {
-                    if (this.error) {
-                        reject(this.error);
-                        return;
-                    }
-                    resolve(this.result);
-                })
-        
-                fileReader.readAsArrayBuffer(blob);
-            })
-        }
-        
         async function takeScreenshotJpegBlob() {
             const canvas = await takeScreenshotCanvas();
             return getJpegBlob(canvas);
         }
-        
-        async function takeScreenshotJpegBytes() {
-            const canvas = await takeScreenshotCanvas();
-            return getJpegBytes(canvas);
-        }
-        
-        function blobToCanvas(blob, maxWidth, maxHeight) {
-            return new Promise((resolve, reject) => {
-                const img = new Image();
-                img.onload = function () {
-                    const canvas = document.createElement('canvas')
-                    const scale = Math.min(
-                        1,
-                        maxWidth ? maxWidth / img.width : 1,
-                        maxHeight ? maxHeight / img.height : 1
-                    )
-                    canvas.width = img.width * scale;
-                    canvas.height = img.height * scale;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
-                    resolve(canvas);
-                }
-                img.onerror = () => {
-                    reject(new Error('Error load blob to Image'));
-                }
-                img.src = URL.createObjectURL(blob);
-            })
-        }
 
         async function setScreenshot() {
-            var blob = await takeScreenshotJpegBlob();
+            const blob = await takeScreenshotJpegBlob();
 
-            // var previewCanvas = await blobToCanvas(blob, window.width*2, window.height*2)
-            // previewCanvas.style.position = 'fixed';
-            // document.appendChild(previewCanvas);
-
-            var reader = new FileReader();
+            const reader = new FileReader();
             reader.readAsDataURL(blob); 
             reader.onloadend = function() {
-                var base64data = reader.result;
-                fieldScreenshot.value = base64data.replace('data:image/jpeg;base64,', '');;
+                const base64data = reader.result;
+                fieldScreenshot.value = base64data.replace('data:image/jpeg;base64,', '');
+                setScreenshotName();
+                setFilled();
             }
         }
 
         const fieldScreenshot = this.fieldScreenshot;
+        const setScreenshotName = () => {
+            this.setScreenshotName('screenshot.jpg');
+        }
+        const setFilled = () => {
+            this.setFilled();
+        }
         setScreenshot();
-    }
-
-    setScreenshot() {
-        const file = this.attachScreenshot.files[0];
-        const fileFormat = file.type;
-
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            const blob = reader.result;
-
-            if (fileFormat === 'image/png') {
-                this.fieldScreenshot.value = blob.replace('data:image/png;base64,', '');
-            }
-            else this.fieldScreenshot.value = blob.replace('data:image/jpeg;base64,', '');
-
-            this.attachScreenshot.value = '';
-        }
-        reader.onerror = error => {
-            this.attachScreenshot.value = '';
-        }
-    }
-
-    setInvalid() {
-        this.attachScreenshot.parentNode.classList.add('invalid');
-
-        setTimeout(() => {
-            this.attachScreenshot.parentNode.classList.remove('invalid');
-        }, 2000);
-    }
-
-    setFilled() {
-        this.screenshotInfo.classList.add('show');
-        this.attachScreenshot.parentNode.classList.add('hide');
-    }
-
-    setScreenshotName(name) {
-        this.fieldScreenshotName.innerText = name;
-    }
-
-    setDisabled() {
-        this.buttonScreenshotDelete.disabled = true;
-    }
-
-    removeDisabled() {
-        this.buttonScreenshotDelete.disabled = false;
-    }
-
-    resetField() {
-        this.fieldScreenshot.value = '';
-        this.screenshotInfo.classList.remove('show');
-        this.attachScreenshot.parentNode.classList.remove('hide');
-        this.fieldScreenshotName.innerText = '';
     }
 };
 
