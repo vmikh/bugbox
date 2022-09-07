@@ -3,7 +3,7 @@ Easy way to collect and manage your web project bugs
 
 ### Manual Install
 
-1. Copy <a href="https://docs.google.com/spreadsheets/d/1LypOCr8bA5WoSZPJF7C9ccuZR01zYfJO07qHg24L1Bw/copy" target="_blank">this sheet</a><br>
+1. Copy <a href="https://docs.google.com/spreadsheets/d/1g3n8uBIR0hArriOycaj8i79fMdjN3dNmQ_KBdLsEm0g/copy" target="_blank">this sheet</a><br>
 2. Extensions > Apps Script<br>
 3. Deploy > New deployment<br>
 4. Fill the description > Deploy<br>
