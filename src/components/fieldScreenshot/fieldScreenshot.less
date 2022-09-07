@@ -6,23 +6,24 @@
     margin-bottom: @formBaseMargin + 1px;
 
     .take_screenshot {
-        left: calc(50% + @formBaseMargin / 2);
+        left: 0;
     }
 
     .attach_screenshot {
-        left: 0;
+        right: 0;
     }
 
     .take_screenshot,
     .attach_screenshot {
         display           : flex;
-        justify-content   : center;
+        justify-content   : space-between;
         align-items       : center;
+        padding-left: 15px;
+        padding-right: 10px;
         position          : absolute;
         border            : 0 solid transparent;
         height            : 100%;
         width             : calc(50% - @formBaseMargin / 2);
-        padding           : 0 25px 0 25px;
         color             : @colorBase;
         background-color  : @colorBase010;
         border-radius     : @radiusS;
@@ -49,10 +50,6 @@
             display: none;
         }
 
-        input {
-            display: none;
-        }
-
         &.invalid {
             right             : 0px;
             background-color  : @colorDanger010;
@@ -60,34 +57,50 @@
             animation-duration: .4s;
             animation-name    : shake;
 
+            svg {
+                path, circle {
+                    stroke: @colorDanger;
+                }
+            }
+
             @keyframes shake {
                 0% {
-                    left: -6px;
+                    right: -6px;
                 }
 
                 20% {
-                    left: 6px;
+                    right: 6px;
                 }
 
                 40% {
-                    left: -4px;
+                    right: -4px;
                 }
 
                 60% {
-                    left: 4px;
+                    right: 4px;
                 }
 
                 80% {
-                    left: -2px;
+                    right: -2px;
                 }
 
                 90% {
-                    left: 2px;
+                    right: 2px;
                 }
 
                 100% {
-                    left: 0px;
+                    right: 0px;
                 }
+            }
+        }
+
+        input {
+            display: none;
+        }
+
+        svg {
+            path, circle {
+                stroke: @colorBase;
             }
         }
     }

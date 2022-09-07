@@ -24,6 +24,7 @@
                 .widget_back__headline {
                     @titleSmall();
                 }
+
                 .menu {
                     .menu__item {
                         margin-bottom: @menuMarginSmall;
@@ -75,6 +76,35 @@
         bottom            : @widgetBottomActive;
         animation-duration: .2s;
         animation-name    : widgetOpen;
+    }
+
+    .updateInfo {
+        display: none;
+    }
+
+    &.needUpdate {
+        .updateInfo {
+            width     : 100%;
+            height    : 100%;
+            z-index   : 10;
+            left      : 0;
+            top       : 0;
+            padding   : @widgetBackPadding;
+            background: @colorWhite50;
+
+            position       : absolute;
+            display        : flex;
+            align-items    : center;
+            justify-content: center;
+            text-align     : center;
+            border-radius  : inherit;
+            backdrop-filter: blur(30px);
+        }
+
+        .updateInfo__text {
+            color: @colorBlack;
+            @title();
+        }
     }
 
     .widget_front,

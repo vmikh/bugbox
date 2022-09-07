@@ -62,6 +62,10 @@ class Widget {
         shadowHost.appendChild(link);
     }
 
+    needUpdate() {
+        this.widgetCard.classList.add('needUpdate');
+    }
+
     open() {
         this.widgetCard.classList.add('open');
     }
@@ -184,6 +188,9 @@ class Widget {
 
             <section class="widget_card ${animationStyle} ${widgetHeightStyle}" id="widget_card">
                 <section class="widget_front">
+                    <div class="updateInfo">
+                        <p class="updateInfo__text">Update the Google Spreadsheet for correct work</p>
+                    </div>
                     <form id="form">
                         <label class="field_problem" for="field_problem">
                             <textarea class="field_problem__input" id="field_problem" placeholder="&nbsp;"></textarea>
@@ -198,13 +205,23 @@ class Widget {
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.34459 0.34459C-0.114838 0.804018 -0.114889 1.54896 0.34459 2.00844L5.33615 7L0.34459 11.9916C-0.114838 12.451 -0.114889 13.1959 0.34459 13.6554C0.804069 14.1149 1.54901 14.1148 2.00844 13.6554L7 8.66385L11.9916 13.6554C12.451 14.1149 13.196 14.1148 13.6554 13.6554C14.1148 13.196 14.1149 12.451 13.6554 11.9916L8.66385 7L13.6554 2.00844C14.1148 1.54901 14.1149 0.804069 13.6554 0.34459C13.1959 -0.114889 12.451 -0.114838 11.9916 0.34459L7 5.33615L2.00844 0.34459C1.54896 -0.114889 0.804018 -0.114838 0.34459 0.34459Z"/></svg>
                                 </button>
                             </div>
+                            <button class="take_screenshot" type="button" id="take_screenshot">
+                                Take
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 5H7C5.89543 5 5 5.89543 5 7V10" stroke="black" stroke-width="2"/>
+                                    <path d="M14 5H17C18.1046 5 19 5.89543 19 7V10" stroke="black" stroke-width="2"/>
+                                    <path d="M10 19H7C5.89543 19 5 18.1046 5 17V14" stroke="black" stroke-width="2"/>
+                                    <path d="M14 19H17C18.1046 19 19 18.1046 19 17V14" stroke="black" stroke-width="2"/>
+                                    <circle cx="12" cy="12" r="3" stroke="black" stroke-width="2"/>
+                                </svg>
+                            </button>
                             <label class="attach_screenshot" for="attach_screenshot">
                                 <input id="attach_screenshot" type="file">
                                 Attach
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.93599 15.6737L17.5326 8.3151C17.949 7.89598 18.1829 7.32754 18.1829 6.73483C18.1829 6.14212 17.949 5.57368 17.5326 5.15457C17.1162 4.73545 16.5514 4.5 15.9625 4.5C15.3736 4.5 14.8089 4.73545 14.3924 5.15457L6.61347 12.9681C5.90053 13.6857 5.5 14.6589 5.5 15.6737C5.5 16.6885 5.90053 17.6617 6.61347 18.3793C7.32641 19.0969 8.29336 19.5 9.30162 19.5C10.3099 19.5 11.2768 19.0969 11.9898 18.3793L18.5 11.8428" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                             </label>
-                            <button class="take_screenshot" type="button" id="take_screenshot">
-                                Take
-                            </button>
                         </div>
                         
                         <button class="button_send" type="button" id="button_send">

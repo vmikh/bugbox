@@ -166,7 +166,7 @@ fetch(widget.googleLink)
         // Check google script version
         const version = '1.00';
         if (data.version !== version) {
-            console.log('Update the Google spreadsheet for correct work');
+            widget.needUpdate();
         }
         widget.addSheetUrl(data.url);
     }
