@@ -132,6 +132,8 @@ class FieldScreenshot {
             try {
                 stream = await getDisplayMedia({
                     audio: false,
+                    preferCurrentTab: true,
+                    
                     // see: https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints/video
                     video: {
                         width,
@@ -162,6 +164,7 @@ class FieldScreenshot {
                     })
                 } catch (ex) {
                     errors.push(ex);
+                    openWidgetEvent();
                 }
             }
         
