@@ -19,6 +19,12 @@ Easy way to collect and manage your web project bugs
 ### Sheet Settings
 You can edit 'Priority', 'Assignee' and 'Status' fields at the 'libraries' sheet
 
+## Widget Params
+
+| Param            | Type             | Description                                                                            |
+| ---------------- | ---------------- | -------------------------------------------------------------------------------------- |
+| isHidden         | Bool             | Enables hidden mode. Three fast clicks in bottom right corner of screen to open widget |
+
 ## Credits
 [Platform.js v1.3.6](https://github.com/bestiejs/platform.js/)
 
