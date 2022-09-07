@@ -17,37 +17,36 @@ class MetaData {
     // Create header row
     get headArray() {
         return [
-            'Date&Time',
             'Problem',
             'Screenshot',
+            'URL',
             'Actual Result',
             'Expected Result',
             'Priority',
             'Assignee',
             'Status',
-            'URL',
             'Browser',
             'OS',
             'Device Type',
-            'Screen ⥗',
-            'Screen ⥔',
-            'Browser ⥗',
-            'Browser ⥔',
+            'Screen\nwidth ← →',
+            'Screen ↑\nheight ↓',
+            'Browser\nwidth ← →',
+            'Browser ↑\nheight  ↓',
+            'Date & Time',
         ]
     }
 
     // Create body row
     get bodyArray() {
         return [
-            this.date,                    // Date&Time
             this.fieldProblem.value,      // Problem
             this.fieldScreenshot.value,   // Screenshot
+            window.location.href,         // URL
             '',                           // Actual Result
             '',                           // Expected Result
             '',                           // Priority
             '',                           // Assignee
             '',                           // Status
-            window.location.href,         // URL
             this.browser,                 // Browser
             this.os,                      // OS
             this.deviceType,              // Device Type
@@ -55,7 +54,13 @@ class MetaData {
             window.screen.height,         // Screen Height
             window.innerWidth,            // Browser Width
             window.innerHeight,           // Browser Height
+            this.date,                    // Date&Time
         ]
+    }
+
+
+    get domain() {
+        return window.location.hostname;
     }
 
 

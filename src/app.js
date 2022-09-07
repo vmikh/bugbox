@@ -119,7 +119,8 @@ widget.buttonSend.addEventListener('click', event => {
         },
         body: JSON.stringify({
             headArray: metaData.headArray,
-            bodyArray: metaData.bodyArray
+            bodyArray: metaData.bodyArray,
+            domain: metaData.domain,
         })
     })
     .then(response => {
@@ -131,7 +132,7 @@ widget.buttonSend.addEventListener('click', event => {
         }  
     )  
     .then(data => {
-        // console.log(data);
+        console.log(data);
     })
     .catch(err => {  
         // Remove form disabled
