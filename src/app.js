@@ -82,7 +82,8 @@ widget.attachScreenshot.addEventListener('change', event => {
 
 // Take screenshot event
 widget.takeScreenshot.addEventListener('click', event => {
-    fieldScreenshot.takeScreen();
+    openWidget(); // toggle widget event
+    fieldScreenshot.takeScreen(openWidget);
 });
 
 

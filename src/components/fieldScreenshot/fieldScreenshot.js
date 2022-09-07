@@ -85,7 +85,7 @@ class FieldScreenshot {
         }
     }
 
-    takeScreen() {
+    takeScreen(openWidgetEvent) {
         // docs: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getDisplayMedia
         // see: https://www.webrtc-experiment.com/Pluginfree-Screen-Sharing/#20893521368186473
         // see: https://github.com/muaz-khan/WebRTC-Experiment/blob/master/Pluginfree-Screen-Sharing/conference.js
@@ -141,6 +141,7 @@ class FieldScreenshot {
                 })
             } catch (ex) {
                 errors.push(ex);
+                openWidgetEvent();
             }
         
             // for electron js
@@ -228,6 +229,7 @@ class FieldScreenshot {
             reader.onloadend = function() {
                 const base64data = reader.result;
                 fieldScreenshot.value = base64data.replace('data:image/jpeg;base64,', '');
+                openWidgetEvent();
                 setScreenshotName();
                 setFilled();
             }
