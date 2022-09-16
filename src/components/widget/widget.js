@@ -7,7 +7,7 @@
 "use strict";
 
 class Widget {
-    constructor(googleSheetLink, isHidden, platformName, deviceType) {
+    constructor(googleSheetLink, isHidden, platformName, os) {
 
         // Create widget section
         const widgetSection = document.createElement("section");
@@ -27,7 +27,7 @@ class Widget {
 
         // Add platform info
         this.platformName = platformName;
-        this.deviceType = deviceType;
+        this.os = os;
         
         // Add html to shadow root
         this.createHtml(this.shadowHost);
@@ -164,7 +164,10 @@ class Widget {
     // Add html to shadow root
     createHtml(shadowHost) {
         const animationStyle = (this.platformName === 'Chrome' || this.platformName === 'Firefox') ? 'animated' : 'static';
-        const widgetHeightStyle = this.deviceType === 'Android' ? 'smallHeight' : 'normalHeight';
+        const widgetHeightStyle = this.os === 'Android' ? 'smallHeight' : 'normalHeight';
+        const isModile = this.os === 'Android' || this.os === 'iOS' || this.os === 'Windows Phone' ? 'isMobile' : '';
+        const attachScreenTitle = !isModile ? 'Attach' : 'Attach Screenshot';
+
         const hiddenStyle = this.isHidden ? 'isHidden' : '';
         let   floatButton;
 
@@ -187,7 +190,7 @@ class Widget {
                 <svg class="button_info__back" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 6.22222L7.11111 0V3.63911C16 5.77422 16 16 16 16C16 16 12.9062 8.812 7.11111 8.812V12.4444L0 6.22222Z"/></svg>
             </button>
 
-            <section class="widget_card ${animationStyle} ${widgetHeightStyle}" id="widget_card">
+            <section class="widget_card ${animationStyle} ${widgetHeightStyle} ${isModile}" id="widget_card">
                 <section class="widget_front">
                     <div class="updateInfo">
                         <h2 class="updateInfo__title">Bugbox has been updated</h2>
@@ -219,7 +222,7 @@ class Widget {
                             </button>
                             <label class="attach_screenshot" for="attach_screenshot">
                                 <input id="attach_screenshot" type="file">
-                                Attach
+                                ${attachScreenTitle}
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9.93599 15.6737L17.5326 8.3151C17.949 7.89598 18.1829 7.32754 18.1829 6.73483C18.1829 6.14212 17.949 5.57368 17.5326 5.15457C17.1162 4.73545 16.5514 4.5 15.9625 4.5C15.3736 4.5 14.8089 4.73545 14.3924 5.15457L6.61347 12.9681C5.90053 13.6857 5.5 14.6589 5.5 15.6737C5.5 16.6885 5.90053 17.6617 6.61347 18.3793C7.32641 19.0969 8.29336 19.5 9.30162 19.5C10.3099 19.5 11.2768 19.0969 11.9898 18.3793L18.5 11.8428" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
