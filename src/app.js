@@ -130,7 +130,7 @@ widget.buttonSend.addEventListener('click', event => {
         }  
     )  
     .then(data => {
-        console.log(data);
+        // console.log(data);
     })
     .catch(err => {  
         // Remove form disabled
@@ -163,12 +163,15 @@ fetch(widget.googleLink)
     if (undefined !== data.url) {
 
         // Check google script version
-        const version = '1.00';
-        if (data.version !== version) {
+        const version = '1.1';
+        if (data.version !== version || window.bagboxSettings.requiredUpdate) {
             widget.needUpdate();
         }
         widget.addSheetUrl(data.url);
     }
+}).catch(err => {
+    // console.log(err);
+    widget.notConnect();
 });
 
 

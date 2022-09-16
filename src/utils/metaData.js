@@ -14,6 +14,7 @@ class MetaData {
         this.platformVersion = platformVersion;
     }
 
+
     // Create header row
     get headArray() {
         return [

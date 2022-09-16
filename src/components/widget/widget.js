@@ -67,6 +67,10 @@ class Widget {
         this.buttonFloat.classList.add('needUpdate');
     }
 
+    notConnect() {
+        this.widgetCard.classList.add('notConnect');
+    }
+
     open() {
         this.widgetCard.classList.add('open');
     }
@@ -195,6 +199,10 @@ class Widget {
                     <div class="updateInfo">
                         <h2 class="updateInfo__title">Bugbox has been updated</h2>
                         <p class="updateInfo__text">Your version isn't available, but&nbsp;data in&nbsp;spreadsheet is&nbsp;ok. Please reinstall script from <a href="https://github.com/vmikh/bugbox" target="_blank">github</a>.</p>
+                    </div>
+                    <div class="notConnect">
+                        <h2 class="notConnect__title">Sheets isn't connect</h2>
+                        <p class="notConnect__text">Widget can't connect to your google sheets. Check internet connection and reload browser.</p>
                     </div>
                     <form id="form">
                         <label class="field_problem" for="field_problem">

@@ -82,8 +82,10 @@
         display: none;
     }
 
-    &.needUpdate {
-        .updateInfo {
+    &.needUpdate,
+    &.notConnect {
+        .updateInfo,
+        .notConnect {
             width     : 100%;
             height    : 100%;
             z-index   : 10;
@@ -102,13 +104,15 @@
             backdrop-filter: blur(30px);
         }
 
-        .updateInfo__title {
+        .updateInfo__title,
+        .notConnect__title {
             color: @colorBlack;
             @title();
             margin-bottom: 10px;
         }
 
-        .updateInfo__text {
+        .updateInfo__text,
+        .notConnect__text {
             color: @colorBlack;
             @bodySmall();
             margin-bottom: 0;
