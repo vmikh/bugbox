@@ -6,7 +6,7 @@
     // Copyright © 2021 Vladislav Mikhailov
 
     class Widget {
-        constructor(googleSheetLink, isHidden, platformName, deviceType) {
+        constructor(googleSheetLink, isHidden, platformName, os) {
 
             // Create widget section
             const widgetSection = document.createElement("section");
@@ -26,7 +26,7 @@
 
             // Add platform info
             this.platformName = platformName;
-            this.deviceType = deviceType;
+            this.os = os;
             
             // Add html to shadow root
             this.createHtml(this.shadowHost);
@@ -64,6 +64,10 @@
         needUpdate() {
             this.widgetCard.classList.add('needUpdate');
             this.buttonFloat.classList.add('needUpdate');
+        }
+
+        notConnect() {
+            this.widgetCard.classList.add('notConnect');
         }
 
         open() {
@@ -163,7 +167,10 @@
         // Add html to shadow root
         createHtml(shadowHost) {
             const animationStyle = (this.platformName === 'Chrome' || this.platformName === 'Firefox') ? 'animated' : 'static';
-            const widgetHeightStyle = this.deviceType === 'Android' ? 'smallHeight' : 'normalHeight';
+            const widgetHeightStyle = this.os === 'Android' ? 'smallHeight' : 'normalHeight';
+            const isModile = this.os === 'Android' || this.os === 'iOS' || this.os === 'Windows Phone' ? 'isMobile' : '';
+            const attachScreenTitle = !isModile ? 'Attach' : 'Attach Screenshot';
+
             const hiddenStyle = this.isHidden ? 'isHidden' : '';
             let   floatButton;
 
@@ -186,11 +193,15 @@
                 <svg class="button_info__back" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 6.22222L7.11111 0V3.63911C16 5.77422 16 16 16 16C16 16 12.9062 8.812 7.11111 8.812V12.4444L0 6.22222Z"/></svg>
             </button>
 
-            <section class="widget_card ${animationStyle} ${widgetHeightStyle}" id="widget_card">
+            <section class="widget_card ${animationStyle} ${widgetHeightStyle} ${isModile}" id="widget_card">
                 <section class="widget_front">
                     <div class="updateInfo">
                         <h2 class="updateInfo__title">Bugbox has been updated</h2>
                         <p class="updateInfo__text">Your version isn't available, but&nbsp;data in&nbsp;spreadsheet is&nbsp;ok. Please reinstall script from <a href="https://github.com/vmikh/bugbox" target="_blank">github</a>.</p>
+                    </div>
+                    <div class="notConnect">
+                        <h2 class="notConnect__title">Sheets isn't connect</h2>
+                        <p class="notConnect__text">Widget can't connect to your google sheets. Check internet connection and reload browser.</p>
                     </div>
                     <form id="form">
                         <label class="field_problem" for="field_problem">
@@ -217,8 +228,8 @@
                                 </svg>
                             </button>
                             <label class="attach_screenshot" for="attach_screenshot">
-                                <input id="attach_screenshot" type="file">
-                                Attach
+                                <input id="attach_screenshot" type="file" accept="image/png, image/jpeg">
+                                ${attachScreenTitle}
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9.93599 15.6737L17.5326 8.3151C17.949 7.89598 18.1829 7.32754 18.1829 6.73483C18.1829 6.14212 17.949 5.57368 17.5326 5.15457C17.1162 4.73545 16.5514 4.5 15.9625 4.5C15.3736 4.5 14.8089 4.73545 14.3924 5.15457L6.61347 12.9681C5.90053 13.6857 5.5 14.6589 5.5 15.6737C5.5 16.6885 5.90053 17.6617 6.61347 18.3793C7.32641 19.0969 8.29336 19.5 9.30162 19.5C10.3099 19.5 11.2768 19.0969 11.9898 18.3793L18.5 11.8428" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -236,7 +247,7 @@
 
                     <h2 class="widget_back__headline">Bug report system based</br>on Google Sheets</h2>
                     <ul class="menu" id="menu">
-                        <li class="menu__item"><a href="https://github.com/vmikh/bugbox" target="_blank">full manual</a></li>
+                        <li class="menu__item"><a href="https://github.com/vmikh/bugbox" target="_blank">github manual</a></li>
                         <li class="menu__item"><a href="mailto:info@bugbox.io">info@bugbox.io</a></li>
                     </ul>
                     <a href="https://yoomoney.ru/to/41001838339242" class="widget_back__date_button" target="_blank">Donate</a>
@@ -332,6 +343,7 @@
 
         setScreenshotName(name) {
             this.fieldScreenshotName.innerText = name;
+            this.fieldScreenshot.name = name;
         }
 
         setDisabled() {
@@ -344,6 +356,7 @@
 
         resetField() {
             this.fieldScreenshot.value = '';
+            this.fieldScreenshot.name = '';
             this.screenshotInfo.classList.remove('show');
             this.attachScreenshot.parentNode.classList.remove('hide');
             this.takeScreenshot.classList.remove('hide');
@@ -625,54 +638,60 @@
     // Copyright © 2021 Vladislav Mikhailov
 
     class MetaData {
-        constructor(fieldProblem, fieldScreenshot, platformName, platformVersion) {
+        constructor(fieldProblem, fieldScreenshot, platformName, platformVersion, dateFormat) {
             this.fieldProblem = fieldProblem;
             this.fieldScreenshot = fieldScreenshot;
             this.platformName = platformName;
             this.platformVersion = platformVersion;
+            this.dateFormat = dateFormat;
         }
+
 
         // Create header row
         get headArray() {
             return [
-                'Problem',
+                'Problem or idea',
                 'Screenshot',
                 'URL',
-                'Actual Result',
-                'Expected Result',
+                'Actual result',
+                'Expected result',
                 'Priority',
                 'Assignee',
                 'Status',
                 'Browser',
                 'OS',
-                'Device Type',
+                'Device type',
                 'Screen\nwidth ← →',
                 'Screen ↑\nheight ↓',
                 'Browser\nwidth ← →',
                 'Browser ↑\nheight  ↓',
-                'Date & Time',
+                'Date & time',
             ]
         }
 
+
         // Create body row
         get bodyArray() {
+            const currentDate = this.getDate();
+            const screenShotName = this.fieldScreenshot.name === 'screenshot.jpg' ? `${this.domain} ${currentDate}.jpg` : this.fieldScreenshot.name;
+
             return [
-                this.fieldProblem.value,      // Problem
-                this.fieldScreenshot.value,   // Screenshot
-                window.location.href,         // URL
-                '',                           // Actual Result
-                '',                           // Expected Result
-                '',                           // Priority
-                '',                           // Assignee
-                '',                           // Status
-                this.browser,                 // Browser
-                this.os,                      // OS
-                this.deviceType,              // Device Type
-                window.screen.width,          // Screen Width
-                window.screen.height,         // Screen Height
-                window.innerWidth,            // Browser Width
-                window.innerHeight,           // Browser Height
-                this.date,                    // Date&Time
+                this.fieldProblem.value,                        // Problem
+                [this.fieldScreenshot.value, screenShotName],   // Screenshot
+                window.location.href,                           // URL
+                '',                                             // Actual Result
+                '',                                             // Expected Result
+                '',                                             // Priority
+                '',                                             // Assignee
+                '',                                             // Status
+                this.browser,                                   // Browser
+                this.os,                                        // OS
+                this.deviceType,                                // Device Type
+                window.screen.width,                            // Screen Width
+                window.screen.height,                           // Screen Height
+                window.innerWidth,                              // Browser Width
+                window.innerHeight,                             // Browser Height
+                currentDate,                                    // Date&Time
             ]
         }
 
@@ -715,8 +734,8 @@
         }
 
 
-        // Return date and time in format dd.mm.yyyy hh.mm
-        get date() {
+        // Return date and time
+        getDate() {
             const date = new Date();
 
             const day = date.getDate();
@@ -725,7 +744,10 @@
             const hours = ((date.getHours()).toString().length == 1?'0':'') + "" + (date.getHours());
             const mins = ((date.getMinutes()).toString().length == 1?'0':'') + "" + (date.getMinutes());
 
-            return `${day}.${month}.${year} ${hours}:${mins}`;
+            if (this.dateFormat === 'ru')
+                return `${hours}:${mins} ${day}.${month}.${year}`;
+            else 
+                return `${hours}:${mins} ${month}.${day}.${year}`;
         }
 
 
@@ -2076,7 +2098,8 @@
         widget.fieldProblem,
         widget.fieldScreenshot,
         platform$1.info.name,
-        platform$1.info.version
+        platform$1.info.version,
+        window.bagboxSettings.dateFormat
     );
 
     // Create analytics class
@@ -2135,8 +2158,7 @@
             },
             body: JSON.stringify({
                 headArray: metaData.headArray,
-                bodyArray: metaData.bodyArray,
-                domain: metaData.domain,
+                bodyArray: metaData.bodyArray
             })
         })
         .then(response => {
@@ -2148,7 +2170,7 @@
             }  
         )  
         .then(data => {
-            console.log(data);
+            // console.log(data);
         })
         .catch(err => {  
             // Remove form disabled
@@ -2181,12 +2203,19 @@
         if (undefined !== data.url) {
 
             // Check google script version
-            const version = '1.00';
-            if (data.version !== version) {
+            const version = '1.1';
+            if (data.version !== version || window.bagboxSettings.requiredUpdate) {
                 widget.needUpdate();
             }
             widget.addSheetUrl(data.url);
         }
+    })
+    .then(data => {
+        // console.log(data);
+    })
+    .catch(err => {
+        // console.log(err);
+        widget.notConnect();
     });
 
 
