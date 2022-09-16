@@ -36,25 +36,29 @@ class MetaData {
         ]
     }
 
+
     // Create body row
     get bodyArray() {
+        const currentDate = this.date;
+        const screenShotName = this.fieldScreenshot.name === 'screenshot.jpg' ? `${this.domain} ${currentDate}.jpg` : this.fieldScreenshot.name;
+
         return [
-            this.fieldProblem.value,      // Problem
-            this.fieldScreenshot.value,   // Screenshot
-            window.location.href,         // URL
-            '',                           // Actual Result
-            '',                           // Expected Result
-            '',                           // Priority
-            '',                           // Assignee
-            '',                           // Status
-            this.browser,                 // Browser
-            this.os,                      // OS
-            this.deviceType,              // Device Type
-            window.screen.width,          // Screen Width
-            window.screen.height,         // Screen Height
-            window.innerWidth,            // Browser Width
-            window.innerHeight,           // Browser Height
-            this.date,                    // Date&Time
+            this.fieldProblem.value,                        // Problem
+            [this.fieldScreenshot.value, screenShotName],   // Screenshot
+            window.location.href,                           // URL
+            '',                                             // Actual Result
+            '',                                             // Expected Result
+            '',                                             // Priority
+            '',                                             // Assignee
+            '',                                             // Status
+            this.browser,                                   // Browser
+            this.os,                                        // OS
+            this.deviceType,                                // Device Type
+            window.screen.width,                            // Screen Width
+            window.screen.height,                           // Screen Height
+            window.innerWidth,                              // Browser Width
+            window.innerHeight,                             // Browser Height
+            currentDate,                                    // Date&Time
         ]
     }
 
@@ -97,7 +101,7 @@ class MetaData {
     }
 
 
-    // Return date and time in format dd.mm.yyyy hh.mm
+    // Return date and time in format hh:mm dd.mm.yyyy
     get date() {
         const date = new Date();
 
@@ -107,7 +111,7 @@ class MetaData {
         const hours = ((date.getHours()).toString().length == 1?'0':'') + "" + (date.getHours());
         const mins = ((date.getMinutes()).toString().length == 1?'0':'') + "" + (date.getMinutes());
 
-        return `${day}.${month}.${year} ${hours}:${mins}`;
+        return `${hours}:${mins} ${day}.${month}.${year}`;
     }
 
 

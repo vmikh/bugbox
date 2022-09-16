@@ -118,8 +118,7 @@ widget.buttonSend.addEventListener('click', event => {
         },
         body: JSON.stringify({
             headArray: metaData.headArray,
-            bodyArray: metaData.bodyArray,
-            domain: metaData.domain,
+            bodyArray: metaData.bodyArray
         })
     })
     .then(response => {

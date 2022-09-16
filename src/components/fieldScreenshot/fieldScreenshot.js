@@ -52,6 +52,7 @@ class FieldScreenshot {
 
     setScreenshotName(name) {
         this.fieldScreenshotName.innerText = name;
+        this.fieldScreenshot.name = name;
     }
 
     setDisabled() {
@@ -64,6 +65,7 @@ class FieldScreenshot {
 
     resetField() {
         this.fieldScreenshot.value = '';
+        this.fieldScreenshot.name = '';
         this.screenshotInfo.classList.remove('show');
         this.attachScreenshot.parentNode.classList.remove('hide');
         this.takeScreenshot.classList.remove('hide');
