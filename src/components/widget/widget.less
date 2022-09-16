@@ -78,8 +78,21 @@
         animation-name    : widgetOpen;
     }
 
-    .updateInfo {
+    .updateInfo,
+    .notConnect {
         display: none;
+    }
+
+    &.notConnect {
+        .notConnect {
+            display: flex;
+        }
+    }
+
+    &.needUpdate {
+        .updateInfo {
+            display: flex;
+        }
     }
 
     &.needUpdate,
@@ -95,7 +108,6 @@
             background: @colorWhite50;
 
             position       : absolute;
-            display        : flex;
             flex-direction : column;
             align-items    : center;
             justify-content: center;

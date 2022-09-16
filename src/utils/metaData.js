@@ -7,40 +7,41 @@
 "use strict";
 
 class MetaData {
-    constructor(fieldProblem, fieldScreenshot, platformName, platformVersion) {
+    constructor(fieldProblem, fieldScreenshot, platformName, platformVersion, dateFormat) {
         this.fieldProblem = fieldProblem;
         this.fieldScreenshot = fieldScreenshot;
         this.platformName = platformName;
         this.platformVersion = platformVersion;
+        this.dateFormat = dateFormat;
     }
 
 
     // Create header row
     get headArray() {
         return [
-            'Problem',
+            'Problem or idea',
             'Screenshot',
             'URL',
-            'Actual Result',
-            'Expected Result',
+            'Actual result',
+            'Expected result',
             'Priority',
             'Assignee',
             'Status',
             'Browser',
             'OS',
-            'Device Type',
+            'Device type',
             'Screen\nwidth ← →',
             'Screen ↑\nheight ↓',
             'Browser\nwidth ← →',
             'Browser ↑\nheight  ↓',
-            'Date & Time',
+            'Date & time',
         ]
     }
 
 
     // Create body row
     get bodyArray() {
-        const currentDate = this.date;
+        const currentDate = this.getDate();
         const screenShotName = this.fieldScreenshot.name === 'screenshot.jpg' ? `${this.domain} ${currentDate}.jpg` : this.fieldScreenshot.name;
 
         return [
@@ -102,8 +103,8 @@ class MetaData {
     }
 
 
-    // Return date and time in format hh:mm dd.mm.yyyy
-    get date() {
+    // Return date and time
+    getDate() {
         const date = new Date();
 
         const day = date.getDate();
@@ -112,7 +113,10 @@ class MetaData {
         const hours = ((date.getHours()).toString().length == 1?'0':'') + "" + (date.getHours());
         const mins = ((date.getMinutes()).toString().length == 1?'0':'') + "" + (date.getMinutes());
 
-        return `${hours}:${mins} ${day}.${month}.${year}`;
+        if (this.dateFormat === 'ru')
+            return `${hours}:${mins} ${day}.${month}.${year}`;
+        else 
+            return `${hours}:${mins} ${month}.${day}.${year}`;
     }
 
 

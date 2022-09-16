@@ -59,7 +59,8 @@ const metaData = new MetaData (
     widget.fieldProblem,
     widget.fieldScreenshot,
     platform.info.name,
-    platform.info.version
+    platform.info.version,
+    window.bagboxSettings.dateFormat
 );
 
 // Create analytics class
@@ -169,7 +170,11 @@ fetch(widget.googleLink)
         }
         widget.addSheetUrl(data.url);
     }
-}).catch(err => {
+})
+.then(data => {
+    // console.log(data);
+})
+.catch(err => {
     // console.log(err);
     widget.notConnect();
 });
