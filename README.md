@@ -38,7 +38,7 @@ Easiest way to collect and manage bugs in test versions your web projects.
 #### Please, don't do that
 - add new colomns
 - delete colomns
-- renames colomns
+- rename colomns
 - change column order
 
 ## Automatic screenshot
