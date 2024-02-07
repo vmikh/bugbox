@@ -49,6 +49,9 @@
         }
 
 
+        // <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bugbox" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+
+
         // Add styles func
         createStyles(shadowHost, stylesLink) {
             const link  = document.createElement('link');
@@ -250,7 +253,8 @@
                         <li class="menu__item"><a href="https://github.com/vmikh/bugbox" target="_blank">github manual</a></li>
                         <li class="menu__item"><a href="mailto:info@bugbox.io">info@bugbox.io</a></li>
                     </ul>
-                    <a href="https://yoomoney.ru/to/41001838339242" class="widget_back__date_button" target="_blank">Donate</a>
+                    <a href="https://www.buymeacoffee.com/bugbox" class="widget_back__date_button" target="_blank"><span>☕️</span> Buy me a coffee</a>
+                    <!-- <a href="https://www.buymeacoffee.com/bugbox" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a> -->
                 </section>
             </section>
         `;

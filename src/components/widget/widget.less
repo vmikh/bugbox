@@ -182,12 +182,21 @@
             background-color: @colorSecondary;
             color           : @colorBlack;
             @buttonLabel();
-            padding        : 8px 12px;
+            padding        : 10px 12px 10px 40px;
             font-size      : 12px;
+            font-weight    : 600;
             top            : 8px;
             position       : relative;
             text-decoration: none;
             transition     : color .2s, background-color .2s;
+
+            span {
+                font-size    : 20px;
+                padding-right: 4px;
+                position     : absolute;
+                left         : 12px;
+                top          : 4px;
+            }
 
             &:hover {
                 background-color: @colorBlack;
