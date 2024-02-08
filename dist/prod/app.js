@@ -97,6 +97,15 @@
             this.menu.prepend(link);
         }
 
+        checkSSL() {
+            if (window.location.protocol === 'https:') {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
         // Getters
         get widgetCard() {
             return this.shadowHost.getElementById('widget_card');
@@ -172,7 +181,8 @@
             const animationStyle = (this.platformName === 'Chrome' || this.platformName === 'Firefox') ? 'animated' : 'static';
             const widgetHeightStyle = this.os === 'Android' ? 'smallHeight' : 'normalHeight';
             const isModile = this.os === 'Android' || this.os === 'iOS' || this.os === 'Windows Phone' ? 'isMobile' : '';
-            const attachScreenTitle = !isModile ? 'Attach' : 'Attach Screenshot';
+            const takeScreenshotHidden = !this.checkSSL() ? 'takeScreenshotHidden' : '';
+            const attachScreenTitle = !isModile && !takeScreenshotHidden ? 'Attach' : 'Attach Screenshot';
 
             const hiddenStyle = this.isHidden ? 'isHidden' : '';
             let   floatButton;
@@ -196,7 +206,7 @@
                 <svg class="button_info__back" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 6.22222L7.11111 0V3.63911C16 5.77422 16 16 16 16C16 16 12.9062 8.812 7.11111 8.812V12.4444L0 6.22222Z"/></svg>
             </button>
 
-            <section class="widget_card ${animationStyle} ${widgetHeightStyle} ${isModile}" id="widget_card">
+            <section class="widget_card ${animationStyle} ${widgetHeightStyle} ${isModile} ${takeScreenshotHidden}" id="widget_card">
                 <section class="widget_front">
                     <div class="updateInfo">
                         <h2 class="updateInfo__title">Bugbox has been updated</h2>
@@ -251,7 +261,7 @@
                     <h2 class="widget_back__headline">Bug report system based</br>on Google Sheets</h2>
                     <ul class="menu" id="menu">
                         <li class="menu__item"><a href="https://github.com/vmikh/bugbox" target="_blank">github manual</a></li>
-                        <li class="menu__item"><a href="mailto:info@bugbox.io">info@bugbox.io</a></li>
+                        <li class="menu__item"><a href="https://bugbox.io/" target="_blank">about</a></li>
                     </ul>
                     <a href="https://www.buymeacoffee.com/bugbox" class="widget_back__date_button" target="_blank"><span>☕️</span> Buy me a coffee</a>
                 </section>
