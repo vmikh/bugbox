@@ -7,6 +7,11 @@
     
         .attach_screenshot {
             width: 100%;
+            justify-content: center;
+
+            svg {
+                display: none;
+            }
         }
     }
 }
@@ -147,7 +152,7 @@
         text-overflow: ellipsis;
         white-space  : nowrap;
         overflow     : hidden;
-        max-width    : calc(100% - 30px);
+        max-width    : calc(100% - 35px);
     }
 
     .screenshot__button_delete {
@@ -165,8 +170,16 @@
         svg {
             width     : 12px;
             height    : 12px;
-            fill      : @colorDanger;
-            transition: fill .2s;
+            opacity   : .6;
+            fill      : @colorBase;
+            transition: fill .2s, opacity .2s;
+        }
+
+        &:hover {
+            svg {
+                fill   : @colorBlack;
+                opacity: 1;
+            }
         }
 
         &:disabled {
