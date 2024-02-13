@@ -13,29 +13,29 @@
     z-index      : 999999999;
     opacity      : 0;
 
-    @media (max-width: @maxMobileResolution) {
-        @staticCard();
+    // Only for adroid class
+    &.smallHeight {
+        height: @widgetHeightSmall;
 
-        // Only for adroid class
-        &.smallHeight {
-            height: @widgetHeightSmall;
+        .widget_back {
+            .widget_back__headline {
+                @titleSmall();
+            }
 
-            .widget_back {
-                .widget_back__headline {
-                    @titleSmall();
-                }
+            .menu {
+                .menu__item {
+                    margin-bottom: @menuMarginSmall;
 
-                .menu {
-                    .menu__item {
-                        margin-bottom: @menuMarginSmall;
-
-                        a {
-                            @bodySmall();
-                        }
+                    a {
+                        @bodySmall();
                     }
                 }
             }
         }
+    }
+
+    @media (max-width: @maxMobileResolution) {
+        @staticCard();
     }
 
     &.static {
