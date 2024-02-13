@@ -108,15 +108,12 @@ class MetaData {
         const date = new Date();
 
         const day = date.getDate();
-        const month = (date.getMonth().toString().length == 1? "0":'' ) + date.getMonth();
+        const month = ((date.getMonth() + 1).toString().length === 1 ? '0' : '') + (date.getMonth() + 1);
         const year = date.getFullYear();
-        const hours = ((date.getHours()).toString().length == 1?'0':'') + "" + (date.getHours());
-        const mins = ((date.getMinutes()).toString().length == 1?'0':'') + "" + (date.getMinutes());
+        const hours = ((date.getHours()).toString().length === 1?'0':'') + "" + (date.getHours());
+        const mins = ((date.getMinutes()).toString().length === 1?'0':'') + "" + (date.getMinutes());
 
-        if (this.dateFormat === 'ru')
-            return `${hours}:${mins} ${day}.${month}.${year}`;
-        else 
-            return `${hours}:${mins} ${month}.${day}.${year}`;
+        return `${hours}:${mins} ${day}.${month}.${year}`;
     }
 
 
