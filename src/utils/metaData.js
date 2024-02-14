@@ -19,14 +19,14 @@ class MetaData {
     // Create header row
     get headArray() {
         return [
+            'ID',
             'Problem or idea',
-            'Screenshot',
-            'URL',
             'Actual result',
             'Expected result',
             'Priority',
             'Assignee',
             'Status',
+            'URL',
             'Browser',
             'OS',
             'Device type',
@@ -45,22 +45,22 @@ class MetaData {
         const screenShotName = this.fieldScreenshot.name === 'screenshot.jpg' ? `${this.domain} ${currentDate}.jpg` : this.fieldScreenshot.name;
 
         return [
-            this.fieldProblem.value,                        // Problem
-            [this.fieldScreenshot.value, screenShotName],   // Screenshot
-            window.location.href,                           // URL
-            '',                                             // Actual Result
-            '',                                             // Expected Result
-            '',                                             // Priority
-            '',                                             // Assignee
-            '',                                             // Status
-            this.browser,                                   // Browser
-            this.os,                                        // OS
-            this.deviceType,                                // Device Type
-            window.screen.width,                            // Screen Width
-            window.screen.height,                           // Screen Height
-            window.innerWidth,                              // Browser Width
-            window.innerHeight,                             // Browser Height
-            currentDate,                                    // Date&Time
+            '',                                                      // ID
+            [this.fieldScreenshot.value, this.fieldProblem.value],   // Problem & Screenshot
+            '',                                                      // Actual Result
+            '',                                                      // Expected Result
+            '',                                                      // Priority
+            '',                                                      // Assignee
+            '',                                                      // Status
+            window.location.href,                                    // URL
+            this.browser,                                            // Browser
+            this.os,                                                 // OS
+            this.deviceType,                                         // Device Type
+            window.screen.width,                                     // Screen Width
+            window.screen.height,                                    // Screen Height
+            window.innerWidth,                                       // Browser Width
+            window.innerHeight,                                      // Browser Height
+            currentDate,                                             // Date&Time
         ]
     }
 
