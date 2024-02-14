@@ -2213,7 +2213,7 @@
         if (undefined !== data.url) {
 
             // Check google script version
-            const version = '1.1';
+            const version = '1.2';
             if (data.version !== version || window.bagboxSettings.requiredUpdate) {
                 widget.needUpdate();
             }

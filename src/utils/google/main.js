@@ -14,6 +14,7 @@ function doPost(event) {
   // Create arrays
   const dataCells = json.bodyArray;
   const headCells = json.headArray;
+  const domain = json.domain;
 
 
   // Upload screenshot
@@ -35,21 +36,33 @@ function doPost(event) {
     if (bugboxFolder === undefined) 
       bugboxFolder = DriveApp.createFolder('bugbox-screenshots');
 
-    // Date convert func
-    const getDate = () => {
-      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      return Utilities.formatDate(new Date(), timeZone, "hh:mm dd.MM.yyyy")
-    }
-
     // Create file
-    const decoded     = Utilities.base64Decode(dataCells[2]);
-    const fileName    = `screenshot ${getDate()}.jpg`;
+    const decoded     = Utilities.base64Decode(dataCells[1][0]);
+    const fileName    = dataCells[1][1];
+
     const blob        = Utilities.newBlob(decoded, MimeType.JPEG, fileName);
     const file        = bugboxFolder.createFile(blob);
     const cellFormula = '=hyperlink("' + file.getUrl() + '";"' + file.getName() + '")';
     
     // Upd data array
-    dataCells[2] = cellFormula;
+    dataCells[1][0] = cellFormula;
+  }
+
+
+  // Set ID
+  const setID = () => {
+    // Get ID column
+    const columnID = 1;
+    
+    // Get ID ranges
+    const columnIDRange = sheet.getRange(2, columnID, sheet.getLastRow() - 1, 1);
+    const ids = columnIDRange.getValues().flat();
+    
+    // Get previus ID
+    const previusID = Math.max.apply(null, ids);
+    const id = Number(previusID) + 1;
+
+    dataCells[0] = id;
   }
 
 
@@ -68,7 +81,9 @@ function doPost(event) {
 
 
   // Insert data and headers
-  if (dataCells[2] !== '') uploadScreenshot();
+  setID();
+  if (dataCells[1][0] !== '') uploadScreenshot();
+  else dataCells[1][0] = dataCells[1][1];
   insertData(sheet, dataCells, 2);
   insertHeader(sheet, headCells);
 
@@ -79,18 +94,32 @@ function doPost(event) {
 };
 
 
+
 // Get sheet url for widget
 const doGet = () => {
 
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getActiveSheet();
 
+  let data = [],
+      range = 'A:P', // диапазон ячеек, который хотим выгружать
+      values = sheet.getRange(range).getValues(),
+      last_row = parseInt(sheet.getLastRow());
+
+  for (let i = 0; i < last_row; i++) {
+      data.push(values[i]);
+  }
+
   let currentUrl = '';
   currentUrl += ss.getUrl();
   currentUrl += '#gid=';
   currentUrl += sheet.getSheetId(); 
 
-  const result = {"url":currentUrl};
+  const result = {
+    'url': currentUrl,
+    'version': '1.2',
+    'result': data
+  };
 
   return ContentService.createTextOutput(JSON.stringify(result))
     .setMimeType(ContentService.MimeType.JSON);
