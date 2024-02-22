@@ -3,7 +3,7 @@ A bug report system based on Google Sheets.<br>
 Easiest way to collect and manage bugs in test versions your web projects.
 
 ## How to install
-1. Copy <a href="https://docs.google.com/spreadsheets/d/1g3n8uBIR0hArriOycaj8i79fMdjN3dNmQ_KBdLsEm0g/copy">this sheet</a> (recommended open in a new tab)<br>
+1. Copy <a href="https://docs.google.com/spreadsheets/d/1qU7MeAw28mdM9aIemqgGz1aCPBpfkbgY3KQS9fgTm8g/copy">this sheet</a> (recommended open in a new tab)<br>
 2. Extensions > Apps Script<br>
 3. Deploy > New deployment<br>
 4. Put any text in the description field  > Deploy<br>
