@@ -134,7 +134,7 @@ const defaultData = [
   ],
   [
     '7',
-    '=hyperlink("https://drive.google.com/file/d/1rcyrttgArYB_XF87MVK1_Km4qaqAB5yK/view?usp=drivesdk";"Favicon background is not needed")',
+    '=hyperlink("https://drive.google.com/file/d/1rcyrttgArYB_XF87MVK1_Km4qaqAB5yK/view?usp=drivesdk";"Favicon background not needed")',
     '',
     '',
     '🔺 Major',
@@ -152,7 +152,7 @@ const defaultData = [
   ],
   [
     '8',
-    '=hyperlink("https://drive.google.com/file/d/16h7RLc2QKsafNEpJBT_JtcdunB6OLhlp/view?usp=drivesdk";"Table hover color is too bright")',
+    '=hyperlink("https://drive.google.com/file/d/16h7RLc2QKsafNEpJBT_JtcdunB6OLhlp/view?usp=drivesdk";"Table hover color too bright")',
     '',
     '',
     '⛔️ Blocker',
@@ -188,7 +188,7 @@ const defaultData = [
   ],
   [
     '10',
-    '=hyperlink("https://drive.google.com/file/d/15bKY1Qt7Xcy4-4xZwKvnkHrsCH2WGZ7B/view?usp=drivesdk";"Header font is garbled")',
+    '=hyperlink("https://drive.google.com/file/d/15bKY1Qt7Xcy4-4xZwKvnkHrsCH2WGZ7B/view?usp=drivesdk";"Header font garbled")',
     '',
     '',
     '🔽 Minor',
@@ -206,7 +206,7 @@ const defaultData = [
   ],
   [
     '11',
-    '=hyperlink("https://drive.google.com/file/d/1npAGj20SynTYLUUI9U9kShT-_ClbElLt/view?usp=drivesdk";"Hover color on buttons is similar as inactive")',
+    '=hyperlink("https://drive.google.com/file/d/1npAGj20SynTYLUUI9U9kShT-_ClbElLt/view?usp=drivesdk";"Hover color on buttons similar as inactive")',
     '',
     '',
     '⚪️ Normal',
@@ -224,7 +224,7 @@ const defaultData = [
   ],
   [
     '12',
-    '=hyperlink("https://drive.google.com/file/d/1Y5ye4X4CPvb_JCw0GHP37Y9xlbBDwZ5P/view?usp=drivesdk";"The logo is too small")',
+    '=hyperlink("https://drive.google.com/file/d/1Y5ye4X4CPvb_JCw0GHP37Y9xlbBDwZ5P/view?usp=drivesdk";"The logo too small")',
     '',
     '',
     '🔺 Major',

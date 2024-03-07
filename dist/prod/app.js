@@ -261,7 +261,7 @@
                     <h2 class="widget_back__headline">Bug report system based</br>on Google Sheets</h2>
                     <ul class="menu" id="menu">
                         <li class="menu__item"><a href="https://github.com/vmikh/bugbox" target="_blank">github manual</a></li>
-                        <li class="menu__item"><a href="https://bugbox.io/" target="_blank">about</a></li>
+                        <li class="menu__item"><a href="https://bugbox.io/" target="_blank">about bugbox</a></li>
                     </ul>
                     <a href="https://www.buymeacoffee.com/bugbox" class="widget_back__date_button" target="_blank"><span>☕️</span> Buy me a coffee</a>
                 </section>
