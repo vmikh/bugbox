@@ -1,15 +1,15 @@
 ## What is bugbox?
 A bug report system based on Google Sheets.<br>
-Easiest way to collect and manage bugs in test versions your web projects.
+The easiest way to manage bugs in test versions of your web projects.
 
 ## How to install
-1. Copy <a href="https://docs.google.com/spreadsheets/d/1qU7MeAw28mdM9aIemqgGz1aCPBpfkbgY3KQS9fgTm8g/copy">this sheet</a> (recommended open in a new tab)<br>
+1. Copy <a href="https://docs.google.com/spreadsheets/d/1qU7MeAw28mdM9aIemqgGz1aCPBpfkbgY3KQS9fgTm8g/copy">this sheet</a> (recommended to open in a new tab)<br>
 2. Extensions > Apps Script<br>
 3. Deploy > New deployment<br>
 4. Put any text in the description field  > Deploy<br>
-5. Give the application read and write permissions: Anvanced > Go to bugbox<br>
-6. Copy second link `web app url`<br>
-7. Copy and paste this script into your site source and insert your app url into script to `googleSheetsLink` parameter replacing 'YOUR_GOOGLE_SHEET'<br>
+5. Give the application read and write permissions: Advanced > Go to bugbox<br>
+6. Copy the second link `web app url`<br>
+7. Copy and paste this script into your site source and insert your app url into the script to `googleSheetsLink` parameter replacing 'YOUR_GOOGLE_SHEET'<br>
 8. Enjoy!<br>
 
 ```
@@ -35,14 +35,14 @@ Easiest way to collect and manage bugs in test versions your web projects.
 - hide columns
 - edit row and column size and stile of spreadsheet
 
-#### Please, don't do that
+#### Please, do not
 - add new colomns
 - delete colomns
 - rename colomns
 - change column order
 
 ## Automatic screenshot
-In <a href="https://caniuse.com/mdn-api_mediadevices_getdisplaymedia"> modern desctop browsers</a> you can make automatic screenshot.
+In <a href="https://caniuse.com/mdn-api_mediadevices_getdisplaymedia"> modern desktop browsers</a> you can take an automatic screenshot.
 To take a screenshot automatically, you need to give your browser permission to record your screen.
 
 <br><br>
