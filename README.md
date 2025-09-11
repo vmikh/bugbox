@@ -47,7 +47,7 @@ To take a screenshot automatically, you need to give your browser permission to 
 
 <br><br>
 
-[![Watch Install Manual](https://habrastorage.org/webt/jr/mc/pw/jrmcpwevamxcy6cljii54szep90.png)](https://vmikh.github.io/bugbox/tutorial)<br><br>
+[![Watch Install Manual](https://habrastorage.org/webt/jr/mc/pw/jrmcpwevamxcy6cljii54szep90.png)](https://sashaux.github.io/bugbox/tutorial)<br><br>
 
 ## Credits
 [Platform.js v1.3.6](https://github.com/bestiejs/platform.js/)
